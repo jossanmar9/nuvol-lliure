@@ -10,31 +10,79 @@
 
 ---
 
-## 1. Presentació del projecte
+# 1. PRESENTACIÓ DEL PROJECTE
 
-### 1.1 Títol
+**Núvol Lliure** és un projecte que consisteix en el disseny i implantació d'una infraestructura de cloud privada per a una consultoria d'aproximadament 50 treballadors.
 
-**Núvol Lliure – Cloud privada per a una organització**
+L'organització disposa actualment d'un servidor Windows amb Active Directory que també s'utilitza com a servidor de fitxers. El creixement de l'empresa i la necessitat d'accedir a la informació des de fora de l'oficina fan necessari estudiar una evolució d'esta infraestructura.
 
-### 1.2 Resum del projecte
+El projecte planteja mantindre Active Directory com a sistema de gestió d'identitats i incorporar un nou servidor dedicat basat en Linux per proporcionar els serveis de cloud privada.
 
-Núvol Lliure és un projecte que té com a objectiu dissenyar i implantar una infraestructura de cloud privada per a una consultoria d'aproximadament 50 treballadors.
+La nova infraestructura haurà de permetre centralitzar, sincronitzar i compartir la informació de manera segura, proporcionar accés des de la xarxa interna i des de l'exterior i incorporar mecanismes de protecció, redundància, còpies de seguretat, monitorització i recuperació.
 
-Actualment, l'empresa disposa d'un servidor Windows que s'utilitza tant per a la gestió d'usuaris mitjançant Active Directory com per a l'emmagatzematge de la informació. Els documents es comparteixen a través de carpetes de xarxa i l'accés es controla mitjançant permisos NTFS.
-
-A mesura que l'empresa ha crescut i ha augmentat el nombre de treballadors, la gestió de les carpetes compartides i dels seus permisos s'ha tornat cada vegada més complexa. A més, existeix la necessitat de facilitar l'accés a la informació des de fora de l'oficina, especialment per als treballadors que desenvolupen part de la seua activitat fora de les instal·lacions, com l'equip comercial.
-
-El projecte planteja mantindre el servidor Windows per a la gestió d'Active Directory i implantar un nou servidor dedicat basat en Linux que proporcione els serveis de cloud privada.
-
-Les dades actuals es migraran a la nova plataforma, que haurà de proporcionar accés segur, gestió d'usuaris i permisos, redundància de l'emmagatzematge, còpies de seguretat i mecanismes de recuperació davant de fallades.
+Sempre que siga possible, s'utilitzarà programari lliure i de codi obert i es buscarà una solució que puga créixer juntament amb les necessitats de l'organització.
 
 ---
 
-## 2. Introducció
+# 2. INTRODUCCIÓ
 
-### 2.1 Context i justificació
+## 2.1 Títol del projecte
 
-La consultoria compta amb aproximadament **50 treballadors**, distribuïts entre els següents departaments:
+**Núvol Lliure – Cloud privada per a una organització**
+
+## 2.2 Resum
+
+Núvol Lliure és un projecte orientat al disseny i implantació d'una infraestructura de cloud privada per a una consultoria d'aproximadament 50 treballadors.
+
+Actualment, l'organització utilitza un servidor Windows amb Active Directory que també actua com a servidor de fitxers. La informació s'emmagatzema en carpetes compartides i l'accés es controla mitjançant grups i permisos NTFS. El creixement de l'empresa ha augmentat la complexitat de la seua administració i ha generat la necessitat de facilitar l'accés segur a la informació des de fora de l'oficina.
+
+La solució proposada consisteix a incorporar un servidor dedicat basat en Linux per allotjar una plataforma de cloud privada, mantenint Active Directory com a sistema de gestió dels comptes corporatius i estudiant la seua integració amb la nova plataforma.
+
+Inicialment es preveu utilitzar tecnologies com Linux, Docker, Docker Compose i Nextcloud, prioritzant les solucions de programari lliure.
+
+El resultat esperat és una infraestructura segura i administrable que permeta centralitzar, sincronitzar i compartir la informació, amb accés intern i remot, control d'accés, autenticació multifactor, redundància d'emmagatzematge, còpies de seguretat, monitorització i procediments de recuperació.
+
+## 2.3 Justificació
+
+El projecte naix de la necessitat d'adaptar la infraestructura de l'organització al seu creixement i a una forma de treball en la qual els usuaris no sempre accedeixen a la informació des de l'oficina.
+
+El sistema actual de carpetes compartides ha permés centralitzar els documents de l'empresa, però la seua administració s'ha tornat més complexa a mesura que han augmentat els usuaris, grups, directoris i permisos. Al mateix temps, determinats treballadors necessiten consultar o modificar documentació corporativa quan es troben fora de les instal·lacions.
+
+Una cloud privada permet abordar estes necessitats mantenint el control de la infraestructura i de les dades dins de l'organització, al mateix temps que proporciona mecanismes més adaptats a l'accés, sincronització i compartició de fitxers.
+
+Des del punt de vista formatiu, el projecte permet aplicar de manera conjunta diferents competències treballades durant el cicle d'ASIR: administració de sistemes Linux i Windows, Active Directory, xarxes, emmagatzematge, contenidors, seguretat, serveis de xarxa, còpies de seguretat, monitorització, automatització i documentació tècnica.
+
+A més, s'utilitzaran Git i GitHub per controlar les versions de la documentació, configuracions i scripts desenvolupats durant el projecte, aplicant una metodologia de treball pròxima a la utilitzada en un entorn professional.
+
+## 2.4 Objectius
+
+### Objectiu general
+
+Dissenyar i implantar una infraestructura de **cloud privada segura, centralitzada i accessible remotament** per a una organització d'aproximadament 50 usuaris, que permeta emmagatzemar, sincronitzar i compartir la informació corporativa.
+
+### Objectius específics
+
+- Implantar una plataforma de cloud privada sobre un servidor dedicat basat en Linux.
+- Centralitzar en la nova plataforma les dades que actualment es troben en les carpetes compartides del servidor Windows.
+- Mantindre Active Directory com a sistema de gestió dels usuaris i grups corporatius.
+- Estudiar i provar la integració dels usuaris i grups d'Active Directory amb la plataforma de cloud privada.
+- Permetre l'accés als documents des de la xarxa interna i des de l'exterior.
+- Proporcionar accés segur mitjançant HTTPS i autenticació multifactor.
+- Establir permisos d'accés diferenciats segons els usuaris i grups de l'organització.
+- Implementar un sistema d'emmagatzematge redundant i comprovar el seu funcionament davant de la fallada d'un disc.
+- Implementar un sistema de còpies de seguretat independent de la redundància de l'emmagatzematge.
+- Realitzar proves de restauració que permeten verificar la recuperació de les dades.
+- Monitoritzar l'estat del servidor i dels principals serveis desplegats.
+- Automatitzar almenys una tasca d'administració o manteniment.
+- Documentar la instal·lació, configuració, administració, manteniment i recuperació de la infraestructura.
+
+---
+
+# 3. ANÀLISI DEL PROJECTE
+
+## 3.1 Situació actual
+
+L'organització sobre la qual es planteja el projecte és una consultoria d'aproximadament **50 treballadors**, distribuïts en cinc departaments:
 
 - Recursos Humans.
 - Administració.
@@ -42,148 +90,173 @@ La consultoria compta amb aproximadament **50 treballadors**, distribuïts entre
 - Equip Comercial.
 - Direcció.
 
-Actualment, l'empresa utilitza un servidor Windows per centralitzar la informació. Els diferents directoris es comparteixen a través de la xarxa i els accessos es gestionen mitjançant usuaris, grups i permisos NTFS.
+La infraestructura actual disposa d'un **servidor Windows** que proporciona Active Directory per a la gestió centralitzada dels comptes d'usuari i grups de l'organització.
 
-Este sistema ha funcionat correctament mentre l'organització tenia un nombre menor de treballadors, però el seu creixement ha provocat que la gestió de les carpetes i permisos siga cada vegada més complexa. El departament de Sistemes ha de gestionar un nombre creixent d'usuaris, grups, carpetes compartides i permisos.
+El mateix servidor també actua com a servidor de fitxers. La informació corporativa està organitzada en carpetes compartides i els accessos es controlen mitjançant grups i permisos NTFS.
 
-Al mateix temps, la manera de treballar de l'empresa ha evolucionat. No tots els treballadors necessiten accedir a la informació exclusivament des de l'oficina. Un exemple és l'equip comercial, que pot necessitar consultar o modificar documentació mentre es troba visitant un client o treballant fora de les instal·lacions.
+Cada departament treballa amb informació pròpia, encara que també existeixen documents que han de ser accessibles per diversos departaments. A mesura que l'organització ha crescut, també ho han fet el nombre d'usuaris, grups, directoris i permisos que el departament de Sistemes ha de gestionar.
 
-Per este motiu, es planteja la implantació d'una cloud privada que permeta mantindre la informació centralitzada i facilite l'accés als documents des de diferents ubicacions.
+L'accés als fitxers està pensat principalment per a equips connectats a la xarxa corporativa. Esta situació limita els treballadors que necessiten consultar informació quan es troben fora de les instal·lacions, especialment l'equip comercial.
 
-La nova infraestructura haurà de garantir també la seguretat de la informació. L'accés estarà protegit mitjançant comptes d'usuari, contrasenyes i autenticació multifactor (MFA), a més d'aplicar diferents permisos segons els grups i necessitats de cada departament.
+La nova infraestructura haurà de tindre també en compte la protecció i disponibilitat de la informació. Per això serà necessari estudiar mecanismes de redundància de l'emmagatzematge i disposar d'un sistema independent de còpies de seguretat i recuperació.
 
-També es tindrà en compte la disponibilitat de les dades. L'emmagatzematge haurà de disposar de redundància mitjançant RAID i existirà, de manera independent, un sistema de còpies de seguretat i recuperació.
+Les principals limitacions detectades en la situació actual són:
 
-### 2.2 Objectiu general
+- Augment de la complexitat en la gestió de carpetes compartides i permisos.
+- Major càrrega d'administració a mesura que creix l'organització.
+- Accés als fitxers orientat principalment a la xarxa interna.
+- Dificultat per proporcionar un accés remot còmode i segur.
+- Necessitat de millorar la protecció davant de fallades de l'emmagatzematge.
+- Necessitat de disposar d'una estratègia definida de còpies de seguretat i recuperació.
 
-Dissenyar i implantar una infraestructura de **cloud privada segura, centralitzada i accessible remotament** que permeta a la consultoria gestionar i compartir la seua informació d'una manera més senzilla i adaptada al creixement de l'organització.
+## 3.2 Necessitats
 
-### 2.3 Objectius específics
+A partir de la situació actual s'han identificat necessitats funcionals, tècniques, de seguretat, disponibilitat, escalabilitat i econòmiques.
 
-Els objectius inicials del projecte són:
+### Necessitats funcionals
 
-- Implantar una plataforma de cloud privada en un servidor dedicat basat en Linux.
-- Centralitzar l'emmagatzematge de la informació de l'organització.
-- Migrar les dades emmagatzemades actualment en les carpetes compartides del servidor Windows.
-- Permetre l'accés als documents tant des de la xarxa interna com des de l'exterior.
-- Gestionar usuaris, grups i permisos segons les necessitats de cada departament.
-- Mantindre Active Directory com a sistema de gestió dels comptes corporatius.
-- Estudiar la integració de la plataforma de cloud privada amb els usuaris i grups existents en Active Directory.
-- Implementar mecanismes d'autenticació segura, incloent autenticació multifactor.
-- Proporcionar redundància a l'emmagatzematge per reduir l'impacte de la fallada d'un disc.
-- Implantar un sistema de còpies de seguretat independent de la redundància de l'emmagatzematge.
-- Disposar d'un procediment que permeta recuperar les dades i els serveis davant d'una fallada.
-- Monitoritzar l'estat del servidor i dels principals serveis.
-- Automatitzar tasques d'administració quan resulte útil.
-- Documentar la instal·lació, configuració, administració i recuperació de la infraestructura.
+La plataforma haurà de centralitzar la informació corporativa i permetre als usuaris emmagatzemar, consultar, sincronitzar i compartir documents.
 
----
+Els usuaris autoritzats hauran de poder accedir als seus documents tant des de la xarxa interna com des de l'exterior.
 
-## 3. Anàlisi del projecte
+També serà necessari establir diferents nivells d'accés segons els usuaris i grups de l'organització i permetre compartir informació entre departaments quan siga necessari.
 
-### 3.1 Situació actual
+### Necessitats tècniques
 
-La infraestructura actual de l'organització està basada principalment en un **servidor Windows**.
+La infraestructura de cloud privada s'allotjarà en un servidor dedicat basat en Linux, separat del servidor Windows actual.
 
-Este servidor proporciona el servei d'**Active Directory**, que permet gestionar de manera centralitzada els comptes d'usuari i grups de l'organització.
+Active Directory continuarà utilitzant-se per gestionar les identitats corporatives i s'estudiarà la seua integració amb la nova plataforma.
 
-A més, el mateix servidor s'utilitza actualment per centralitzar els documents de l'empresa. La informació s'organitza en diferents carpetes compartides accessibles des de la xarxa i els permisos d'accés es controlen mitjançant permisos NTFS.
+També serà necessari definir un procediment per migrar les dades actuals des del servidor Windows i seleccionar les tecnologies necessàries per desplegar i administrar la nova infraestructura.
 
-L'empresa està dividida en cinc departaments principals:
+### Necessitats de seguretat
 
-```text
-Consultoria
-│
-├── Recursos Humans
-├── Administració
-├── Sistemes
-├── Equip Comercial
-└── Direcció
-```
+Cada usuari haurà d'identificar-se individualment i únicament podrà accedir a la informació per a la qual dispose d'autorització.
 
-Cada departament necessita accedir a informació diferent, existint també documentació que pot ser compartida entre diversos departaments.
+Les comunicacions realitzades des de l'exterior hauran d'estar xifrades i la plataforma haurà de permetre utilitzar autenticació multifactor.
 
-A mesura que l'empresa ha crescut fins a arribar aproximadament als 50 treballadors, l'administració del sistema de carpetes compartides s'ha tornat més complexa. La gestió dels permisos requereix cada vegada més treball i resulta menys còmoda a mesura que augmenten el nombre d'usuaris, grups i directoris.
+Els serveis exposats a Internet hauran de limitar-se als necessaris i tant el sistema operatiu com les aplicacions hauran de mantindre's actualitzats.
 
-Una altra limitació de la infraestructura actual és l'accés a la informació des de l'exterior. El sistema de carpetes compartides està orientat principalment a l'accés des de la xarxa corporativa, mentre que l'organització necessita facilitar el treball des d'altres ubicacions.
+### Necessitats de disponibilitat
 
-Esta necessitat afecta especialment l'equip comercial, els membres del qual poden necessitar accedir a documentació corporativa mentre es troben fora de l'oficina.
+La informació corporativa és necessària per al funcionament diari de l'organització, per la qual cosa serà necessari reduir l'impacte que podria provocar la fallada d'un dispositiu d'emmagatzematge.
 
-### 3.2 Necessitats detectades
+S'estudiaran diferents alternatives de redundància per determinar quina s'adapta millor a les necessitats i recursos disponibles.
 
-A partir de les limitacions de la infraestructura actual s'han identificat diverses necessitats.
+Independentment del sistema de redundància seleccionat, serà necessari disposar de còpies de seguretat i comprovar periòdicament que les dades poden restaurar-se.
 
-La primera és disposar d'un sistema que mantinga la informació **centralitzada**, però que facilite la seua gestió i compartició respecte al sistema actual de carpetes compartides.
+### Necessitats d'escalabilitat
 
-La plataforma haurà de permetre també l'**accés remot** a la informació, de manera que els usuaris autoritzats puguen consultar i treballar amb els seus documents independentment de si es troben dins o fora de l'oficina.
+La infraestructura es dimensionarà inicialment per a aproximadament 50 usuaris, però haurà de permetre augmentar la capacitat d'emmagatzematge i assumir un possible creixement del nombre d'usuaris.
 
-La **seguretat** serà un altre aspecte fonamental. Cada usuari haurà d'identificar-se individualment i l'accés haurà d'estar protegit mitjançant contrasenya i autenticació multifactor.
+### Necessitats econòmiques
 
-També serà necessari establir una estructura de grups i permisos que permeta separar la informació dels diferents departaments i compartir determinats recursos únicament quan siga necessari.
+Sempre que siga possible s'utilitzaran solucions de **programari lliure i de codi obert**, reduint els costos associats a llicències i evitant una dependència innecessària de proveïdors.
 
-La infraestructura haurà de disposar, a més, de mecanismes que permeten mantindre la disponibilitat de les dades davant de determinades fallades de maquinari. Per este motiu, es planteja utilitzar un sistema d'emmagatzematge amb **redundància RAID**.
+No obstant això, s'hauran de considerar els costos del maquinari, emmagatzematge, sistema de còpies de seguretat, consum elèctric i manteniment de la infraestructura.
 
-La redundància proporcionada pel RAID no substituirà les còpies de seguretat. S'implantarà també un sistema de **còpies de seguretat independent**, juntament amb procediments que permeten comprovar que la informació pot ser restaurada correctament.
+## 3.3 Requisits
 
-### 3.3 Proposta inicial
+A partir de les necessitats detectades s'estableixen els següents requisits inicials:
 
-La proposta consisteix a separar la gestió del directori corporatiu de l'emmagatzematge principal de les dades.
+| ID | Tipus | Requisit | Prioritat | Com es verificarà |
+|---|---|---|---|---|
+| RF-01 | Funcional | El sistema haurà de permetre emmagatzemar, consultar i gestionar fitxers de manera centralitzada. | Alta | Crear, modificar, descarregar i eliminar fitxers de prova. |
+| RF-02 | Funcional | Els usuaris hauran de poder accedir als seus documents des de la xarxa interna. | Alta | Realitzar una prova d'accés des d'un equip de la xarxa corporativa. |
+| RF-03 | Funcional | Els usuaris autoritzats hauran de poder accedir als seus documents des d'una xarxa externa. | Alta | Realitzar una prova d'accés des d'una connexió externa. |
+| RF-04 | Funcional | El sistema haurà de permetre compartir fitxers i carpetes entre usuaris o grups autoritzats. | Alta | Compartir una carpeta de prova i comprovar-ne l'accés. |
+| RF-05 | Funcional | El sistema haurà de permetre aplicar permisos diferents segons els usuaris o grups. | Alta | Comprovar l'accés utilitzant comptes amb permisos diferents. |
+| RF-06 | Funcional | Les dades del servidor Windows hauran de poder migrar-se a la nova plataforma. | Alta | Realitzar una migració de prova i verificar els fitxers resultants. |
+| RT-01 | Tècnic | La cloud privada s'executarà sobre un servidor dedicat basat en Linux. | Alta | Comprovar i documentar el servidor desplegat. |
+| RT-02 | Tècnic | Active Directory continuarà proporcionant la gestió centralitzada dels comptes corporatius. | Alta | Comprovar el funcionament dels comptes i grups després de la implantació. |
+| RT-03 | Tècnic | S'haurà de provar la integració de la plataforma amb Active Directory. | Alta | Autenticar un usuari de prova procedent d'Active Directory. |
+| RS-01 | Seguretat | L'accés a la informació privada requerirà autenticació. | Alta | Intentar accedir sense iniciar sessió. |
+| RS-02 | Seguretat | La plataforma haurà de permetre utilitzar autenticació multifactor. | Alta | Activar MFA en un compte i realitzar una autenticació de prova. |
+| RS-03 | Seguretat | L'accés web haurà d'estar protegit mitjançant HTTPS. | Alta | Comprovar el certificat i la connexió HTTPS des d'un navegador. |
+| RS-04 | Seguretat | Un usuari no podrà accedir a informació per a la qual no dispose de permisos. | Alta | Intentar accedir amb un compte no autoritzat a un recurs restringit. |
+| RD-01 | Disponibilitat | L'emmagatzematge haurà de disposar d'un mecanisme de redundància. | Alta | Simular de manera controlada la fallada d'un disc i comprovar la disponibilitat de les dades. |
+| RD-02 | Disponibilitat | Les dades hauran de disposar de còpies de seguretat independents del sistema de redundància. | Alta | Executar una còpia i comprovar que finalitza correctament. |
+| RD-03 | Disponibilitat | Les còpies de seguretat hauran de permetre recuperar informació. | Alta | Eliminar un fitxer de prova i restaurar-lo des d'una còpia de seguretat. |
+| RM-01 | Monitorització | S'haurà de supervisar l'estat del servidor i dels principals serveis. | Mitjana | Detindre de manera controlada un servei i comprovar que la incidència és detectada. |
+| RE-01 | Escalabilitat | La infraestructura haurà de permetre ampliar la capacitat d'emmagatzematge. | Mitjana | Documentar el procediment i les possibilitats d'ampliació. |
+| RA-01 | Automatització | S'automatitzarà almenys una tasca d'administració o manteniment. | Mitjana | Executar la tasca automatitzada i documentar-ne el resultat. |
+| RDOC-01 | Documentació | El projecte disposarà de documentació suficient per instal·lar, administrar i recuperar la infraestructura. | Alta | Seguir els procediments documentats durant les proves finals. |
 
-El servidor Windows actual **continuarà en funcionament** i mantindrà el servei d'Active Directory. D'esta manera, no serà necessari substituir la infraestructura d'identitats existent.
+Els requisits podran revisar-se durant les fases de disseny i implantació si apareixen noves necessitats o limitacions tècniques.
 
-S'incorporarà un **nou servidor físic dedicat basat en Linux**, que serà l'encarregat d'allotjar la infraestructura de Núvol Lliure.
+## 3.4 Anàlisi de solucions existents/competència
 
-De manera simplificada, la infraestructura inicial prevista serà:
+Abans de seleccionar la plataforma de cloud privada s'han considerat tres alternatives autohostejables: **Nextcloud, ownCloud Infinite Scale i Seafile**.
 
-```text
-                         INTERNET
-                             │
-                      Router / Firewall
-                             │
-                    Xarxa corporativa
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-      Servidor Windows              Servidor Núvol Lliure
-              │                             │
-      Active Directory                    Linux
-              │                             │
-       Usuaris i grups              Cloud privada
-                                            │
-                                      Emmagatzematge
-                                        redundant
-```
+### Nextcloud
 
-Les dades que actualment es troben emmagatzemades en les carpetes compartides del servidor Windows es migraran progressivament a Núvol Lliure.
+Nextcloud és una plataforma orientada a l'emmagatzematge, sincronització, compartició i col·laboració de fitxers.
 
-Els permisos actuals hauran de ser analitzats abans de realitzar la migració. No es planteja traslladar directament l'estructura de permisos NTFS, sinó definir una nova estructura de grups i permisos adaptada al funcionament de la nova plataforma.
+Disposa de gestió d'usuaris i grups, possibilitats d'integració amb LDAP i Active Directory, autenticació multifactor i un sistema d'aplicacions que permet ampliar les funcionalitats de la plataforma.
 
-També s'estudiarà la possibilitat d'integrar la cloud privada amb **Active Directory**, de manera que els treballadors puguen utilitzar els seus comptes corporatius existents per accedir a la plataforma.
+La seua orientació com a plataforma de cloud i col·laboració fa que siga una de les alternatives que s'estudiaran per a Núvol Lliure.
+
+### ownCloud Infinite Scale
+
+ownCloud Infinite Scale és una plataforma destinada a l'emmagatzematge, sincronització i compartició de fitxers.
+
+La seua arquitectura està orientada a proporcionar escalabilitat i permet integrar sistemes externs d'identitat. És una alternativa que haurà de valorar-se tenint en compte tant les seues possibilitats com la complexitat d'implantació i administració per a una organització d'esta grandària.
+
+### Seafile
+
+Seafile és una plataforma especialment orientada a l'emmagatzematge, sincronització i compartició eficient de fitxers.
+
+Disposa d'una edició comunitària i permet el desplegament en contenidors i la integració amb serveis de directori.
+
+És una alternativa a considerar si es prioritza principalment la gestió i sincronització de fitxers davant d'altres funcionalitats de col·laboració.
+
+### Comparació inicial
+
+| Característica | Nextcloud | ownCloud Infinite Scale | Seafile |
+|---|---|---|---|
+| Autohostatge | Sí | Sí | Sí |
+| Edició de programari lliure/comunitària | Sí | Sí | Sí |
+| Emmagatzematge de fitxers | Sí | Sí | Sí |
+| Sincronització de fitxers | Sí | Sí | Sí |
+| Compartició de fitxers | Sí | Sí | Sí |
+| Integració amb serveis de directori | Sí | Sí | Sí |
+| Accés web | Sí | Sí | Sí |
+| Desplegament amb contenidors | Sí | Sí | Sí |
+| Orientació principal | Cloud i col·laboració | Cloud i escalabilitat | Sincronització i fitxers |
+
+Esta comparació és una primera aproximació. La selecció de la plataforma es realitzarà durant el disseny de la solució, després d'analitzar amb més detall els requisits del projecte i justificar l'alternativa escollida.
+
+## 3.5 Anàlisi DAFO
+
+L'anàlisi DAFO permet identificar els factors interns i externs que poden influir en el desenvolupament i implantació de Núvol Lliure.
+
+| Fortaleses | Debilitats |
+|---|---|
+| Control de la infraestructura i de les dades per part de l'organització. | Necessitat d'administrar i mantindre una infraestructura pròpia. |
+| Centralització de la informació en una plataforma de cloud privada. | Major responsabilitat del departament de Sistemes sobre la disponibilitat i seguretat del servei. |
+| Possibilitat d'aprofitar els usuaris i grups d'Active Directory. | Necessitat de migrar les dades des del servidor actual. |
+| Possibilitat d'utilitzar principalment programari lliure. | Necessitat de dedicar temps a la configuració, proves i manteniment. |
+| Capacitat d'adaptar la infraestructura a les necessitats de l'organització. | Necessitat d'adaptació dels usuaris a la nova plataforma. |
+| Possibilitat d'incorporar redundància, backups i mecanismes de recuperació. | Necessitat de disposar de personal amb coneixements per administrar la infraestructura. |
+
+| Oportunitats | Amenaces |
+|---|---|
+| Facilitar el treball remot i l'accés a la informació des de diferents ubicacions. | Atacs contra els serveis accessibles des d'Internet. |
+| Reduir la dependència de serveis cloud de tercers. | Aparició de vulnerabilitats en els components utilitzats. |
+| Facilitar el creixement futur de la infraestructura. | Fallades de maquinari que provoquen interrupcions del servei. |
+| Incorporar noves funcionalitats en el futur. | Pèrdua o corrupció de dades. |
+| Modernitzar el sistema de compartició de fitxers de l'organització. | Dependència de la connexió a Internet per a l'accés remot. |
+| Introduir processos d'automatització i monitorització. | Errors de configuració que puguen provocar problemes de seguretat o disponibilitat. |
+
+L'anàlisi mostra que la implantació d'una cloud privada pot resoldre diverses de les limitacions detectades, però també trasllada a l'organització la responsabilitat de mantindre i protegir la infraestructura.
+
+Per este motiu, el disseny haurà de prestar especial atenció a la seguretat, disponibilitat, còpies de seguretat, monitorització i recuperació davant de fallades.
 
 ---
 
 ## 4. Disseny de la solució
 
 > ⏳ **Pendent de desenvolupament**
-
-En este apartat s'estudiaran les diferents alternatives disponibles i es definirà l'arquitectura definitiva de Núvol Lliure.
-
-Entre altres aspectes, s'hauran d'estudiar:
-
-- Dimensionament del servidor.
-- Sistema operatiu.
-- Plataforma de cloud privada.
-- Emmagatzematge i nivell de RAID.
-- Base de dades.
-- Integració amb Active Directory.
-- Accés des de l'exterior.
-- Proxy invers i HTTPS.
-- Autenticació multifactor.
-- Còpies de seguretat i recuperació.
-- Monitorització.
-- Automatització.
-
-Les decisions tècniques es prendran després de comparar diferents alternatives i justificar quina s'adapta millor a les necessitats del projecte.
 
 ---
 
