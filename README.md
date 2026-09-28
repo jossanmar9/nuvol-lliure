@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="docs/imatges/logo.png" alt="Logo Núvol Lliure" width="300">
+</p>
+
+# ☁️ Núvol Lliure
+
+Projecte Intermodular de **2n curs del Cicle Formatiu de Grau Superior d'Administració de Sistemes Informàtics en Xarxa (ASIR)**.
+
 # ☁️ Cloud privada per a una organització
 
 Projecte Intermodular de **2n curs del Cicle Formatiu de Grau Superior d'Administració de Sistemes Informàtics en Xarxa (ASIR)**.
