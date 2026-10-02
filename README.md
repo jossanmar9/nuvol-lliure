@@ -72,12 +72,12 @@ L'arquitectura definitiva s'establirà durant la fase de disseny del projecte.
 
 ## 🛠️ Tecnologies
 
-### Definides inicialment
+### Previstes inicialment
 
 - **Linux / Ubuntu Server**
 - **Docker**
 - **Docker Compose**
-- **Nextcloud**
+- **Nextcloud** *(candidata principal com a plataforma de cloud; la selecció definitiva es justificarà en la fase de disseny)*
 - **Active Directory**
 - **Git**
 - **GitHub**
@@ -86,6 +86,7 @@ L'arquitectura definitiva s'establirà durant la fase de disseny del projecte.
 
 Durant el desenvolupament del projecte s'estudiaran diferents alternatives per a:
 
+- Plataforma de cloud privada (Nextcloud, ownCloud Infinite Scale o Seafile).
 - Base de dades.
 - Emmagatzematge i redundància.
 - Integració amb Active Directory.
@@ -109,14 +110,14 @@ cloud-privada-asir/
 ├── docs/
 │   ├── arquitectura/         # Diagrames i disseny de la infraestructura
 │   ├── imatges/              # Imatges utilitzades en la documentació
-│   ├── instalacion/          # Documentació d'instal·lació
+│   ├── installacio/          # Documentació d'instal·lació
 │   ├── memoria/              # Memòria del projecte
 │   │   └── memoria.md
-│   ├── pruebas/              # Plans i resultats de proves
-│   └── seguridad/            # Documentació de seguretat
+│   ├── proves/               # Plans i resultats de proves
+│   └── seguretat/            # Documentació de seguretat
 ├── scripts/
 │   ├── backup/               # Scripts de còpies de seguretat
-│   ├── mantenimiento/        # Scripts de manteniment
+│   ├── manteniment/          # Scripts de manteniment
 │   └── restore/              # Scripts de restauració
 ├── .env.example
 ├── .gitignore

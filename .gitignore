@@ -1,0 +1,70 @@
+# =========================================================
+# Núvol Lliure - .gitignore
+# Cap credencial, clau ni dada real ha d'arribar al repositori.
+# =========================================================
+
+# --- Variables d'entorn i secrets ---
+.env
+.env.*
+!.env.example
+*.secret
+secrets/
+**/secrets/
+
+# --- Certificats i claus ---
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.jks
+id_rsa*
+id_ed25519*
+!*.pub
+
+# --- Dades dels contenidors (volums persistents) ---
+docker/**/data/
+docker/**/db/
+docker/**/volumes/
+data/
+volumes/
+
+# --- Còpies de seguretat i bolcats de bases de dades ---
+backups/
+*.bak
+*.dump
+*.sql
+*.sql.gz
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+
+# --- Registres ---
+logs/
+*.log
+
+# --- Ansible ---
+*.retry
+ansible/**/vault*.yml
+!ansible/**/vault*.example.yml
+.vault_pass*
+ansible/inventory/*.local*
+
+# --- Fitxers temporals i d'editors ---
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# --- Fitxers de Python (scripts) ---
+__pycache__/
+*.pyc
+.venv/
+venv/
