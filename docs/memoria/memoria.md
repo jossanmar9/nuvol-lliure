@@ -254,49 +254,49 @@ Per este motiu, el disseny haurà de prestar especial atenció a la seguretat, d
 
 ---
 
-## 4. Disseny de la solució
+# 4. DISSENY DE LA SOLUCIÓ
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 5. Planificació
+# 5. PLANIFICACIÓ
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 6. Implantació i proves
+# 6. IMPLANTACIÓ I PROVES
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 7. Seguiment i control
+# 7. SEGUIMENT I CONTROL
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 8. Resultats i conclusions
+# 8. RESULTATS I CONCLUSIONS
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 9. Bibliografia, webgrafia i fonts
+# 9. BIBLIOGRAFIA, WEBGRAFIA I FONTS
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 10. Anexos
+# 10. ANNEXOS
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-## 11. Documentació tècnica
+# 11. DOCUMENTACIÓ TÈCNICA
 
 Durant el desenvolupament del projecte es prepararà la documentació necessària per a la instal·lació, administració, ús i recuperació de Núvol Lliure.
 
@@ -304,6 +304,6 @@ Durant el desenvolupament del projecte es prepararà la documentació necessàri
 
 ---
 
-## 12. Presentació i defensa
+# 12. PRESENTACIÓ I DEFENSA
 
 > ⏳ **Pendent de desenvolupament**
