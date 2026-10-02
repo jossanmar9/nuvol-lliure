@@ -1,8 +1,10 @@
 # Núvol Lliure
 
-## Cloud privada per a una organització
+## Cloud privada per a Arrel Oberta
 
-**Projecte Intermodular – 2n ASIR**
+**Projecte Intermodular – 2n CFGS Administració de Sistemes Informàtics en Xarxa (ASIR)**
+
+**Autor:** Jose Vicente Sanjuan Martinez
 
 > 🚧 **Document en desenvolupament**
 >
@@ -12,15 +14,13 @@
 
 # 1. PRESENTACIÓ DEL PROJECTE
 
-**Núvol Lliure** és un projecte que consisteix en el disseny i implantació d'una infraestructura de cloud privada per a una consultoria d'aproximadament 50 treballadors.
+**Núvol Lliure** és una cloud privada basada en programari lliure que permet guardar, sincronitzar i compartir fitxers sense dependre de serveis externs com Google Drive o OneDrive.
 
-L'organització disposa actualment d'un servidor Windows amb Active Directory que també s'utilitza com a servidor de fitxers. El creixement de l'empresa i la necessitat d'accedir a la informació des de fora de l'oficina fan necessari estudiar una evolució d'esta infraestructura.
+El projecte planteja la implantació de Núvol Lliure en **Arrel Oberta**, una consultoria fictícia d'aproximadament 50 treballadors. L'empresa disposa actualment d'un servidor Windows amb Active Directory que també s'utilitza com a servidor de fitxers, on cada treballador té la seua carpeta individual.
 
-El projecte planteja mantindre Active Directory com a sistema de gestió d'identitats i incorporar un nou servidor dedicat basat en Linux per proporcionar els serveis de cloud privada.
+La proposta consisteix a mantindre Active Directory per a la gestió dels usuaris i afegir dos servidors Linux: un per a la cloud privada i un altre per a les còpies de seguretat i la monitorització. Així, els treballadors podran accedir a la seua informació des de l'oficina i des de fora, de manera segura i sincronitzada en tots els seus dispositius.
 
-La nova infraestructura haurà de permetre centralitzar, sincronitzar i compartir la informació de manera segura, proporcionar accés des de la xarxa interna i des de l'exterior i incorporar mecanismes de protecció, redundància, còpies de seguretat, monitorització i recuperació.
-
-Sempre que siga possible, s'utilitzarà programari lliure i de codi obert i es buscarà una solució que puga créixer juntament amb les necessitats de l'organització.
+Sempre que siga possible s'utilitzarà programari lliure i de codi obert, i es buscarà una solució funcional i fàcil de mantindre.
 
 ---
 
@@ -28,53 +28,47 @@ Sempre que siga possible, s'utilitzarà programari lliure i de codi obert i es b
 
 ## 2.1 Títol del projecte
 
-**Núvol Lliure – Cloud privada per a una organització**
+**Núvol Lliure – Cloud privada per a Arrel Oberta**
 
 ## 2.2 Resum
 
-Núvol Lliure és un projecte orientat al disseny i implantació d'una infraestructura de cloud privada per a una consultoria d'aproximadament 50 treballadors.
+Arrel Oberta és una consultoria fictícia d'aproximadament 50 treballadors. Actualment, els usuaris es gestionen amb Active Directory en un servidor Windows, que també guarda la carpeta individual de cada treballador. Estes carpetes només són accessibles des de la xarxa de l'oficina, cosa que dificulta el treball fora de l'empresa.
 
-Actualment, l'organització utilitza un servidor Windows amb Active Directory que també actua com a servidor de fitxers. La informació s'emmagatzema en carpetes compartides i l'accés es controla mitjançant grups i permisos NTFS. El creixement de l'empresa ha augmentat la complexitat de la seua administració i ha generat la necessitat de facilitar l'accés segur a la informació des de fora de l'oficina.
+La solució proposada és implantar **Núvol Lliure**, una cloud privada basada en **Nextcloud**, desplegada amb **Docker** sobre **Ubuntu Server**. Els treballadors continuaran iniciant sessió amb el seu usuari d'Active Directory i tindran la seua informació disponible des del navegador, des del client d'escriptori i des del mòbil.
 
-La solució proposada consisteix a incorporar un servidor dedicat basat en Linux per allotjar una plataforma de cloud privada, mantenint Active Directory com a sistema de gestió dels comptes corporatius i estudiant la seua integració amb la nova plataforma.
-
-Inicialment es preveu utilitzar tecnologies com Linux, Docker, Docker Compose i Nextcloud, prioritzant les solucions de programari lliure.
-
-El resultat esperat és una infraestructura segura i administrable que permeta centralitzar, sincronitzar i compartir la informació, amb accés intern i remot, control d'accés, autenticació multifactor, redundància d'emmagatzematge, còpies de seguretat, monitorització i procediments de recuperació.
+La infraestructura inclourà accés segur per HTTPS, autenticació multifactor, emmagatzematge redundant amb RAID 1, còpies de seguretat en un segon servidor, monitorització dels serveis i scripts per automatitzar les tasques de manteniment.
 
 ## 2.3 Justificació
 
-El projecte naix de la necessitat d'adaptar la infraestructura de l'organització al seu creixement i a una forma de treball en la qual els usuaris no sempre accedeixen a la informació des de l'oficina.
+El projecte naix de dues necessitats principals d'Arrel Oberta:
 
-El sistema actual de carpetes compartides ha permés centralitzar els documents de l'empresa, però la seua administració s'ha tornat més complexa a mesura que han augmentat els usuaris, grups, directoris i permisos. Al mateix temps, determinats treballadors necessiten consultar o modificar documentació corporativa quan es troben fora de les instal·lacions.
+- **Accés des de fora de l'oficina.** Alguns treballadors, especialment l'equip comercial, necessiten consultar i modificar els seus documents quan visiten clients o treballen des de casa. Amb el sistema actual no és possible fer-ho de manera còmoda i segura, i alguns treballadors han començat a utilitzar serveis personals com Google Drive o Dropbox, de manera que informació de l'empresa queda fora del seu control.
+- **Protecció de la informació.** El servidor actual no disposa de redundància d'emmagatzematge ni d'una política de còpies de seguretat definida. Una fallada del disc podria provocar la pèrdua de la informació dels treballadors.
 
-Una cloud privada permet abordar estes necessitats mantenint el control de la infraestructura i de les dades dins de l'organització, al mateix temps que proporciona mecanismes més adaptats a l'accés, sincronització i compartició de fitxers.
+Una cloud privada resol estes necessitats mantenint les dades dins de l'empresa i sense costos de llicències per usuari.
 
-Des del punt de vista formatiu, el projecte permet aplicar de manera conjunta diferents competències treballades durant el cicle d'ASIR: administració de sistemes Linux i Windows, Active Directory, xarxes, emmagatzematge, contenidors, seguretat, serveis de xarxa, còpies de seguretat, monitorització, automatització i documentació tècnica.
+Des del punt de vista formatiu, el projecte permet aplicar de manera conjunta continguts treballats durant el cicle d'ASIR: administració de sistemes Linux i Windows, Active Directory, xarxes, contenidors, seguretat, serveis de xarxa, emmagatzematge, còpies de seguretat, monitorització, automatització i documentació tècnica.
 
-A més, s'utilitzaran Git i GitHub per controlar les versions de la documentació, configuracions i scripts desenvolupats durant el projecte, aplicant una metodologia de treball pròxima a la utilitzada en un entorn professional.
+A més, s'utilitzaran **Git i GitHub** per controlar les versions de la documentació, les configuracions i els scripts, de manera semblant a com es treballa en un entorn professional.
 
 ## 2.4 Objectius
 
 ### Objectiu general
 
-Dissenyar i implantar una infraestructura de **cloud privada segura, centralitzada i accessible remotament** per a una organització d'aproximadament 50 usuaris, que permeta emmagatzemar, sincronitzar i compartir la informació corporativa.
+Implantar una **cloud privada segura i accessible des de qualsevol lloc** per a Arrel Oberta, que permeta als treballadors guardar, sincronitzar i compartir els seus fitxers utilitzant el seu usuari d'Active Directory.
 
 ### Objectius específics
 
-- Implantar una plataforma de cloud privada sobre un servidor dedicat basat en Linux.
-- Centralitzar en la nova plataforma les dades que actualment es troben en les carpetes compartides del servidor Windows.
-- Mantindre Active Directory com a sistema de gestió dels usuaris i grups corporatius.
-- Estudiar i provar la integració dels usuaris i grups d'Active Directory amb la plataforma de cloud privada.
-- Permetre l'accés als documents des de la xarxa interna i des de l'exterior.
-- Proporcionar accés segur mitjançant HTTPS i autenticació multifactor.
-- Establir permisos d'accés diferenciats segons els usuaris i grups de l'organització.
-- Implementar un sistema d'emmagatzematge redundant i comprovar el seu funcionament davant de la fallada d'un disc.
-- Implementar un sistema de còpies de seguretat independent de la redundància de l'emmagatzematge.
-- Realitzar proves de restauració que permeten verificar la recuperació de les dades.
-- Monitoritzar l'estat del servidor i dels principals serveis desplegats.
-- Automatitzar almenys una tasca d'administració o manteniment.
-- Documentar la instal·lació, configuració, administració, manteniment i recuperació de la infraestructura.
+- Desplegar Nextcloud amb Docker sobre un servidor Ubuntu Server.
+- Integrar Nextcloud amb Active Directory perquè els usuaris utilitzen el mateix usuari i contrasenya que en Windows.
+- Migrar les carpetes individuals dels treballadors des del servidor Windows a Nextcloud.
+- Permetre compartir fitxers entre usuaris i departaments amb permisos de lectura o edició.
+- Permetre l'accés des de la xarxa interna i des d'Internet de manera segura, amb HTTPS i autenticació multifactor.
+- Protegir les dades davant de la fallada d'un disc amb un RAID 1.
+- Fer còpies de seguretat automàtiques en un segon servidor i comprovar que es poden restaurar.
+- Monitoritzar l'estat dels servidors i dels serveis i rebre avisos quan alguna cosa falle.
+- Automatitzar les tasques de manteniment més habituals amb scripts.
+- Documentar la instal·lació, l'administració i la recuperació perquè la infraestructura es puga tornar a desplegar.
 
 ---
 
@@ -82,7 +76,7 @@ Dissenyar i implantar una infraestructura de **cloud privada segura, centralitza
 
 ## 3.1 Situació actual
 
-L'organització sobre la qual es planteja el projecte és una consultoria d'aproximadament **50 treballadors**, distribuïts en cinc departaments:
+**Arrel Oberta** és una consultoria fictícia d'aproximadament **50 treballadors**, organitzats en cinc departaments:
 
 - Recursos Humans.
 - Administració.
@@ -90,173 +84,431 @@ L'organització sobre la qual es planteja el projecte és una consultoria d'apro
 - Equip Comercial.
 - Direcció.
 
-La infraestructura actual disposa d'un **servidor Windows** que proporciona Active Directory per a la gestió centralitzada dels comptes d'usuari i grups de l'organització.
+La infraestructura actual es basa en un **servidor Windows** que proporciona:
 
-El mateix servidor també actua com a servidor de fitxers. La informació corporativa està organitzada en carpetes compartides i els accessos es controlen mitjançant grups i permisos NTFS.
+- **Active Directory i DNS**, per gestionar de manera centralitzada els usuaris, grups i equips de l'empresa.
+- **Servidor de fitxers**, on cada treballador té la seua **carpeta individual**, protegida amb permisos NTFS perquè només hi puga accedir el seu propietari.
 
-Cada departament treballa amb informació pròpia, encara que també existeixen documents que han de ser accessibles per diversos departaments. A mesura que l'organització ha crescut, també ho han fet el nombre d'usuaris, grups, directoris i permisos que el departament de Sistemes ha de gestionar.
+Quan dos treballadors necessiten intercanviar documents, ho fan per correu electrònic o amb memòries USB, cosa que genera còpies duplicades i versions diferents d'un mateix document.
 
-L'accés als fitxers està pensat principalment per a equips connectats a la xarxa corporativa. Esta situació limita els treballadors que necessiten consultar informació quan es troben fora de les instal·lacions, especialment l'equip comercial.
+Les carpetes només són accessibles des de la xarxa de l'oficina. Els treballadors que es desplacen, especialment l'equip comercial, no poden accedir a la seua informació quan estan fora.
 
-La nova infraestructura haurà de tindre també en compte la protecció i disponibilitat de la informació. Per això serà necessari estudiar mecanismes de redundància de l'emmagatzematge i disposar d'un sistema independent de còpies de seguretat i recuperació.
+Les principals limitacions detectades són:
 
-Les principals limitacions detectades en la situació actual són:
-
-- Augment de la complexitat en la gestió de carpetes compartides i permisos.
-- Major càrrega d'administració a mesura que creix l'organització.
-- Accés als fitxers orientat principalment a la xarxa interna.
-- Dificultat per proporcionar un accés remot còmode i segur.
-- Necessitat de millorar la protecció davant de fallades de l'emmagatzematge.
-- Necessitat de disposar d'una estratègia definida de còpies de seguretat i recuperació.
+- No hi ha accés a la informació des de fora de l'oficina.
+- No hi ha una manera còmoda i controlada de compartir fitxers entre treballadors.
+- Ús de serveis cloud personals per part d'alguns treballadors, amb informació de l'empresa fora del seu control.
+- No hi ha redundància d'emmagatzematge: la fallada d'un disc pot provocar la pèrdua de dades.
+- No hi ha una política de còpies de seguretat definida ni proves de restauració.
+- No hi ha cap sistema que avise quan un servei deixa de funcionar.
 
 ## 3.2 Necessitats
 
-A partir de la situació actual s'han identificat necessitats funcionals, tècniques, de seguretat, disponibilitat, escalabilitat i econòmiques.
-
 ### Necessitats funcionals
 
-La plataforma haurà de centralitzar la informació corporativa i permetre als usuaris emmagatzemar, consultar, sincronitzar i compartir documents.
-
-Els usuaris autoritzats hauran de poder accedir als seus documents tant des de la xarxa interna com des de l'exterior.
-
-També serà necessari establir diferents nivells d'accés segons els usuaris i grups de l'organització i permetre compartir informació entre departaments quan siga necessari.
+- Cada treballador ha de tindre un espai personal on guardar els seus fitxers.
+- Els fitxers s'han de poder consultar des del navegador i sincronitzar en l'ordinador i el mòbil.
+- Els treballadors han de poder compartir fitxers amb companys o amb tot un departament.
+- Els usuaris autoritzats han de poder accedir des de dins i des de fora de l'oficina.
 
 ### Necessitats tècniques
 
-La infraestructura de cloud privada s'allotjarà en un servidor dedicat basat en Linux, separat del servidor Windows actual.
-
-Active Directory continuarà utilitzant-se per gestionar les identitats corporatives i s'estudiarà la seua integració amb la nova plataforma.
-
-També serà necessari definir un procediment per migrar les dades actuals des del servidor Windows i seleccionar les tecnologies necessàries per desplegar i administrar la nova infraestructura.
+- La cloud s'ha d'instal·lar en un servidor Linux dedicat, separat del servidor Windows.
+- Active Directory ha de continuar sent el sistema on es gestionen els usuaris.
+- Cal migrar les carpetes individuals actuals a la nova plataforma.
 
 ### Necessitats de seguretat
 
-Cada usuari haurà d'identificar-se individualment i únicament podrà accedir a la informació per a la qual dispose d'autorització.
-
-Les comunicacions realitzades des de l'exterior hauran d'estar xifrades i la plataforma haurà de permetre utilitzar autenticació multifactor.
-
-Els serveis exposats a Internet hauran de limitar-se als necessaris i tant el sistema operatiu com les aplicacions hauran de mantindre's actualitzats.
+- Cada usuari ha d'iniciar sessió amb el seu compte i només ha de poder veure la seua informació i la que li han compartit.
+- Les connexions des de fora han d'anar xifrades.
+- Cal una segona verificació en l'inici de sessió (autenticació multifactor).
+- Només s'han d'exposar a Internet els serveis imprescindibles.
 
 ### Necessitats de disponibilitat
 
-La informació corporativa és necessària per al funcionament diari de l'organització, per la qual cosa serà necessari reduir l'impacte que podria provocar la fallada d'un dispositiu d'emmagatzematge.
+- La fallada d'un disc no ha de provocar la pèrdua de dades ni aturar el servei.
+- Cal fer còpies de seguretat automàtiques, separades del servidor principal, i comprovar que es poden restaurar.
+- Cal saber quan un servei deixa de funcionar.
 
-S'estudiaran diferents alternatives de redundància per determinar quina s'adapta millor a les necessitats i recursos disponibles.
+### Necessitats econòmiques i d'escalabilitat
 
-Independentment del sistema de redundància seleccionat, serà necessari disposar de còpies de seguretat i comprovar periòdicament que les dades poden restaurar-se.
-
-### Necessitats d'escalabilitat
-
-La infraestructura es dimensionarà inicialment per a aproximadament 50 usuaris, però haurà de permetre augmentar la capacitat d'emmagatzematge i assumir un possible creixement del nombre d'usuaris.
-
-### Necessitats econòmiques
-
-Sempre que siga possible s'utilitzaran solucions de **programari lliure i de codi obert**, reduint els costos associats a llicències i evitant una dependència innecessària de proveïdors.
-
-No obstant això, s'hauran de considerar els costos del maquinari, emmagatzematge, sistema de còpies de seguretat, consum elèctric i manteniment de la infraestructura.
+- S'utilitzarà programari lliure per evitar costos de llicències per usuari.
+- La solució s'ha de poder ampliar si augmenta el nombre de treballadors o l'espai necessari.
 
 ## 3.3 Requisits
 
-A partir de les necessitats detectades s'estableixen els següents requisits inicials:
-
 | ID | Tipus | Requisit | Prioritat | Com es verificarà |
 |---|---|---|---|---|
-| RF-01 | Funcional | El sistema haurà de permetre emmagatzemar, consultar i gestionar fitxers de manera centralitzada. | Alta | Crear, modificar, descarregar i eliminar fitxers de prova. |
-| RF-02 | Funcional | Els usuaris hauran de poder accedir als seus documents des de la xarxa interna. | Alta | Realitzar una prova d'accés des d'un equip de la xarxa corporativa. |
-| RF-03 | Funcional | Els usuaris autoritzats hauran de poder accedir als seus documents des d'una xarxa externa. | Alta | Realitzar una prova d'accés des d'una connexió externa. |
-| RF-04 | Funcional | El sistema haurà de permetre compartir fitxers i carpetes entre usuaris o grups autoritzats. | Alta | Compartir una carpeta de prova i comprovar-ne l'accés. |
-| RF-05 | Funcional | El sistema haurà de permetre aplicar permisos diferents segons els usuaris o grups. | Alta | Comprovar l'accés utilitzant comptes amb permisos diferents. |
-| RF-06 | Funcional | Les dades del servidor Windows hauran de poder migrar-se a la nova plataforma. | Alta | Realitzar una migració de prova i verificar els fitxers resultants. |
-| RT-01 | Tècnic | La cloud privada s'executarà sobre un servidor dedicat basat en Linux. | Alta | Comprovar i documentar el servidor desplegat. |
-| RT-02 | Tècnic | Active Directory continuarà proporcionant la gestió centralitzada dels comptes corporatius. | Alta | Comprovar el funcionament dels comptes i grups després de la implantació. |
-| RT-03 | Tècnic | S'haurà de provar la integració de la plataforma amb Active Directory. | Alta | Autenticar un usuari de prova procedent d'Active Directory. |
-| RS-01 | Seguretat | L'accés a la informació privada requerirà autenticació. | Alta | Intentar accedir sense iniciar sessió. |
-| RS-02 | Seguretat | La plataforma haurà de permetre utilitzar autenticació multifactor. | Alta | Activar MFA en un compte i realitzar una autenticació de prova. |
-| RS-03 | Seguretat | L'accés web haurà d'estar protegit mitjançant HTTPS. | Alta | Comprovar el certificat i la connexió HTTPS des d'un navegador. |
-| RS-04 | Seguretat | Un usuari no podrà accedir a informació per a la qual no dispose de permisos. | Alta | Intentar accedir amb un compte no autoritzat a un recurs restringit. |
-| RD-01 | Disponibilitat | L'emmagatzematge haurà de disposar d'un mecanisme de redundància. | Alta | Simular de manera controlada la fallada d'un disc i comprovar la disponibilitat de les dades. |
-| RD-02 | Disponibilitat | Les dades hauran de disposar de còpies de seguretat independents del sistema de redundància. | Alta | Executar una còpia i comprovar que finalitza correctament. |
-| RD-03 | Disponibilitat | Les còpies de seguretat hauran de permetre recuperar informació. | Alta | Eliminar un fitxer de prova i restaurar-lo des d'una còpia de seguretat. |
-| RM-01 | Monitorització | S'haurà de supervisar l'estat del servidor i dels principals serveis. | Mitjana | Detindre de manera controlada un servei i comprovar que la incidència és detectada. |
-| RE-01 | Escalabilitat | La infraestructura haurà de permetre ampliar la capacitat d'emmagatzematge. | Mitjana | Documentar el procediment i les possibilitats d'ampliació. |
-| RA-01 | Automatització | S'automatitzarà almenys una tasca d'administració o manteniment. | Mitjana | Executar la tasca automatitzada i documentar-ne el resultat. |
-| RDOC-01 | Documentació | El projecte disposarà de documentació suficient per instal·lar, administrar i recuperar la infraestructura. | Alta | Seguir els procediments documentats durant les proves finals. |
+| RF-01 | Funcional | Cada usuari disposarà d'un espai personal per guardar i gestionar els seus fitxers. | Alta | Crear, modificar, descarregar i eliminar fitxers de prova. |
+| RF-02 | Funcional | Els usuaris podran accedir als seus fitxers des de la xarxa interna. | Alta | Accedir des de CLIENT01 dins de la xarxa de l'oficina. |
+| RF-03 | Funcional | Els usuaris podran accedir als seus fitxers des d'Internet. | Alta | Accedir des d'un equip extern a la xarxa de l'oficina. |
+| RF-04 | Funcional | Els usuaris podran compartir fitxers i carpetes amb altres usuaris o grups. | Alta | Compartir una carpeta i comprovar que el destinatari hi accedeix. |
+| RF-05 | Funcional | En compartir, es podrà indicar si el destinatari pot només llegir o també modificar. | Alta | Comprovar que un usuari amb permís de lectura no pot modificar. |
+| RF-06 | Funcional | Les carpetes individuals del servidor Windows es migraran a Nextcloud. | Alta | Migrar les carpetes de prova i comprovar que el contingut coincideix. |
+| RF-07 | Funcional | Els fitxers es podran sincronitzar en l'ordinador i el mòbil. | Mitjana | Instal·lar el client de Nextcloud i comprovar la sincronització. |
+| RT-01 | Tècnic | La cloud s'executarà en un servidor Linux dedicat. | Alta | Comprovar el servidor desplegat. |
+| RT-02 | Tècnic | Active Directory continuarà gestionant els usuaris i grups. | Alta | Crear un usuari en AD i comprovar que pot iniciar sessió en Nextcloud. |
+| RT-03 | Tècnic | Nextcloud s'integrarà amb Active Directory. | Alta | Iniciar sessió en Nextcloud amb un usuari d'AD. |
+| RS-01 | Seguretat | L'accés a la informació requerirà iniciar sessió. | Alta | Intentar accedir sense iniciar sessió. |
+| RS-02 | Seguretat | Els usuaris hauran d'utilitzar autenticació multifactor. | Alta | Activar MFA i comprovar que es demana el segon factor. |
+| RS-03 | Seguretat | L'accés web es farà per HTTPS. | Alta | Comprovar la connexió HTTPS des del navegador. |
+| RS-04 | Seguretat | Un usuari no podrà accedir a fitxers d'altres usuaris si no li els han compartit. | Alta | Intentar accedir a fitxers d'un altre usuari. |
+| RD-01 | Disponibilitat | L'emmagatzematge disposarà de redundància. | Alta | Simular la fallada d'un disc i comprovar que les dades continuen disponibles. |
+| RD-02 | Disponibilitat | Es faran còpies de seguretat automàtiques en un servidor diferent. | Alta | Comprovar que la còpia nocturna s'ha executat correctament. |
+| RD-03 | Disponibilitat | Les còpies permetran recuperar la informació. | Alta | Eliminar un fitxer de prova i restaurar-lo des de la còpia. |
+| RM-01 | Monitorització | Es supervisarà l'estat dels servidors i dels serveis principals. | Mitjana | Aturar un servei i comprovar que arriba l'avís. |
+| RE-01 | Escalabilitat | Es podrà ampliar la capacitat d'emmagatzematge. | Mitjana | Documentar el procediment d'ampliació. |
+| RA-01 | Automatització | S'automatitzarà almenys una tasca de manteniment. | Mitjana | Comprovar l'execució programada de l'script. |
+| RDOC-01 | Documentació | Es documentarà la instal·lació, l'administració i la recuperació. | Alta | Seguir la documentació durant les proves finals. |
 
-Els requisits podran revisar-se durant les fases de disseny i implantació si apareixen noves necessitats o limitacions tècniques.
+Els requisits podran revisar-se durant el desenvolupament si apareixen noves necessitats o limitacions.
 
-## 3.4 Anàlisi de solucions existents/competència
+## 3.4 Anàlisi de solucions existents
 
-Abans de seleccionar la plataforma de cloud privada s'han considerat tres alternatives autohostejables: **Nextcloud, ownCloud Infinite Scale i Seafile**.
+### Serveis al núvol públic
+
+La primera alternativa seria contractar un servei com **Google Workspace (Google Drive)** o **Microsoft 365 (OneDrive)**. Són fàcils d'utilitzar i no requereixen servidors propis, però s'han descartat perquè:
+
+- La informació de l'empresa s'emmagatzema en servidors de tercers.
+- Tenen un cost mensual per usuari que augmenta amb la plantilla.
+- Generen dependència d'un proveïdor concret.
+
+Per això s'opta per una **cloud privada autoallotjada**. S'han estudiat tres plataformes de programari lliure:
 
 ### Nextcloud
 
-Nextcloud és una plataforma orientada a l'emmagatzematge, sincronització, compartició i col·laboració de fitxers.
-
-Disposa de gestió d'usuaris i grups, possibilitats d'integració amb LDAP i Active Directory, autenticació multifactor i un sistema d'aplicacions que permet ampliar les funcionalitats de la plataforma.
-
-La seua orientació com a plataforma de cloud i col·laboració fa que siga una de les alternatives que s'estudiaran per a Núvol Lliure.
+Plataforma d'emmagatzematge, sincronització i compartició de fitxers amb moltes funcionalitats addicionals mitjançant aplicacions. Disposa d'integració amb LDAP i Active Directory, autenticació multifactor, clients per a tots els sistemes i una comunitat molt gran.
 
 ### ownCloud Infinite Scale
 
-ownCloud Infinite Scale és una plataforma destinada a l'emmagatzematge, sincronització i compartició de fitxers.
-
-La seua arquitectura està orientada a proporcionar escalabilitat i permet integrar sistemes externs d'identitat. És una alternativa que haurà de valorar-se tenint en compte tant les seues possibilitats com la complexitat d'implantació i administració per a una organització d'esta grandària.
+Versió moderna d'ownCloud, orientada al rendiment i l'escalabilitat. La seua integració completa amb Active Directory requereix configurar un proveïdor d'identitat addicional, cosa que augmenta la complexitat per a una empresa d'esta grandària.
 
 ### Seafile
 
-Seafile és una plataforma especialment orientada a l'emmagatzematge, sincronització i compartició eficient de fitxers.
+Plataforma centrada en la sincronització de fitxers, molt ràpida i eficient. Té menys funcionalitats de col·laboració i algunes opcions estan reservades a l'edició de pagament.
 
-Disposa d'una edició comunitària i permet el desplegament en contenidors i la integració amb serveis de directori.
-
-És una alternativa a considerar si es prioritza principalment la gestió i sincronització de fitxers davant d'altres funcionalitats de col·laboració.
-
-### Comparació inicial
+### Comparació
 
 | Característica | Nextcloud | ownCloud Infinite Scale | Seafile |
 |---|---|---|---|
-| Autohostatge | Sí | Sí | Sí |
-| Edició de programari lliure/comunitària | Sí | Sí | Sí |
-| Emmagatzematge de fitxers | Sí | Sí | Sí |
-| Sincronització de fitxers | Sí | Sí | Sí |
-| Compartició de fitxers | Sí | Sí | Sí |
-| Integració amb serveis de directori | Sí | Sí | Sí |
-| Accés web | Sí | Sí | Sí |
-| Desplegament amb contenidors | Sí | Sí | Sí |
-| Orientació principal | Cloud i col·laboració | Cloud i escalabilitat | Sincronització i fitxers |
+| Programari lliure | Sí | Sí | Sí (edició comunitària) |
+| Sincronització i compartició | Sí | Sí | Sí |
+| Integració amb Active Directory | Directa (LDAP) | Amb proveïdor d'identitat | Directa (LDAP) |
+| Autenticació multifactor | Integrada | Amb proveïdor d'identitat | Limitada |
+| Desplegament amb Docker | Sí | Sí | Sí |
+| Documentació i comunitat | Molt àmplia | Mitjana | Àmplia |
+| Orientació principal | Cloud i col·laboració | Rendiment i escalabilitat | Sincronització de fitxers |
 
-Esta comparació és una primera aproximació. La selecció de la plataforma es realitzarà durant el disseny de la solució, després d'analitzar amb més detall els requisits del projecte i justificar l'alternativa escollida.
+La selecció definitiva es justifica en l'apartat 4.4.
 
 ## 3.5 Anàlisi DAFO
 
-L'anàlisi DAFO permet identificar els factors interns i externs que poden influir en el desenvolupament i implantació de Núvol Lliure.
-
 | Fortaleses | Debilitats |
 |---|---|
-| Control de la infraestructura i de les dades per part de l'organització. | Necessitat d'administrar i mantindre una infraestructura pròpia. |
-| Centralització de la informació en una plataforma de cloud privada. | Major responsabilitat del departament de Sistemes sobre la disponibilitat i seguretat del servei. |
-| Possibilitat d'aprofitar els usuaris i grups d'Active Directory. | Necessitat de migrar les dades des del servidor actual. |
-| Possibilitat d'utilitzar principalment programari lliure. | Necessitat de dedicar temps a la configuració, proves i manteniment. |
-| Capacitat d'adaptar la infraestructura a les necessitats de l'organització. | Necessitat d'adaptació dels usuaris a la nova plataforma. |
-| Possibilitat d'incorporar redundància, backups i mecanismes de recuperació. | Necessitat de disposar de personal amb coneixements per administrar la infraestructura. |
+| Les dades es queden dins de l'empresa. | Cal administrar i mantindre la infraestructura pròpia. |
+| Sense costos de llicències per usuari. | Més responsabilitat per al departament de Sistemes. |
+| Es reutilitzen els usuaris i grups d'Active Directory. | Cal migrar les dades del servidor actual. |
+| Accés des de qualsevol lloc i dispositiu. | Els usuaris s'han d'adaptar a la nova eina. |
+| Redundància, còpies i monitorització des del principi. | Cal personal amb coneixements de Linux i Docker. |
 
 | Oportunitats | Amenaces |
 |---|---|
-| Facilitar el treball remot i l'accés a la informació des de diferents ubicacions. | Atacs contra els serveis accessibles des d'Internet. |
-| Reduir la dependència de serveis cloud de tercers. | Aparició de vulnerabilitats en els components utilitzats. |
-| Facilitar el creixement futur de la infraestructura. | Fallades de maquinari que provoquen interrupcions del servei. |
-| Incorporar noves funcionalitats en el futur. | Pèrdua o corrupció de dades. |
-| Modernitzar el sistema de compartició de fitxers de l'organització. | Dependència de la connexió a Internet per a l'accés remot. |
-| Introduir processos d'automatització i monitorització. | Errors de configuració que puguen provocar problemes de seguretat o disponibilitat. |
+| Facilitar el teletreball i el treball amb clients. | Atacs contra els serveis accessibles des d'Internet. |
+| Eliminar l'ús de serveis cloud personals. | Vulnerabilitats en el programari utilitzat. |
+| Ampliar la plataforma amb noves aplicacions en el futur. | Avaries de maquinari. |
+| Créixer al mateix ritme que l'empresa. | Errors de configuració. |
+| Modernitzar la manera de treballar. | Dependència de la connexió a Internet per a l'accés remot. |
 
-L'anàlisi mostra que la implantació d'una cloud privada pot resoldre diverses de les limitacions detectades, però també trasllada a l'organització la responsabilitat de mantindre i protegir la infraestructura.
-
-Per este motiu, el disseny haurà de prestar especial atenció a la seguretat, disponibilitat, còpies de seguretat, monitorització i recuperació davant de fallades.
+L'anàlisi mostra que la cloud privada resol les limitacions actuals, però trasllada a l'empresa la responsabilitat de mantindre-la i protegir-la. Per això el disseny posa especial atenció en la seguretat, les còpies de seguretat i la monitorització.
 
 ---
 
 # 4. DISSENY DE LA SOLUCIÓ
 
-> ⏳ **Pendent de desenvolupament**
+En este apartat es defineix l'arquitectura de Núvol Lliure i es justifiquen les tecnologies seleccionades a partir de les necessitats i requisits de l'apartat 3.
+
+El projecte s'implantarà en un **entorn de laboratori virtualitzat** que reprodueix la infraestructura d'Arrel Oberta. Quan és rellevant, s'indica també com s'aplicaria la solució en un entorn real.
+
+## 4.1 Arquitectura general
+
+La infraestructura manté el servidor Windows actual i hi afegeix dos servidors Linux:
+
+- **DC01 (Windows Server):** continua proporcionant Active Directory i DNS. És on es gestionen els usuaris i grups de l'empresa.
+- **NUVOL01 (Ubuntu Server):** nou servidor que allotja la cloud privada (Nextcloud en contenidors Docker) i l'emmagatzematge redundant.
+- **BACKUP01 (Ubuntu Server):** segon servidor, més senzill, que guarda les còpies de seguretat i allotja la monitorització. Com que és una màquina separada, si NUVOL01 falla les còpies continuen disponibles i la incidència es detecta igualment.
+
+```text
+                                  INTERNET
+                                      │
+                              ┌───────┴────────┐
+                              │ Router de      │  Ports reenviats a NUVOL01:
+                              │ l'empresa      │  · 443/tcp   (HTTPS)
+                              └───────┬────────┘  · 51820/udp (VPN WireGuard)
+                                      │
+                           LAN 192.168.10.0/24
+       ┌──────────────────┬───────────┴──────┬──────────────────┐
+       │                  │                  │                  │
+┌──────┴────────┐ ┌───────┴───────────┐ ┌────┴─────────────┐ ┌──┴─────────┐
+│ DC01          │ │ NUVOL01           │ │ BACKUP01         │ │ CLIENT01   │
+│ Windows Server│ │ Ubuntu Server     │ │ Ubuntu Server    │ │ Windows    │
+│ · AD DS       │ │ · Docker Compose  │ │ · Repositori     │ │ · Navegador│
+│ · DNS         │◄┤   - Caddy (HTTPS) │ │   BorgBackup     │ │ · Client   │
+│               │ │   - Nextcloud     ├─►   (còpies)       │ │  Nextcloud │
+│               │ │   - MariaDB/Redis │ │ · Monitorització │ │            │
+│               │ │ · RAID 1 (mdadm)  │ │   (Uptime Kuma)  │ │            │
+└───────────────┘ └───────────────────┘ └──────────────────┘ └────────────┘
+```
+
+Els usuaris accedeixen sempre a la mateixa adreça (`https://nuvol.arreloberta.com`), tant des de l'oficina com des de fora. L'administració dels servidors (SSH) només és accessible des de la xarxa interna o a través de la VPN.
+
+## 4.2 Entorn de laboratori
+
+La infraestructura es muntarà amb **VirtualBox** en un portàtil. VirtualBox és gratuït, multiplataforma i conegut, i permet afegir discos virtuals per provar el RAID i fer instantànies abans de cada canvi important.
+
+| Màquina | Sistema operatiu | vCPU | RAM | Discos | Funció |
+|---|---|---|---|---|---|
+| DC01 | Windows Server 2022 (avaluació) | 2 | 4 GB | 50 GB | Active Directory, DNS |
+| NUVOL01 | Ubuntu Server 26.04 LTS | 2 | 4 GB | 25 GB (sistema) + 2 × 20 GB (RAID 1) | Cloud privada |
+| BACKUP01 | Ubuntu Server 26.04 LTS | 1 | 2 GB | 20 GB (sistema) + 60 GB (còpies) | Còpies de seguretat i monitorització |
+| CLIENT01 | Windows 10/11 | 2 | 4 GB | 50 GB | Equip d'un treballador unit al domini |
+
+Les màquines es connectaran a una **Xarxa NAT** de VirtualBox, que fa de xarxa de l'empresa. El reenviament de ports de la Xarxa NAT simula el router: les peticions que arriben al portàtil es reenvien a NUVOL01, de manera que des del mateix portàtil (o des d'un altre equip) es pot provar l'accés extern.
+
+No cal tindre totes les màquines enceses alhora: per a la majoria de proves n'hi ha prou amb DC01 i NUVOL01, i BACKUP01 només es necessita per a les proves de còpies i monitorització.
+
+## 4.3 Xarxa i adreçament
+
+| Element | Valor |
+|---|---|
+| Xarxa LAN | 192.168.10.0/24 |
+| Porta d'enllaç (router / Xarxa NAT) | 192.168.10.1 |
+| DC01 | 192.168.10.10 |
+| NUVOL01 | 192.168.10.20 |
+| BACKUP01 | 192.168.10.30 |
+| Clients | DHCP |
+| Xarxa VPN (WireGuard) | 10.10.10.0/24 |
+| Domini públic de l'empresa | `arreloberta.com` |
+| Domini d'Active Directory | `corp.arreloberta.com` |
+| Adreça de la cloud | `nuvol.arreloberta.com` |
+
+> Els noms de domini són fictics i s'utilitzen només com a exemple per al projecte.
+
+El domini d'Active Directory és un subdomini del domini públic (`corp.`), tal com recomana Microsoft, per evitar conflictes entre els noms interns i els públics.
+
+En el DNS d'Active Directory es crearan els registres dels servidors Linux i un registre `nuvol.arreloberta.com` que apunte a l'adreça interna de NUVOL01. Així, des de l'oficina els equips accedeixen directament al servidor i des de fora accedeixen a través de l'adreça pública del router.
+
+## 4.4 Plataforma de cloud privada
+
+### Selecció de la plataforma
+
+Per triar la plataforma s'han valorat les tres alternatives de l'apartat 3.4 amb una matriu de decisió ponderada (puntuació de 1 a 5):
+
+| Criteri | Pes | Nextcloud | ownCloud Infinite Scale | Seafile |
+|---|---|---|---|---|
+| Integració amb Active Directory (RT-03) | 25 % | 5 | 3 | 4 |
+| Documentació i comunitat | 20 % | 5 | 3 | 4 |
+| Autenticació multifactor (RS-02) | 15 % | 5 | 3 | 3 |
+| Facilitat d'administració | 15 % | 4 | 3 | 4 |
+| Funcionalitats (compartició, clients, aplicacions) | 15 % | 5 | 4 | 3 |
+| Rendiment | 10 % | 3 | 5 | 5 |
+| **Puntuació ponderada** | **100 %** | **4,65** | **3,35** | **3,80** |
+
+**Es selecciona Nextcloud** perquè:
+
+- S'integra directament amb Active Directory mitjançant l'aplicació *LDAP user and group backend*.
+- Inclou autenticació multifactor (TOTP) i permet fer-la obligatòria.
+- Té clients per a Windows, Android i iOS per sincronitzar els fitxers.
+- Disposa d'una documentació molt completa i d'una comunitat molt activa, cosa que en facilita l'administració.
+
+El seu rendiment és inferior al de les altres opcions, però no és un problema per a 50 usuaris, sobretot si s'utilitza Redis com a memòria cau.
+
+### Desplegament
+
+Nextcloud es desplegarà amb **Docker Compose** utilitzant les imatges oficials. Tota la configuració queda en un únic fitxer `docker-compose.yml` versionat en el repositori, i les contrasenyes en un fitxer `.env` fora del repositori.
+
+| Contenidor | Funció |
+|---|---|
+| `caddy` | Proxy invers amb HTTPS |
+| `nextcloud` | Aplicació Nextcloud |
+| `cron` | Tasques en segon pla de Nextcloud |
+| `mariadb` | Base de dades |
+| `redis` | Memòria cau i bloqueig de fitxers |
+
+Només el contenidor de Caddy publicarà ports (80 i 443). La base de dades i Redis no seran accessibles des de fora de Docker.
+
+**Base de dades:** se selecciona **MariaDB**, que és l'opció més utilitzada en la documentació i la comunitat de Nextcloud. SQLite es descarta perquè no és adequat per a diversos usuaris alhora.
+
+**Proxy invers i HTTPS:** se selecciona **Caddy** perquè configura HTTPS automàticament amb molt poques línies de configuració, en comparació amb Nginx o Traefik. Com que el domini és fictici, en el laboratori Caddy utilitzarà la seua pròpia autoritat de certificació (`tls internal`) i el certificat arrel s'importarà als equips client. En un entorn real, amb un domini registrat, Caddy obtindria automàticament un certificat de Let's Encrypt.
+
+## 4.5 Integració amb Active Directory
+
+Nextcloud es connectarà a DC01 per **LDAPS (port 636)**, de manera que les credencials viatgen xifrades. Els usuaris inicien sessió amb el **mateix usuari i contrasenya que en Windows**, i les altes, baixes i canvis de contrasenya es continuen fent únicament en Active Directory.
+
+| Paràmetre | Valor |
+|---|---|
+| Servidor | `dc01.corp.arreloberta.com` (port 636) |
+| Compte de connexió | `svc-nextcloud` (compte de servei només de lectura) |
+| Usuaris amb accés | Membres del grup `GG_Nuvol_Usuaris` |
+| Nom d'usuari | `sAMAccountName` (el mateix que en Windows) |
+
+En Active Directory es crearan els grups següents:
+
+| Grup | Ús |
+|---|---|
+| `GG_Nuvol_Usuaris` | Usuaris que poden accedir a la cloud |
+| `GG_Nuvol_Admins` | Administradors de Nextcloud |
+| `GG_RRHH`, `GG_Administracio`, `GG_Sistemes`, `GG_Comercial`, `GG_Direccio` | Un grup per departament, per poder compartir fitxers amb tot un departament |
+
+Quan un treballador deixa l'empresa i se'n deshabilita el compte en AD, deixa de poder accedir a la cloud.
+
+## 4.6 Organització de la informació
+
+Actualment cada treballador té **la seua carpeta individual** en el servidor Windows. En Nextcloud, cada usuari disposarà del seu **espai personal**, on tindrà la seua informació disponible des de qualsevol lloc i sincronitzada en els seus dispositius.
+
+- **Accés:** cada usuari només veu els seus fitxers i els que altres usuaris han compartit amb ell (RS-04).
+- **Quota:** 10 GB per usuari, ampliable segons les necessitats.
+- **Compartició:** un usuari pot compartir fitxers o carpetes amb altres usuaris o amb un grup de departament, indicant si poden només llegir o també modificar (RF-04, RF-05).
+- **Enllaços externs:** per compartir amb persones de fora de l'empresa, només es permetran enllaços amb contrasenya i data de caducitat.
+- **Versions i paperera:** Nextcloud guarda versions anteriors dels fitxers i una paperera, de manera que l'usuari pot recuperar un fitxer modificat o eliminat per error sense ajuda del departament de Sistemes.
+
+## 4.7 Emmagatzematge i redundància
+
+Les dades de Nextcloud s'emmagatzemaran en dos discos configurats en **RAID 1 amb mdadm**:
+
+```text
+  /dev/sdb ─┐
+            ├─► /dev/md0 (RAID 1) ─► LVM ─► ext4 ─► /srv/nuvol
+  /dev/sdc ─┘
+```
+
+- **RAID 1 (mdadm):** els dos discos contenen la mateixa informació. Si un falla, el servei continua funcionant amb l'altre fins que es substitueix. És el RAID per programari estàndard de Linux i no necessita maquinari específic.
+- **LVM:** permet ampliar l'espai en el futur afegint nous discos (RE-01).
+- **ext4:** sistema de fitxers estable i conegut.
+
+S'ha descartat ZFS perquè, tot i oferir més funcionalitats, és més complex d'administrar i no és necessari per a esta grandària d'empresa.
+
+> [!IMPORTANT]
+> El RAID protegeix davant de la fallada d'un disc, però **no és una còpia de seguretat**: si un usuari elimina un fitxer o un virus el xifra, el canvi es copia immediatament als dos discos. Per això es fan còpies de seguretat independents (apartat 4.8).
+
+## 4.8 Còpies de seguretat
+
+La política de còpies segueix la **regla 3-2-1**: tres còpies de les dades, en dos suports diferents i una fora de l'oficina.
+
+| Còpia | Ubicació |
+|---|---|
+| 1 | Dades en el RAID 1 de NUVOL01 |
+| 2 | Servidor BACKUP01 |
+| 3 | Disc extern que es guarda fora de l'oficina |
+
+Guardar les còpies en un segon servidor fa que una fallada greu de NUVOL01 (avaria, error de configuració o virus) no afecte també les còpies.
+
+Per fer les còpies s'utilitzarà **BorgBackup**, una eina lliure que fa còpies incrementals (només copia els canvis), comprimeix i xifra les dades i elimina automàticament les còpies antigues. S'ha preferit a una còpia simple amb `rsync` perquè permet guardar diverses versions sense multiplicar l'espai ocupat.
+
+Un script (`scripts/backup/`) s'executarà cada nit a les 02:00 amb `cron` i farà:
+
+1. Posar Nextcloud en mode manteniment.
+2. Exportar la base de dades (`mariadb-dump`).
+3. Copiar amb Borg les dades, la configuració i l'exportació de la base de dades a BACKUP01 per SSH, amb autenticació per clau i un usuari dedicat que només pot executar Borg.
+4. Traure Nextcloud del mode manteniment.
+5. Esborrar les còpies antigues, conservant **7 diàries, 4 setmanals i 6 mensuals**.
+
+Periòdicament es copiarà el repositori de BACKUP01 al disc extern.
+
+Es farà també una còpia de l'estat del sistema de DC01 amb *Windows Server Backup*, ja que sense Active Directory els usuaris no podrien iniciar sessió.
+
+**Proves de restauració (RD-03):** s'eliminarà un fitxer de prova i es restaurarà des de la còpia, i es documentarà el procediment per restaurar el servei complet en un servidor nou.
+
+## 4.9 Monitorització
+
+Se selecciona **Uptime Kuma**, una eina lliure i senzilla que s'executa en un contenidor i es configura des del navegador. S'instal·larà en **BACKUP01** perquè, si NUVOL01 deixa de funcionar, el sistema de monitorització continue actiu i puga avisar. Altres opcions com Zabbix o Prometheus amb Grafana són més completes, però també molt més complexes de configurar del que necessita una empresa d'esta grandària.
+
+Uptime Kuma comprovarà periòdicament:
+
+| Element | Comprovació |
+|---|---|
+| Nextcloud | La web respon per HTTPS |
+| Certificat | Avís abans que caduque |
+| NUVOL01 | Respon al ping i el port SSH està obert |
+| DC01 | Respon al ping i el port LDAPS (636) està obert |
+
+Quan un servei deixe de respondre, s'enviarà un avís per correu electrònic. A més, l'script de còpia avisarà si la còpia falla, i `mdadm` es configurarà per enviar un correu si un dels discos del RAID falla.
+
+RM-01 es verificarà aturant un servei de manera controlada i comprovant que arriba l'avís.
+
+## 4.10 Seguretat
+
+| Àmbit | Mesures |
+|---|---|
+| Accés extern | El router només reenvia el port 443 (HTTPS) i el 51820/udp (VPN). |
+| Administració | SSH i panells d'administració només des de la xarxa interna o per **VPN WireGuard**. |
+| Servidors | Tallafocs UFW, SSH amb claus i sense accés de `root`, actualitzacions de seguretat automàtiques. |
+| Nextcloud | MFA (TOTP) obligatori, protecció contra força bruta integrada i enllaços externs amb contrasenya. |
+| Comunicacions | HTTPS per a l'accés web i LDAPS entre Nextcloud i AD. |
+| Còpies | Repositori Borg xifrat i usuari dedicat en BACKUP01 que només accepta la clau de NUVOL01. |
+| Contrasenyes | Fitxer `.env` amb permisos restringits i exclòs del repositori. |
+
+## 4.11 Automatització
+
+Es crearan scripts Bash, guardats en la carpeta `scripts/` del repositori:
+
+- **Còpia de seguretat:** executada automàticament cada nit amb `cron` (RA-01).
+- **Restauració:** per recuperar les dades a partir d'una còpia.
+- **Actualització:** per actualitzar els contenidors de manera controlada.
+
+## 4.12 Migració de les dades
+
+Les carpetes individuals del servidor Windows es migraran a l'espai personal de cada usuari en Nextcloud:
+
+1. Configurar Nextcloud perquè el nom intern de cada usuari siga el seu `sAMAccountName`, de manera que les carpetes tinguen el mateix nom que en Windows.
+2. Fer que cada usuari inicie sessió una primera vegada perquè es cree el seu espai (o crear-los per línia de comandes).
+3. Muntar la carpeta compartida del servidor Windows en NUVOL01 i copiar la carpeta de cada usuari al seu espai amb `rsync`.
+4. Executar `occ files:scan --all` perquè Nextcloud reconega els fitxers copiats.
+5. Comprovar que el nombre de fitxers i l'espai ocupat coincideixen amb l'origen.
+6. Deixar les carpetes antigues en només lectura durant un temps abans de retirar-les.
+
+## 4.13 Resum de tecnologies
+
+| Àmbit | Tecnologia |
+|---|---|
+| Virtualització (laboratori) | VirtualBox |
+| Gestió d'usuaris | Active Directory (Windows Server) |
+| Servidors Linux (NUVOL01, BACKUP01) | Ubuntu Server 26.04 LTS |
+| Contenidors | Docker + Docker Compose |
+| Plataforma de cloud | Nextcloud |
+| Base de dades i memòria cau | MariaDB + Redis |
+| Proxy invers i HTTPS | Caddy |
+| Redundància | RAID 1 (mdadm) + LVM |
+| Còpies de seguretat | BorgBackup |
+| Monitorització | Uptime Kuma |
+| Accés d'administració | WireGuard |
+| Automatització | Scripts Bash + cron |
+| Control de versions | Git + GitHub |
+
+## 4.14 Relació entre requisits i solució
+
+| Requisit | Solució | Apartat |
+|---|---|---|
+| RF-01 | Nextcloud en NUVOL01 | 4.4 |
+| RF-02 | Registre DNS intern cap a NUVOL01 | 4.3 |
+| RF-03 | Accés HTTPS des de fora a través del router | 4.1, 4.10 |
+| RF-04 | Compartició amb usuaris i grups | 4.6 |
+| RF-05 | Permisos de lectura o edició en cada compartició | 4.6 |
+| RF-06 | Migració de les carpetes individuals amb `rsync` | 4.12 |
+| RF-07 | Client d'escriptori i aplicacions mòbils de Nextcloud | 4.4 |
+| RT-01 | NUVOL01 amb Ubuntu Server | 4.2 |
+| RT-02 | AD continua gestionant usuaris i grups | 4.5 |
+| RT-03 | Integració LDAPS | 4.5 |
+| RS-01 | Inici de sessió amb compte d'AD | 4.5 |
+| RS-02 | MFA TOTP | 4.10 |
+| RS-03 | HTTPS amb Caddy | 4.4 |
+| RS-04 | Espais personals i compartició controlada | 4.6 |
+| RD-01 | RAID 1 amb mdadm | 4.7 |
+| RD-02 | BorgBackup cap a BACKUP01 i disc extern | 4.8 |
+| RD-03 | Proves de restauració | 4.8 |
+| RM-01 | Uptime Kuma i avisos de mdadm | 4.9 |
+| RE-01 | LVM | 4.7 |
+| RA-01 | Script de còpia amb `cron` | 4.11 |
+| RDOC-01 | Documentació en el repositori | 4.11 |
 
 ---
 

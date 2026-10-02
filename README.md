@@ -5,7 +5,7 @@
 <h1 align="center">☁️ Núvol Lliure</h1>
 
 <p align="center">
-  <strong>Cloud privada per a una organització</strong>
+  <strong>Cloud privada per a Arrel Oberta</strong>
 </p>
 
 <p align="center">
@@ -17,100 +17,87 @@
 
 ## 📋 Descripció
 
-**Núvol Lliure** és un projecte que consisteix en el disseny i implantació d'una infraestructura de cloud privada per a una consultoria d'aproximadament **50 treballadors**.
+**Núvol Lliure** és una cloud privada basada en programari lliure que permet guardar, sincronitzar i compartir fitxers sense dependre de serveis externs com Google Drive o OneDrive.
 
-Actualment, l'organització disposa d'un servidor Windows amb **Active Directory** que també s'utilitza com a servidor de fitxers mitjançant carpetes compartides i permisos NTFS.
+El projecte planteja la seua implantació en **Arrel Oberta**, una consultoria fictícia d'aproximadament **50 treballadors**. L'empresa disposa d'un servidor Windows amb **Active Directory** que també fa de servidor de fitxers, on cada treballador té la seua carpeta individual, accessible només des de l'oficina.
 
-El projecte planteja mantindre Active Directory com a sistema de gestió d'usuaris i grups i incorporar un nou servidor dedicat basat en **Linux** per proporcionar els serveis de cloud privada.
-
-La nova infraestructura permetrà centralitzar, sincronitzar i compartir la informació de manera segura, proporcionant accés tant des de la xarxa interna com des de l'exterior.
-
-Sempre que siga possible s'utilitzarà **programari lliure i de codi obert**.
+Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos servidors **Linux**: un per a la cloud privada, basada en **Nextcloud** i **Docker**, i un altre per a les còpies de seguretat i la monitorització. Els treballadors poden accedir a la seua informació des de l'oficina i des de fora, amb el mateix usuari que utilitzen en Windows.
 
 ## 🎯 Objectius
 
-- Implantar una plataforma de cloud privada sobre un servidor dedicat basat en Linux.
-- Centralitzar l'emmagatzematge de la informació de l'organització.
-- Permetre la sincronització i compartició de fitxers.
-- Mantindre Active Directory com a sistema de gestió dels usuaris i grups corporatius.
-- Estudiar i provar la integració de la cloud privada amb Active Directory.
-- Gestionar usuaris, grups i permisos.
-- Proporcionar accés segur des de la xarxa interna i des de l'exterior.
-- Implementar autenticació multifactor.
-- Proporcionar redundància a l'emmagatzematge.
-- Implementar una política de còpies de seguretat i recuperació.
-- Monitoritzar els principals serveis de la infraestructura.
-- Automatitzar tasques d'administració i manteniment quan resulte útil.
-- Documentar la instal·lació, administració, manteniment i recuperació del sistema.
+- Desplegar Nextcloud amb Docker sobre Ubuntu Server.
+- Integrar Nextcloud amb Active Directory.
+- Migrar les carpetes individuals dels treballadors a Nextcloud.
+- Permetre compartir fitxers entre usuaris i departaments.
+- Proporcionar accés segur des de la xarxa interna i des d'Internet, amb HTTPS i autenticació multifactor.
+- Protegir les dades amb un RAID 1.
+- Fer còpies de seguretat automàtiques en un segon servidor i comprovar-ne la restauració.
+- Monitoritzar els servidors i els serveis.
+- Automatitzar les tasques de manteniment amb scripts.
+- Documentar la instal·lació, l'administració i la recuperació.
 
-## 🏗️ Arquitectura inicial
-
-La infraestructura partirà de dos servidors amb funcions diferenciades:
+## 🏗️ Arquitectura
 
 ```text
-                         INTERNET
-                             │
-                      Router / Firewall
-                             │
-                    Xarxa corporativa
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-      Servidor Windows              Servidor Núvol Lliure
-              │                             │
-      Active Directory                    Linux
-              │                             │
-       Usuaris i grups              Cloud privada
-                                            │
-                                      Emmagatzematge
-                                        redundant
+                                  INTERNET
+                                      │
+                              ┌───────┴────────┐
+                              │ Router de      │  Ports reenviats a NUVOL01:
+                              │ l'empresa      │  · 443/tcp   (HTTPS)
+                              └───────┬────────┘  · 51820/udp (VPN WireGuard)
+                                      │
+                           LAN 192.168.10.0/24
+       ┌──────────────────┬───────────┴──────┬──────────────────┐
+       │                  │                  │                  │
+┌──────┴────────┐ ┌───────┴───────────┐ ┌────┴─────────────┐ ┌──┴─────────┐
+│ DC01          │ │ NUVOL01           │ │ BACKUP01         │ │ CLIENT01   │
+│ Windows Server│ │ Ubuntu Server     │ │ Ubuntu Server    │ │ Windows    │
+│ · AD DS       │ │ · Docker Compose  │ │ · Repositori     │ │ · Navegador│
+│ · DNS         │◄┤   - Caddy (HTTPS) │ │   BorgBackup     │ │ · Client   │
+│               │ │   - Nextcloud     ├─►   (còpies)       │ │  Nextcloud │
+│               │ │   - MariaDB/Redis │ │ · Monitorització │ │            │
+│               │ │ · RAID 1 (mdadm)  │ │   (Uptime Kuma)  │ │            │
+└───────────────┘ └───────────────────┘ └──────────────────┘ └────────────┘
 ```
 
-El servidor Windows continuarà gestionant les identitats corporatives mitjançant Active Directory, mentre que el nou servidor assumirà els serveis relacionats amb la cloud privada i l'emmagatzematge de la informació.
+| Servidor | IP | Funció |
+|---|---|---|
+| DC01 | 192.168.10.10 | Active Directory i DNS |
+| NUVOL01 | 192.168.10.20 | Cloud privada (Nextcloud) |
+| BACKUP01 | 192.168.10.30 | Còpies de seguretat i monitorització |
 
-L'arquitectura definitiva s'establirà durant la fase de disseny del projecte.
+La cloud és accessible en `https://nuvol.arreloberta.com` (domini fictici). L'entorn de laboratori es munta amb màquines virtuals de VirtualBox.
 
 ## 🛠️ Tecnologies
 
-### Previstes inicialment
+| Àmbit | Tecnologia |
+|---|---|
+| Virtualització (laboratori) | VirtualBox |
+| Gestió d'usuaris | Active Directory (Windows Server) |
+| Servidors Linux | Ubuntu Server 26.04 LTS |
+| Contenidors | Docker + Docker Compose |
+| Plataforma de cloud | Nextcloud |
+| Base de dades i memòria cau | MariaDB + Redis |
+| Proxy invers i HTTPS | Caddy |
+| Redundància | RAID 1 (mdadm) + LVM |
+| Còpies de seguretat | BorgBackup |
+| Monitorització | Uptime Kuma |
+| Accés d'administració | WireGuard |
+| Automatització | Scripts Bash + cron |
+| Control de versions | Git + GitHub |
 
-- **Linux / Ubuntu Server**
-- **Docker**
-- **Docker Compose**
-- **Nextcloud** *(candidata principal com a plataforma de cloud; la selecció definitiva es justificarà en la fase de disseny)*
-- **Active Directory**
-- **Git**
-- **GitHub**
-
-### Pendents d'estudi i selecció
-
-Durant el desenvolupament del projecte s'estudiaran diferents alternatives per a:
-
-- Plataforma de cloud privada (Nextcloud, ownCloud Infinite Scale o Seafile).
-- Base de dades.
-- Emmagatzematge i redundància.
-- Integració amb Active Directory.
-- Proxy invers.
-- HTTPS i certificats.
-- Accés remot.
-- Còpies de seguretat i recuperació.
-- Monitorització.
-- Automatització.
-- Seguretat.
-
-Les decisions tècniques es documentaran i justificaran segons els requisits i les necessitats de la infraestructura.
+La justificació de cada tecnologia es troba en l'apartat 4 de la memòria.
 
 ## 📁 Estructura del repositori
 
 ```text
 cloud-privada-asir/
-├── ansible/                  # Automatització de la infraestructura
-├── config/                   # Fitxers de configuració
-├── docker/                   # Configuració dels contenidors
+├── config/                   # Fitxers de configuració (Caddy, WireGuard...)
+├── docker/                   # Fitxers docker-compose dels serveis
 ├── docs/
-│   ├── arquitectura/         # Diagrames i disseny de la infraestructura
-│   ├── imatges/              # Imatges utilitzades en la documentació
-│   ├── installacio/          # Documentació d'instal·lació
+│   ├── arquitectura/         # Diagrames de la infraestructura
+│   ├── imatges/              # Imatges de la documentació
+│   ├── installacio/          # Guies d'instal·lació
 │   ├── memoria/              # Memòria del projecte
 │   │   └── memoria.md
 │   ├── proves/               # Plans i resultats de proves
@@ -124,73 +111,42 @@ cloud-privada-asir/
 └── README.md
 ```
 
-L'estructura podrà evolucionar durant el desenvolupament del projecte segons les necessitats que vagen apareixent.
-
 ## 📖 Documentació
 
-La memòria principal del projecte es troba en:
+La memòria del projecte es troba en [`docs/memoria/memoria.md`](docs/memoria/memoria.md).
 
-[`docs/memoria/memoria.md`](docs/memoria/memoria.md)
-
-Actualment estan documentades les primeres fases del projecte:
+Apartats completats:
 
 - Presentació del projecte.
 - Introducció.
-- Anàlisi de la situació actual.
-- Necessitats.
-- Requisits.
-- Anàlisi de solucions existents.
-- Anàlisi DAFO.
+- Anàlisi del projecte (situació actual, necessitats, requisits, solucions existents i DAFO).
+- Disseny de la solució.
 
-La documentació s'anirà ampliant a mesura que avance el disseny i la implantació de la infraestructura.
-
-## 🔄 Control de versions
-
-El projecte utilitza **Git** com a sistema de control de versions i **GitHub** com a repositori remot.
-
-L'objectiu és:
-
-- Mantindre un historial dels canvis realitzats durant el desenvolupament.
-- Facilitar el seguiment de l'evolució del projecte.
-- Mantindre una còpia remota de les configuracions, scripts i documentació.
-- Aplicar una metodologia de treball similar a la utilitzada en un entorn professional.
+## 🔐 Dades sensibles
 
 > [!IMPORTANT]
-> Les credencials, contrasenyes, claus privades, tokens, certificats i altres dades sensibles **no s'emmagatzemaran al repositori**.
+> Les contrasenyes, claus privades, certificats i altres dades sensibles **no es guarden al repositori**.
 
-Els fitxers que necessiten variables sensibles utilitzaran fitxers d'exemple, com `.env.example`, sense incloure credencials reals.
+Les variables necessàries es defineixen en un fitxer `.env` a partir de la plantilla [`.env.example`](.env.example), que no conté credencials reals.
 
 ## 🚧 Estat del projecte
 
-> 🟡 **En desenvolupament**
+> 🟡 **En desenvolupament** – fase de planificació de la implantació.
 
-Actualment el projecte es troba en la fase d'**anàlisi i disseny de la solució**.
-
-### Progrés
-
-- [x] Definició inicial del projecte
-- [x] Anàlisi de la situació actual
-- [x] Identificació de necessitats
-- [x] Definició inicial de requisits
-- [x] Anàlisi inicial de solucions
-- [x] Anàlisi DAFO
-- [ ] Disseny de l'arquitectura definitiva
-- [ ] Planificació de la implantació
-- [ ] Preparació del servidor
-- [ ] Desplegament de la cloud privada
+- [x] Definició del projecte
+- [x] Anàlisi de la situació actual, necessitats i requisits
+- [x] Anàlisi de solucions i DAFO
+- [x] Disseny de la solució
+- [ ] Planificació
+- [ ] Muntatge de l'entorn de laboratori
+- [ ] Desplegament de Nextcloud
 - [ ] Integració amb Active Directory
-- [ ] Configuració de seguretat
-- [ ] Configuració de còpies de seguretat
+- [ ] Seguretat (HTTPS, MFA, VPN)
+- [ ] RAID 1
+- [ ] Còpies de seguretat i restauració
 - [ ] Monitorització
-- [ ] Automatització
-- [ ] Pla de proves
+- [ ] Scripts d'automatització
+- [ ] Migració de dades
+- [ ] Proves
 - [ ] Documentació tècnica
-- [ ] Finalització de la memòria
-
----
-
-## 📌 Estat
-
-**Núvol Lliure es troba actualment en desenvolupament.**
-
-Les tecnologies, configuracions i arquitectura descrites en este repositori poden canviar a mesura que avance l'anàlisi, el disseny i les proves del projecte.
+- [ ] Finalització de la memòria i presentació
