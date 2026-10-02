@@ -538,7 +538,54 @@ Les carpetes individuals del servidor Windows es migraran a l'espai personal de 
 
 # 9. BIBLIOGRAFIA, WEBGRAFIA I FONTS
 
-> ⏳ **Pendent de desenvolupament**
+Fonts consultades per a l'anàlisi i el disseny de la solució. Tots els recursos en línia s'han consultat l'octubre de 2026. La llista s'ampliarà durant la implantació.
+
+## 9.1 Plataformes de cloud privada
+
+- Nextcloud GmbH. *Nextcloud Server Administration Manual*. https://docs.nextcloud.com/server/stable/admin_manual/
+- Nextcloud GmbH. *System requirements*. https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html
+- Nextcloud GmbH. *User authentication with LDAP*. https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/user_auth_ldap.html
+- Nextcloud GmbH. *Two-factor authentication*. https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/two_factor-auth.html
+- Nextcloud GmbH. *Backup*. https://docs.nextcloud.com/server/stable/admin_manual/maintenance/backup.html
+- Nextcloud. *Imatge oficial de Docker de Nextcloud*. https://github.com/nextcloud/docker
+- ownCloud. *Infinite Scale Admin Documentation*. https://doc.owncloud.com/ocis/next/admin/index.html
+- Seafile Ltd. *Seafile Admin Manual*. https://manual.seafile.com/
+
+## 9.2 Sistemes operatius i identitats
+
+- Canonical. *Ubuntu 26.04 LTS release notes*. https://documentation.ubuntu.com/release-notes/26.04/
+- Canonical. *Ubuntu Server documentation*. https://documentation.ubuntu.com/server/
+- Microsoft. *Selecting the Forest Root Domain*. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain
+- Microsoft. *Evaluation Center (Windows Server)*. https://www.microsoft.com/en-us/evalcenter/
+
+## 9.3 Contenidors i serveis
+
+- Docker Inc. *Docker Docs*. https://docs.docker.com/
+- Docker Inc. *Docker Compose*. https://docs.docker.com/compose/
+- Docker Hub. *Imatge oficial de MariaDB*. https://hub.docker.com/_/mariadb
+- Docker Hub. *Imatge oficial de Redis*. https://hub.docker.com/_/redis
+- Caddy. *Caddy Documentation*. https://caddyserver.com/docs/
+- Caddy. *Directiva tls (certificats interns)*. https://caddyserver.com/docs/caddyfile/directives/tls
+- Let's Encrypt. *Documentation*. https://letsencrypt.org/docs/
+
+## 9.4 Emmagatzematge, còpies i monitorització
+
+- Linux man-pages. *mdadm(8)*. https://man7.org/linux/man-pages/man8/mdadm.8.html
+- Linux man-pages. *lvm(8)*. https://man7.org/linux/man-pages/man8/lvm.8.html
+- BorgBackup. *BorgBackup Documentation*. https://borgbackup.readthedocs.io/
+- INCIBE. *Copias de seguridad: una guía de aproximación para el empresario*. https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario
+- Uptime Kuma. *Repositori oficial*. https://github.com/louislam/uptime-kuma
+
+## 9.5 Xarxa, seguretat i virtualització
+
+- WireGuard. *WireGuard: fast, modern, secure VPN tunnel*. https://www.wireguard.com/
+- Ubuntu Community. *UFW*. https://help.ubuntu.com/community/UFW
+- Oracle. *VirtualBox User Manual*. https://www.virtualbox.org/manual/
+
+## 9.6 Control de versions
+
+- Git. *Git Documentation*. https://git-scm.com/doc
+- GitHub. *GitHub Docs*. https://docs.github.com/
 
 ---
 
