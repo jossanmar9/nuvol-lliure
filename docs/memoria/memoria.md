@@ -2,13 +2,36 @@
 
 ## Cloud privada per a Arrel Oberta
 
-**Projecte Intermodular – 2n CFGS Administració de Sistemes Informàtics en Xarxa (ASIR)**
+**Projecte Intermodular – 2n curs (ASIR)**
 
-**Autor:** Jose Vicente Sanjuan Martinez
+| | |
+|---|---|
+| **Títol del projecte** | Núvol Lliure – Cloud privada per a Arrel Oberta |
+| **Alumne** | Jose Vicente Sanjuan Martinez |
+| **Curs** | 2n CFGS Administració de Sistemes Informàtics en Xarxa (ASIR) |
+| **Professor/a** | [Pendent] |
+| **Data** | [Pendent] |
 
 > 🚧 **Document en desenvolupament**
 >
 > Esta memòria s'anirà completant i actualitzant durant el desenvolupament del projecte.
+
+---
+
+# ÍNDEX
+
+1. Presentació del projecte
+2. Introducció
+3. Anàlisi del projecte
+4. Disseny de la solució
+5. Planificació
+6. Implantació i proves
+7. Seguiment i control
+8. Resultats i conclusions
+9. Bibliografia/webgrafia i fonts
+10. Annexos
+11. Documentació tècnica
+12. Presentació i defensa
 
 ---
 
@@ -37,6 +60,8 @@ Arrel Oberta és una consultoria fictícia d'aproximadament 50 treballadors. Act
 La solució proposada és implantar **Núvol Lliure**, una cloud privada basada en **Nextcloud**, desplegada amb **Docker** sobre **Ubuntu Server**. Els treballadors continuaran iniciant sessió amb el seu usuari d'Active Directory i tindran la seua informació disponible des del navegador, des del client d'escriptori i des del mòbil.
 
 La infraestructura inclourà accés segur per HTTPS, autenticació multifactor, emmagatzematge redundant amb RAID 1, còpies de seguretat en un segon servidor, monitorització dels serveis i scripts per automatitzar les tasques de manteniment.
+
+El resultat esperat és una cloud privada funcional i demostrable, on cada treballador d'Arrel Oberta pot treballar amb els seus fitxers des de qualsevol lloc, compartir-los amb els companys i recuperar-los en cas d'error o avaria, amb un cost de llicències nul i amb tota la informació sota el control de l'empresa.
 
 ## 2.3 Justificació
 
@@ -170,7 +195,7 @@ Els requisits podran revisar-se durant el desenvolupament si apareixen noves nec
 La primera alternativa seria contractar un servei com **Google Workspace (Google Drive)** o **Microsoft 365 (OneDrive)**. Són fàcils d'utilitzar i no requereixen servidors propis, però s'han descartat perquè:
 
 - La informació de l'empresa s'emmagatzema en servidors de tercers.
-- Tenen un cost mensual per usuari que augmenta amb la plantilla.
+- Tenen un cost mensual per usuari que augmenta amb la plantilla: uns 14 dòlars per usuari i mes en els plans Business Standard de Google Workspace i Microsoft 365, és a dir, uns 8.400 dòlars anuals per a 50 treballadors.
 - Generen dependència d'un proveïdor concret.
 
 Per això s'opta per una **cloud privada autoallotjada**. S'han estudiat tres plataformes de programari lliure:
@@ -197,9 +222,10 @@ Plataforma centrada en la sincronització de fitxers, molt ràpida i eficient. T
 | Autenticació multifactor | Integrada | Amb proveïdor d'identitat | Limitada |
 | Desplegament amb Docker | Sí | Sí | Sí |
 | Documentació i comunitat | Molt àmplia | Mitjana | Àmplia |
+| Cost de llicències | Gratuït (subscripció de suport opcional) | Gratuït (subscripció de suport opcional) | Gratuït en l'edició comunitària; edició Pro de pagament |
 | Orientació principal | Cloud i col·laboració | Rendiment i escalabilitat | Sincronització de fitxers |
 
-La selecció definitiva es justifica en l'apartat 4.4.
+La selecció definitiva es justifica en l'apartat 4.3.
 
 ## 3.5 Anàlisi DAFO
 
@@ -225,17 +251,28 @@ L'anàlisi mostra que la cloud privada resol les limitacions actuals, però tras
 
 # 4. DISSENY DE LA SOLUCIÓ
 
-En este apartat es defineix l'arquitectura de Núvol Lliure i es justifiquen les tecnologies seleccionades a partir de les necessitats i requisits de l'apartat 3.
+En este apartat es defineix com serà Núvol Lliure i es justifiquen les tecnologies triades a partir de les necessitats i requisits de l'apartat 3.
 
 El projecte s'implantarà en un **entorn de laboratori virtualitzat** que reprodueix la infraestructura d'Arrel Oberta. Quan és rellevant, s'indica també com s'aplicaria la solució en un entorn real.
 
-## 4.1 Arquitectura general
+## 4.1 Recopilació d'informació tècnica
 
-La infraestructura manté el servidor Windows actual i hi afegeix dos servidors Linux:
+Per dissenyar la solució s'han consultat principalment les documentacions oficials de cada tecnologia (vegeu l'apartat 9). Les tecnologies investigades són:
 
-- **DC01 (Windows Server):** continua proporcionant Active Directory i DNS. És on es gestionen els usuaris i grups de l'empresa.
-- **NUVOL01 (Ubuntu Server):** nou servidor que allotja la cloud privada (Nextcloud en contenidors Docker) i l'emmagatzematge redundant.
-- **BACKUP01 (Ubuntu Server):** segon servidor, més senzill, que guarda les còpies de seguretat i allotja la monitorització. Com que és una màquina separada, si NUVOL01 falla les còpies continuen disponibles i la incidència es detecta igualment.
+- **Nextcloud:** plataforma de cloud privada. S'ha revisat el manual d'administració, especialment els requisits del sistema, la integració amb LDAP/Active Directory, l'autenticació en dos factors i el procediment de còpies de seguretat.
+- **ownCloud Infinite Scale i Seafile:** alternatives a Nextcloud, estudiades per poder comparar-les (apartat 4.3).
+- **Ubuntu Server 26.04 LTS:** sistema operatiu dels servidors Linux. És una versió amb suport a llarg termini, cosa que garanteix actualitzacions de seguretat durant anys.
+- **Docker i Docker Compose:** permeten desplegar Nextcloud i els serveis que necessita (base de dades, memòria cau i proxy) en contenidors, definits en un únic fitxer que es pot versionar i tornar a desplegar.
+- **MariaDB i Redis:** base de dades i memòria cau recomanades per la documentació de Nextcloud.
+- **Caddy:** proxy invers que configura HTTPS de manera automàtica.
+- **Active Directory:** s'ha revisat la recomanació de Microsoft sobre el nom del domini i el funcionament de LDAPS, que necessita un certificat en el controlador de domini.
+- **mdadm i LVM:** RAID per programari i gestió de volums de Linux.
+- **BorgBackup:** eina de còpies de seguretat incrementals, xifrades i amb deduplicació.
+- **Uptime Kuma:** eina senzilla de monitorització de serveis.
+- **WireGuard:** VPN moderna i senzilla per a l'accés d'administració.
+- **VirtualBox:** hipervisor per muntar l'entorn de laboratori.
+
+## 4.2 Arquitectura
 
 ```text
                                   INTERNET
@@ -259,121 +296,124 @@ La infraestructura manté el servidor Windows actual i hi afegeix dos servidors 
 └───────────────┘ └───────────────────┘ └──────────────────┘ └────────────┘
 ```
 
-Els usuaris accedeixen sempre a la mateixa adreça (`https://nuvol.arreloberta.com`), tant des de l'oficina com des de fora. L'administració dels servidors (SSH) només és accessible des de la xarxa interna o a través de la VPN.
+**Elements:**
 
-## 4.2 Entorn de laboratori
+- **DC01 (Windows Server):** el servidor actual. Continua proporcionant Active Directory i DNS, i és on es gestionen els usuaris i grups.
+- **NUVOL01 (Ubuntu Server):** nou servidor que allotja Nextcloud en contenidors Docker i les dades en un RAID 1.
+- **BACKUP01 (Ubuntu Server):** segon servidor, més senzill, que guarda les còpies de seguretat i allotja la monitorització. Com que és una màquina separada, si NUVOL01 falla les còpies continuen disponibles i la incidència es detecta igualment.
+- **CLIENT01 (Windows):** equip d'un treballador unit al domini.
+- **Router:** connecta l'oficina a Internet i reenvia a NUVOL01 només els ports de HTTPS i de la VPN.
 
-La infraestructura es muntarà amb **VirtualBox** en un portàtil. VirtualBox és gratuït, multiplataforma i conegut, i permet afegir discos virtuals per provar el RAID i fer instantànies abans de cada canvi important.
+**Fluxos principals:**
 
-| Màquina | Sistema operatiu | vCPU | RAM | Discos | Funció |
+1. **Accés d'un usuari:** l'usuari entra en `https://nuvol.arreloberta.com`. Des de l'oficina, el DNS d'AD el porta directament a NUVOL01; des de fora, arriba a través del router. Caddy rep la connexió HTTPS i la passa a Nextcloud.
+2. **Autenticació:** Nextcloud comprova l'usuari i la contrasenya contra Active Directory per LDAPS i, a continuació, demana el segon factor (MFA).
+3. **Còpies:** cada nit NUVOL01 envia una còpia de les dades i de la base de dades a BACKUP01 per SSH.
+4. **Monitorització:** Uptime Kuma, des de BACKUP01, comprova periòdicament que els serveis responen i avisa per correu si alguna cosa falla.
+5. **Administració:** l'administrador accedeix per SSH des de la xarxa interna o, des de fora, a través de la VPN WireGuard.
+
+## 4.3 Estudi de viabilitat tècnica
+
+**Viabilitat tècnica.** Totes les tecnologies triades són programari lliure, madur i àmpliament documentat, i funcionen sobre maquinari convencional. El laboratori complet necessita uns 14 GB de RAM si s'encenen totes les màquines alhora, però per a la major part de les proves n'hi ha prou amb DC01 i NUVOL01, de manera que es pot muntar en un portàtil. Per a 50 usuaris, Nextcloud no necessita un servidor especialment potent: amb 4 nuclis, 8–16 GB de RAM i discos en RAID n'hi ha prou en un entorn real.
+
+**Viabilitat econòmica.** No cal pagar llicències de programari per a la cloud: Nextcloud, Ubuntu Server, Docker i la resta d'eines són gratuïtes. El cost principal és el maquinari (servidor i discos) i el temps d'administració. En comparació, un servei com Google Workspace Business Standard o Microsoft 365 Business Standard costa al voltant de 14 dòlars per usuari i mes, és a dir, uns **8.400 dòlars a l'any** per a 50 treballadors. El pressupost detallat es presenta en l'apartat 5.4.
+
+### 4.3.1 Alternatives
+
+Les alternatives públiques (Google Drive, OneDrive) es van descartar en l'apartat 3.4. Per a la plataforma de cloud privada es consideren tres alternatives viables:
+
+- **Alternativa A – Nextcloud:** plataforma completa de cloud i col·laboració, amb integració directa amb Active Directory.
+- **Alternativa B – ownCloud Infinite Scale:** plataforma moderna orientada al rendiment, que necessita un proveïdor d'identitat addicional per integrar-se completament amb AD.
+- **Alternativa C – Seafile:** plataforma centrada en la sincronització de fitxers, molt eficient però amb menys funcionalitats en l'edició comunitària.
+
+### 4.3.2 Comparativa
+
+Les alternatives s'han valorat amb una matriu de decisió ponderada (puntuació de 1 a 5):
+
+| Criteri | Pes | A. Nextcloud | B. ownCloud Infinite Scale | C. Seafile | Observacions |
 |---|---|---|---|---|---|
-| DC01 | Windows Server 2022 (avaluació) | 2 | 4 GB | 50 GB | Active Directory, DNS |
-| NUVOL01 | Ubuntu Server 26.04 LTS | 2 | 4 GB | 25 GB (sistema) + 2 × 20 GB (RAID 1) | Cloud privada |
-| BACKUP01 | Ubuntu Server 26.04 LTS | 1 | 2 GB | 20 GB (sistema) + 60 GB (còpies) | Còpies de seguretat i monitorització |
-| CLIENT01 | Windows 10/11 | 2 | 4 GB | 50 GB | Equip d'un treballador unit al domini |
+| Integració amb Active Directory | 25 % | 5 | 3 | 4 | oCIS necessita un proveïdor d'identitat addicional |
+| Documentació i comunitat | 20 % | 5 | 3 | 4 | Nextcloud té la comunitat més gran |
+| Autenticació multifactor | 15 % | 5 | 3 | 3 | Nextcloud la inclou i permet fer-la obligatòria |
+| Facilitat d'administració | 15 % | 4 | 3 | 4 | oCIS té una arquitectura més complexa |
+| Funcionalitats | 15 % | 5 | 4 | 3 | Compartició, clients i aplicacions |
+| Rendiment | 10 % | 3 | 5 | 5 | Nextcloud millora amb Redis |
+| **Puntuació ponderada** | **100 %** | **4,65** | **3,35** | **3,80** | |
 
-Les màquines es connectaran a una **Xarxa NAT** de VirtualBox, que fa de xarxa de l'empresa. El reenviament de ports de la Xarxa NAT simula el router: les peticions que arriben al portàtil es reenvien a NUVOL01, de manera que des del mateix portàtil (o des d'un altre equip) es pot provar l'accés extern.
+### 4.3.3 Elecció i justificació
 
-No cal tindre totes les màquines enceses alhora: per a la majoria de proves n'hi ha prou amb DC01 i NUVOL01, i BACKUP01 només es necessita per a les proves de còpies i monitorització.
+**Es tria Nextcloud** perquè obté la millor puntuació en els criteris més importants per al projecte:
 
-## 4.3 Xarxa i adreçament
-
-| Element | Valor |
-|---|---|
-| Xarxa LAN | 192.168.10.0/24 |
-| Porta d'enllaç (router / Xarxa NAT) | 192.168.10.1 |
-| DC01 | 192.168.10.10 |
-| NUVOL01 | 192.168.10.20 |
-| BACKUP01 | 192.168.10.30 |
-| Clients | DHCP |
-| Xarxa VPN (WireGuard) | 10.10.10.0/24 |
-| Domini públic de l'empresa | `arreloberta.com` |
-| Domini d'Active Directory | `corp.arreloberta.com` |
-| Adreça de la cloud | `nuvol.arreloberta.com` |
-
-> Els noms de domini són fictics i s'utilitzen només com a exemple per al projecte.
-
-El domini d'Active Directory és un subdomini del domini públic (`corp.`), tal com recomana Microsoft, per evitar conflictes entre els noms interns i els públics.
-
-En el DNS d'Active Directory es crearan els registres dels servidors Linux i un registre `nuvol.arreloberta.com` que apunte a l'adreça interna de NUVOL01. Així, des de l'oficina els equips accedeixen directament al servidor i des de fora accedeixen a través de l'adreça pública del router.
-
-## 4.4 Plataforma de cloud privada
-
-### Selecció de la plataforma
-
-Per triar la plataforma s'han valorat les tres alternatives de l'apartat 3.4 amb una matriu de decisió ponderada (puntuació de 1 a 5):
-
-| Criteri | Pes | Nextcloud | ownCloud Infinite Scale | Seafile |
-|---|---|---|---|---|
-| Integració amb Active Directory (RT-03) | 25 % | 5 | 3 | 4 |
-| Documentació i comunitat | 20 % | 5 | 3 | 4 |
-| Autenticació multifactor (RS-02) | 15 % | 5 | 3 | 3 |
-| Facilitat d'administració | 15 % | 4 | 3 | 4 |
-| Funcionalitats (compartició, clients, aplicacions) | 15 % | 5 | 4 | 3 |
-| Rendiment | 10 % | 3 | 5 | 5 |
-| **Puntuació ponderada** | **100 %** | **4,65** | **3,35** | **3,80** |
-
-**Es selecciona Nextcloud** perquè:
-
-- S'integra directament amb Active Directory mitjançant l'aplicació *LDAP user and group backend*.
+- S'integra directament amb Active Directory amb l'aplicació *LDAP user and group backend*, de manera que els treballadors utilitzen el mateix usuari que en Windows.
 - Inclou autenticació multifactor (TOTP) i permet fer-la obligatòria.
-- Té clients per a Windows, Android i iOS per sincronitzar els fitxers.
-- Disposa d'una documentació molt completa i d'una comunitat molt activa, cosa que en facilita l'administració.
+- Té clients per a Windows, Android i iOS.
+- Té una documentació molt completa i una comunitat molt activa, cosa que en facilita l'administració.
 
-El seu rendiment és inferior al de les altres opcions, però no és un problema per a 50 usuaris, sobretot si s'utilitza Redis com a memòria cau.
+El seu rendiment és inferior al de les altres opcions, però no és un problema per a 50 usuaris si s'utilitza Redis com a memòria cau.
 
-### Desplegament
+La resta de components també s'han triat comparant alternatives:
 
-Nextcloud es desplegarà amb **Docker Compose** utilitzant les imatges oficials. Tota la configuració queda en un únic fitxer `docker-compose.yml` versionat en el repositori, i les contrasenyes en un fitxer `.env` fora del repositori.
+| Component | Opció triada | Alternatives descartades | Motiu |
+|---|---|---|---|
+| Base de dades | MariaDB | PostgreSQL, SQLite | La més utilitzada amb Nextcloud. SQLite no és adequat per a diversos usuaris. |
+| Proxy invers | Caddy | Nginx, Traefik | Configura HTTPS automàticament amb molt poques línies. |
+| Redundància | RAID 1 amb mdadm | ZFS | Més senzill d'administrar i suficient per a esta empresa. |
+| Còpies | BorgBackup | rsync, Restic | Còpies incrementals, xifrades i amb retenció automàtica. |
+| Monitorització | Uptime Kuma | Zabbix, Prometheus + Grafana | Molt més senzill de configurar i suficient per a esta empresa. |
+| Virtualització | VirtualBox | KVM, VMware | Gratuït, conegut i fàcil d'utilitzar en un portàtil. |
+
+## 4.4 Disseny detallat
+
+| Element | Tecnologia | Configuració / recursos | Justificació |
+|---|---|---|---|
+| Virtualització | VirtualBox | 4 màquines virtuals en un portàtil | Permet muntar i provar tota la infraestructura sense maquinari dedicat. |
+| Xarxa | Xarxa NAT de VirtualBox | 192.168.10.0/24, porta d'enllaç 192.168.10.1 | Simula la xarxa de l'oficina i el router amb reenviament de ports. |
+| DNS | DNS d'Active Directory | Zona `corp.arreloberta.com` i registre `nuvol.arreloberta.com` → 192.168.10.20 | Els equips de l'oficina accedeixen directament al servidor. |
+| DHCP | Xarxa NAT (laboratori) | Clients per DHCP; servidors amb IP fixa | Simplicitat en el laboratori. |
+| Router / tallafocs | Xarxa NAT + UFW | Només 443/tcp i 51820/udp reenviats a NUVOL01 | Exposar a Internet el mínim imprescindible. |
+| VPN | WireGuard | Xarxa 10.10.10.0/24 en NUVOL01 | Accés d'administració segur des de fora. |
+| DC01 | Windows Server 2022 | 2 vCPU, 4 GB RAM, 50 GB; IP 192.168.10.10. AD DS, DNS i AD CS | Gestió d'usuaris; AD CS emet el certificat necessari per a LDAPS. |
+| NUVOL01 | Ubuntu Server 26.04 LTS | 2 vCPU, 4 GB RAM, 25 GB + 2 × 20 GB; IP 192.168.10.20 | Servidor de la cloud. |
+| BACKUP01 | Ubuntu Server 26.04 LTS | 1 vCPU, 2 GB RAM, 20 GB + 60 GB; IP 192.168.10.30 | Còpies i monitorització separades del servidor principal. |
+| CLIENT01 | Windows 10/11 | 2 vCPU, 4 GB RAM, 50 GB; unit al domini | Proves com a usuari final. |
+| Contenidors | Docker Compose | Caddy, Nextcloud, cron, MariaDB, Redis | Desplegament reproduïble a partir d'un fitxer versionat. |
+| Emmagatzematge | mdadm + LVM + ext4 | RAID 1 amb 2 discos → `/srv/nuvol` | Redundància davant de la fallada d'un disc i possibilitat d'ampliar. |
+
+> Els noms de domini són fictics i s'utilitzen només com a exemple per al projecte. El domini d'AD és un subdomini del domini públic (`corp.`), tal com recomana Microsoft.
+
+### Contenidors de NUVOL01
 
 | Contenidor | Funció |
 |---|---|
-| `caddy` | Proxy invers amb HTTPS |
-| `nextcloud` | Aplicació Nextcloud |
-| `cron` | Tasques en segon pla de Nextcloud |
-| `mariadb` | Base de dades |
-| `redis` | Memòria cau i bloqueig de fitxers |
+| `caddy` | Proxy invers amb HTTPS. És l'únic que publica ports (80 i 443). |
+| `nextcloud` | Aplicació Nextcloud (imatge oficial). |
+| `cron` | Tasques en segon pla de Nextcloud. |
+| `mariadb` | Base de dades. |
+| `redis` | Memòria cau i bloqueig de fitxers. |
 
-Només el contenidor de Caddy publicarà ports (80 i 443). La base de dades i Redis no seran accessibles des de fora de Docker.
+La configuració es guarda en un fitxer `docker-compose.yml` dins del repositori, i les contrasenyes en un fitxer `.env` que no es puja al repositori. Com que el domini és fictici, en el laboratori Caddy utilitzarà la seua pròpia autoritat de certificació (`tls internal`) i el certificat arrel s'importarà als equips client. En un entorn real, Caddy obtindria automàticament un certificat de Let's Encrypt.
 
-**Base de dades:** se selecciona **MariaDB**, que és l'opció més utilitzada en la documentació i la comunitat de Nextcloud. SQLite es descarta perquè no és adequat per a diversos usuaris alhora.
+### Integració amb Active Directory
 
-**Proxy invers i HTTPS:** se selecciona **Caddy** perquè configura HTTPS automàticament amb molt poques línies de configuració, en comparació amb Nginx o Traefik. Com que el domini és fictici, en el laboratori Caddy utilitzarà la seua pròpia autoritat de certificació (`tls internal`) i el certificat arrel s'importarà als equips client. En un entorn real, amb un domini registrat, Caddy obtindria automàticament un certificat de Let's Encrypt.
+Nextcloud es connecta a DC01 per **LDAPS (port 636)**, amb un compte de servei de només lectura (`svc-nextcloud`). Només poden accedir els membres del grup `GG_Nuvol_Usuaris`, i el nom d'usuari és el mateix que en Windows (`sAMAccountName`). Les altes, baixes i canvis de contrasenya es continuen fent en AD: quan es deshabilita el compte d'un treballador, este perd l'accés a la cloud.
 
-## 4.5 Integració amb Active Directory
-
-Nextcloud es connectarà a DC01 per **LDAPS (port 636)**, de manera que les credencials viatgen xifrades. Els usuaris inicien sessió amb el **mateix usuari i contrasenya que en Windows**, i les altes, baixes i canvis de contrasenya es continuen fent únicament en Active Directory.
-
-| Paràmetre | Valor |
-|---|---|
-| Servidor | `dc01.corp.arreloberta.com` (port 636) |
-| Compte de connexió | `svc-nextcloud` (compte de servei només de lectura) |
-| Usuaris amb accés | Membres del grup `GG_Nuvol_Usuaris` |
-| Nom d'usuari | `sAMAccountName` (el mateix que en Windows) |
-
-En Active Directory es crearan els grups següents:
-
-| Grup | Ús |
+| Grup d'AD | Ús |
 |---|---|
 | `GG_Nuvol_Usuaris` | Usuaris que poden accedir a la cloud |
 | `GG_Nuvol_Admins` | Administradors de Nextcloud |
-| `GG_RRHH`, `GG_Administracio`, `GG_Sistemes`, `GG_Comercial`, `GG_Direccio` | Un grup per departament, per poder compartir fitxers amb tot un departament |
+| `GG_RRHH`, `GG_Administracio`, `GG_Sistemes`, `GG_Comercial`, `GG_Direccio` | Un grup per departament, per compartir fitxers amb tot un departament |
 
-Quan un treballador deixa l'empresa i se'n deshabilita el compte en AD, deixa de poder accedir a la cloud.
+### Organització de la informació
 
-## 4.6 Organització de la informació
+Cada treballador disposa del seu **espai personal**, equivalent a la seua carpeta individual actual:
 
-Actualment cada treballador té **la seua carpeta individual** en el servidor Windows. En Nextcloud, cada usuari disposarà del seu **espai personal**, on tindrà la seua informació disponible des de qualsevol lloc i sincronitzada en els seus dispositius.
+- Cada usuari només veu els seus fitxers i els que li han compartit.
+- Quota de 10 GB per usuari, ampliable.
+- Es pot compartir amb altres usuaris o amb un grup de departament, amb permís de lectura o d'edició.
+- Per compartir amb persones de fora de l'empresa, només s'admeten enllaços amb contrasenya i data de caducitat.
+- Nextcloud guarda versions anteriors dels fitxers i té una paperera, de manera que l'usuari pot recuperar un fitxer modificat o eliminat per error.
 
-- **Accés:** cada usuari només veu els seus fitxers i els que altres usuaris han compartit amb ell (RS-04).
-- **Quota:** 10 GB per usuari, ampliable segons les necessitats.
-- **Compartició:** un usuari pot compartir fitxers o carpetes amb altres usuaris o amb un grup de departament, indicant si poden només llegir o també modificar (RF-04, RF-05).
-- **Enllaços externs:** per compartir amb persones de fora de l'empresa, només es permetran enllaços amb contrasenya i data de caducitat.
-- **Versions i paperera:** Nextcloud guarda versions anteriors dels fitxers i una paperera, de manera que l'usuari pot recuperar un fitxer modificat o eliminat per error sense ajuda del departament de Sistemes.
-
-## 4.7 Emmagatzematge i redundància
-
-Les dades de Nextcloud s'emmagatzemaran en dos discos configurats en **RAID 1 amb mdadm**:
+### Emmagatzematge
 
 ```text
   /dev/sdb ─┐
@@ -381,138 +421,156 @@ Les dades de Nextcloud s'emmagatzemaran en dos discos configurats en **RAID 1 am
   /dev/sdc ─┘
 ```
 
-- **RAID 1 (mdadm):** els dos discos contenen la mateixa informació. Si un falla, el servei continua funcionant amb l'altre fins que es substitueix. És el RAID per programari estàndard de Linux i no necessita maquinari específic.
-- **LVM:** permet ampliar l'espai en el futur afegint nous discos (RE-01).
-- **ext4:** sistema de fitxers estable i conegut.
+Els dos discos contenen la mateixa informació: si un falla, el servei continua amb l'altre fins que es substitueix. LVM permet ampliar l'espai en el futur afegint nous discos.
 
-S'ha descartat ZFS perquè, tot i oferir més funcionalitats, és més complex d'administrar i no és necessari per a esta grandària d'empresa.
+### Migració de les dades
 
-> [!IMPORTANT]
-> El RAID protegeix davant de la fallada d'un disc, però **no és una còpia de seguretat**: si un usuari elimina un fitxer o un virus el xifra, el canvi es copia immediatament als dos discos. Per això es fan còpies de seguretat independents (apartat 4.8).
-
-## 4.8 Còpies de seguretat
-
-La política de còpies segueix la **regla 3-2-1**: tres còpies de les dades, en dos suports diferents i una fora de l'oficina.
-
-| Còpia | Ubicació |
-|---|---|
-| 1 | Dades en el RAID 1 de NUVOL01 |
-| 2 | Servidor BACKUP01 |
-| 3 | Disc extern que es guarda fora de l'oficina |
-
-Guardar les còpies en un segon servidor fa que una fallada greu de NUVOL01 (avaria, error de configuració o virus) no afecte també les còpies.
-
-Per fer les còpies s'utilitzarà **BorgBackup**, una eina lliure que fa còpies incrementals (només copia els canvis), comprimeix i xifra les dades i elimina automàticament les còpies antigues. S'ha preferit a una còpia simple amb `rsync` perquè permet guardar diverses versions sense multiplicar l'espai ocupat.
-
-Un script (`scripts/backup/`) s'executarà cada nit a les 02:00 amb `cron` i farà:
-
-1. Posar Nextcloud en mode manteniment.
-2. Exportar la base de dades (`mariadb-dump`).
-3. Copiar amb Borg les dades, la configuració i l'exportació de la base de dades a BACKUP01 per SSH, amb autenticació per clau i un usuari dedicat que només pot executar Borg.
-4. Traure Nextcloud del mode manteniment.
-5. Esborrar les còpies antigues, conservant **7 diàries, 4 setmanals i 6 mensuals**.
-
-Periòdicament es copiarà el repositori de BACKUP01 al disc extern.
-
-Es farà també una còpia de l'estat del sistema de DC01 amb *Windows Server Backup*, ja que sense Active Directory els usuaris no podrien iniciar sessió.
-
-**Proves de restauració (RD-03):** s'eliminarà un fitxer de prova i es restaurarà des de la còpia, i es documentarà el procediment per restaurar el servei complet en un servidor nou.
-
-## 4.9 Monitorització
-
-Se selecciona **Uptime Kuma**, una eina lliure i senzilla que s'executa en un contenidor i es configura des del navegador. S'instal·larà en **BACKUP01** perquè, si NUVOL01 deixa de funcionar, el sistema de monitorització continue actiu i puga avisar. Altres opcions com Zabbix o Prometheus amb Grafana són més completes, però també molt més complexes de configurar del que necessita una empresa d'esta grandària.
-
-Uptime Kuma comprovarà periòdicament:
-
-| Element | Comprovació |
-|---|---|
-| Nextcloud | La web respon per HTTPS |
-| Certificat | Avís abans que caduque |
-| NUVOL01 | Respon al ping i el port SSH està obert |
-| DC01 | Respon al ping i el port LDAPS (636) està obert |
-
-Quan un servei deixe de respondre, s'enviarà un avís per correu electrònic. A més, l'script de còpia avisarà si la còpia falla, i `mdadm` es configurarà per enviar un correu si un dels discos del RAID falla.
-
-RM-01 es verificarà aturant un servei de manera controlada i comprovant que arriba l'avís.
-
-## 4.10 Seguretat
-
-| Àmbit | Mesures |
-|---|---|
-| Accés extern | El router només reenvia el port 443 (HTTPS) i el 51820/udp (VPN). |
-| Administració | SSH i panells d'administració només des de la xarxa interna o per **VPN WireGuard**. |
-| Servidors | Tallafocs UFW, SSH amb claus i sense accés de `root`, actualitzacions de seguretat automàtiques. |
-| Nextcloud | MFA (TOTP) obligatori, protecció contra força bruta integrada i enllaços externs amb contrasenya. |
-| Comunicacions | HTTPS per a l'accés web i LDAPS entre Nextcloud i AD. |
-| Còpies | Repositori Borg xifrat i usuari dedicat en BACKUP01 que només accepta la clau de NUVOL01. |
-| Contrasenyes | Fitxer `.env` amb permisos restringits i exclòs del repositori. |
-
-## 4.11 Automatització
-
-Es crearan scripts Bash, guardats en la carpeta `scripts/` del repositori:
-
-- **Còpia de seguretat:** executada automàticament cada nit amb `cron` (RA-01).
-- **Restauració:** per recuperar les dades a partir d'una còpia.
-- **Actualització:** per actualitzar els contenidors de manera controlada.
-
-## 4.12 Migració de les dades
-
-Les carpetes individuals del servidor Windows es migraran a l'espai personal de cada usuari en Nextcloud:
-
-1. Configurar Nextcloud perquè el nom intern de cada usuari siga el seu `sAMAccountName`, de manera que les carpetes tinguen el mateix nom que en Windows.
-2. Fer que cada usuari inicie sessió una primera vegada perquè es cree el seu espai (o crear-los per línia de comandes).
-3. Muntar la carpeta compartida del servidor Windows en NUVOL01 i copiar la carpeta de cada usuari al seu espai amb `rsync`.
-4. Executar `occ files:scan --all` perquè Nextcloud reconega els fitxers copiats.
+1. Configurar Nextcloud perquè el nom intern de cada usuari siga el seu `sAMAccountName`.
+2. Crear l'espai de cada usuari (primer inici de sessió o per línia de comandes).
+3. Muntar la carpeta compartida de DC01 en NUVOL01 i copiar la carpeta de cada usuari al seu espai amb `rsync`.
+4. Executar `occ files:scan --all` perquè Nextcloud reconega els fitxers.
 5. Comprovar que el nombre de fitxers i l'espai ocupat coincideixen amb l'origen.
 6. Deixar les carpetes antigues en només lectura durant un temps abans de retirar-les.
 
-## 4.13 Resum de tecnologies
-
-| Àmbit | Tecnologia |
-|---|---|
-| Virtualització (laboratori) | VirtualBox |
-| Gestió d'usuaris | Active Directory (Windows Server) |
-| Servidors Linux (NUVOL01, BACKUP01) | Ubuntu Server 26.04 LTS |
-| Contenidors | Docker + Docker Compose |
-| Plataforma de cloud | Nextcloud |
-| Base de dades i memòria cau | MariaDB + Redis |
-| Proxy invers i HTTPS | Caddy |
-| Redundància | RAID 1 (mdadm) + LVM |
-| Còpies de seguretat | BorgBackup |
-| Monitorització | Uptime Kuma |
-| Accés d'administració | WireGuard |
-| Automatització | Scripts Bash + cron |
-| Control de versions | Git + GitHub |
-
-## 4.14 Relació entre requisits i solució
+### Relació entre requisits i disseny
 
 | Requisit | Solució | Apartat |
 |---|---|---|
-| RF-01 | Nextcloud en NUVOL01 | 4.4 |
-| RF-02 | Registre DNS intern cap a NUVOL01 | 4.3 |
-| RF-03 | Accés HTTPS des de fora a través del router | 4.1, 4.10 |
-| RF-04 | Compartició amb usuaris i grups | 4.6 |
-| RF-05 | Permisos de lectura o edició en cada compartició | 4.6 |
-| RF-06 | Migració de les carpetes individuals amb `rsync` | 4.12 |
-| RF-07 | Client d'escriptori i aplicacions mòbils de Nextcloud | 4.4 |
-| RT-01 | NUVOL01 amb Ubuntu Server | 4.2 |
-| RT-02 | AD continua gestionant usuaris i grups | 4.5 |
-| RT-03 | Integració LDAPS | 4.5 |
-| RS-01 | Inici de sessió amb compte d'AD | 4.5 |
-| RS-02 | MFA TOTP | 4.10 |
-| RS-03 | HTTPS amb Caddy | 4.4 |
-| RS-04 | Espais personals i compartició controlada | 4.6 |
-| RD-01 | RAID 1 amb mdadm | 4.7 |
-| RD-02 | BorgBackup cap a BACKUP01 i disc extern | 4.8 |
-| RD-03 | Proves de restauració | 4.8 |
-| RM-01 | Uptime Kuma i avisos de mdadm | 4.9 |
-| RE-01 | LVM | 4.7 |
-| RA-01 | Script de còpia amb `cron` | 4.11 |
-| RDOC-01 | Documentació en el repositori | 4.11 |
+| RF-01 | Espai personal en Nextcloud | 4.4 |
+| RF-02 | Registre DNS intern cap a NUVOL01 | 4.4 |
+| RF-03 | Accés HTTPS des de fora a través del router | 4.2, 4.5 |
+| RF-04 / RF-05 | Compartició amb usuaris i grups, amb permís de lectura o edició | 4.4 |
+| RF-06 | Migració de les carpetes individuals amb `rsync` | 4.4 |
+| RF-07 | Client d'escriptori i aplicacions mòbils | 4.3.3 |
+| RT-01 | NUVOL01 amb Ubuntu Server | 4.4 |
+| RT-02 / RT-03 | Integració LDAPS amb Active Directory | 4.4 |
+| RS-01 / RS-04 | Inici de sessió amb compte d'AD i espais personals | 4.4 |
+| RS-02 | MFA TOTP obligatori | 4.5 |
+| RS-03 | HTTPS amb Caddy | 4.4, 4.5 |
+| RD-01 | RAID 1 amb mdadm | 4.4 |
+| RD-02 / RD-03 | BorgBackup cap a BACKUP01 i proves de restauració | 4.6 |
+| RM-01 | Uptime Kuma i avisos de mdadm | 4.7 |
+| RE-01 | LVM | 4.4 |
+| RA-01 | Script de còpia programat amb `cron` | 4.6 |
+| RDOC-01 | Documentació tècnica (apartat 11) | 4.8 |
+
+## 4.5 Seguretat
+
+| Amenaça | Mesures |
+|---|---|
+| Atacs des d'Internet contra els serveis publicats | El router només reenvia el port 443 (HTTPS) i el 51820/udp (VPN). Tallafocs UFW en els servidors amb tot tancat per defecte. |
+| Robatori o endevinació de contrasenyes | MFA (TOTP) obligatori en Nextcloud, protecció contra força bruta integrada i política de contrasenyes d'AD. |
+| Interceptació de les comunicacions | HTTPS per a l'accés web i LDAPS entre Nextcloud i AD. |
+| Accés no autoritzat a l'administració | SSH només amb claus i sense accés de `root`, i només des de la xarxa interna o per VPN WireGuard. |
+| Vulnerabilitats en el programari | Actualitzacions de seguretat automàtiques en Ubuntu (`unattended-upgrades`) i actualització controlada de les imatges de Docker. |
+| Accés a informació d'altres usuaris | Espais personals i compartició controlada per l'usuari. Compte de servei LDAP de només lectura. |
+| Filtració de contrasenyes del sistema | Fitxer `.env` amb permisos restringits i exclòs del repositori. |
+| Compartició insegura amb l'exterior | Enllaços externs només amb contrasenya i data de caducitat. |
+| Ransomware o esborrat de dades | Còpies xifrades en un servidor separat i en un disc extern (apartat 4.6). |
+
+Els registres (*logs*) de Nextcloud, Caddy i del sistema es conservaran en cada servidor per poder analitzar qualsevol incidència.
+
+## 4.6 Còpies de seguretat i recuperació
+
+La política de còpies segueix la **regla 3-2-1**: tres còpies de les dades, en dos suports diferents i una fora de l'oficina.
+
+| Aspecte | Decisió |
+|---|---|
+| Què es copia | Dades dels usuaris, configuració de Nextcloud, fitxers de Docker i exportació de la base de dades. En DC01, l'estat del sistema amb *Windows Server Backup*. |
+| Freqüència | Cada nit a les 02:00 (`cron`). |
+| Destinació | Còpia 1: RAID 1 de NUVOL01. Còpia 2: BACKUP01. Còpia 3: disc extern guardat fora de l'oficina. |
+| Retenció | 7 còpies diàries, 4 setmanals i 6 mensuals. |
+| Protecció | Repositori Borg xifrat. NUVOL01 envia les còpies per SSH amb clau, a un usuari de BACKUP01 que només pot executar Borg. |
+| Eina | BorgBackup: còpies incrementals, comprimides i xifrades. |
+
+**Procediment de còpia** (script `scripts/backup/`):
+
+1. Posar Nextcloud en mode manteniment.
+2. Exportar la base de dades (`mariadb-dump`).
+3. Copiar amb Borg les dades, la configuració i l'exportació a BACKUP01.
+4. Traure Nextcloud del mode manteniment.
+5. Esborrar les còpies antigues segons la retenció i avisar si alguna cosa ha fallat.
+
+**Procediment de restauració** (script `scripts/restore/`):
+
+- **Un fitxer:** si encara és a la paperera o en les versions de Nextcloud, el recupera el mateix usuari. Si no, es recupera des de la còpia de Borg i es torna a escanejar amb `occ files:scan`.
+- **Servei complet:** instal·lar un servidor nou amb el manual d'instal·lació, restaurar des de Borg les dades i la configuració, importar la base de dades i arrancar els contenidors.
+
+Es farà una prova de restauració de fitxers periòdica i, almenys una vegada durant el projecte, una restauració completa en una màquina virtual nova.
+
+## 4.7 Monitorització i manteniment
+
+**Monitorització.** Uptime Kuma s'executa en BACKUP01 perquè, si NUVOL01 deixa de funcionar, el sistema de monitorització continue actiu i puga avisar.
+
+| Element | Comprovació | Alerta |
+|---|---|---|
+| Nextcloud | La web respon per HTTPS | Correu si no respon |
+| Certificat | Dies que falten perquè caduque | Correu abans que caduque |
+| NUVOL01 | Ping i port SSH | Correu si no respon |
+| DC01 | Ping i port LDAPS (636) | Correu si no respon |
+| RAID 1 | `mdadm --monitor` | Correu si falla un disc |
+| Còpies | Resultat de l'script de còpia | Correu si la còpia falla |
+
+**Manteniment preventiu:**
+
+| Tasca | Freqüència |
+|---|---|
+| Revisar els avisos i l'estat de les còpies | Setmanal |
+| Actualitzar les imatges de Docker (Nextcloud, MariaDB, Redis, Caddy) | Mensual |
+| Prova de restauració d'un fitxer | Mensual |
+| Revisar l'espai lliure i les quotes | Mensual |
+| Rotar el disc extern de còpies | Mensual |
+| Restauració completa de prova | Anual |
+
+Les actualitzacions de seguretat del sistema operatiu s'apliquen automàticament.
+
+**Manteniment correctiu:** davant d'una incidència (disc avariat, servei caigut, pèrdua de dades) se seguirà el manual de recuperació de l'apartat 11.4 i es registrarà en el registre d'incidències (apartat 7.2).
+
+## 4.8 Fases del projecte
+
+| Fase | Objectiu | Tasques principals | Recursos | Resultat | Hores estimades |
+|---|---|---|---|---|---|
+| F1. Anàlisi i disseny | Definir què es farà i com | Anàlisi, requisits, alternatives, disseny | Documentació oficial, GitHub | Apartats 1–4 de la memòria | 15 h |
+| F2. Planificació | Organitzar el treball | Riscos, tasques, Gantt, pressupost, aspectes legals | Full de càlcul, eina de Gantt | Apartat 5 | 8 h |
+| F3. Preparació de l'entorn | Muntar el laboratori | Crear les VM, xarxa, instal·lar Windows Server, AD, DNS i AD CS | VirtualBox, ISOs | Laboratori funcionant | 12 h |
+| F4. Desplegament de Nextcloud | Tindre la cloud funcionant | Ubuntu, RAID 1 + LVM, Docker Compose, Caddy, HTTPS | NUVOL01 | Nextcloud accessible per HTTPS | 14 h |
+| F5. Integració i seguretat | Usuaris d'AD i accés segur | LDAPS, grups, MFA, UFW, SSH, WireGuard, accés extern | DC01, NUVOL01 | Inici de sessió amb AD i MFA | 14 h |
+| F6. Còpies i monitorització | Protegir i vigilar el servei | BACKUP01, Borg, scripts, cron, Uptime Kuma, avisos | BACKUP01 | Còpies i avisos automàtics | 14 h |
+| F7. Migració i proves | Comprovar que tot compleix els requisits | Migració de prova, pla de proves, fallada de disc, restauració | Totes les VM | Proves documentades i PMV | 12 h |
+| F8. Documentació i defensa | Tancar el projecte | Manuals, memòria, presentació i assaig de la demo | — | Memòria final i presentació | 20 h |
+| **Total** | | | | | **≈ 110 h** |
+
+Les hores són una estimació i inclouen un marge per a la resolució de problemes, que se seguirà en l'apartat 7.
 
 ---
 
 # 5. PLANIFICACIÓ
+
+## 5.1 Anàlisi de riscos
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.2 Tasques i distribució temporal
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.3 Allotjament
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.4 Recursos i pressupost
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.5 Monetització/retorn
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.6 Requisits legals, normatius i ètics
+
+> ⏳ **Pendent de desenvolupament**
+
+## 5.7 Gestió documental
 
 > ⏳ **Pendent de desenvolupament**
 
@@ -520,11 +578,43 @@ Les carpetes individuals del servidor Windows es migraran a l'espai personal de 
 
 # 6. IMPLANTACIÓ I PROVES
 
+## 6.1 Preparació de l'entorn
+
+> ⏳ **Pendent de desenvolupament**
+
+## 6.2 Instal·lació i configuració
+
+> ⏳ **Pendent de desenvolupament**
+
+## 6.3 Automatització
+
+> ⏳ **Pendent de desenvolupament**
+
+## 6.4 Pla de proves
+
+> ⏳ **Pendent de desenvolupament**
+
+### 6.4.1 Resultats de les proves
+
+> ⏳ **Pendent de desenvolupament**
+
+### 6.4.2 Producte mínim viable (PMV)
+
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
 # 7. SEGUIMENT I CONTROL
+
+## 7.1 Evolució del projecte
+
+> ⏳ **Pendent de desenvolupament**
+
+## 7.2 Registre d'incidències
+
+> ⏳ **Pendent de desenvolupament**
+
+## 7.3 Canvis realitzats
 
 > ⏳ **Pendent de desenvolupament**
 
@@ -532,60 +622,61 @@ Les carpetes individuals del servidor Windows es migraran a l'espai personal de 
 
 # 8. RESULTATS I CONCLUSIONS
 
+## 8.1 Resultats obtinguts
+
+> ⏳ **Pendent de desenvolupament**
+
+## 8.2 Grau de consecució dels objectius
+
+> ⏳ **Pendent de desenvolupament**
+
+## 8.3 Incidències i dificultats
+
+> ⏳ **Pendent de desenvolupament**
+
+## 8.4 Nivell de satisfacció
+
+> ⏳ **Pendent de desenvolupament**
+
+## 8.5 Propostes de millora
+
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
-# 9. BIBLIOGRAFIA, WEBGRAFIA I FONTS
+# 9. BIBLIOGRAFIA/WEBGRAFIA I FONTS
 
-Fonts consultades per a l'anàlisi i el disseny de la solució. Tots els recursos en línia s'han consultat l'octubre de 2026. La llista s'ampliarà durant la implantació.
+Tots els recursos en línia s'han consultat l'octubre de 2026. La llista s'ampliarà durant la implantació.
 
-## 9.1 Plataformes de cloud privada
-
-- Nextcloud GmbH. *Nextcloud Server Administration Manual*. https://docs.nextcloud.com/server/stable/admin_manual/
-- Nextcloud GmbH. *System requirements*. https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html
-- Nextcloud GmbH. *User authentication with LDAP*. https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/user_auth_ldap.html
-- Nextcloud GmbH. *Two-factor authentication*. https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/two_factor-auth.html
-- Nextcloud GmbH. *Backup*. https://docs.nextcloud.com/server/stable/admin_manual/maintenance/backup.html
-- Nextcloud. *Imatge oficial de Docker de Nextcloud*. https://github.com/nextcloud/docker
-- ownCloud. *Infinite Scale Admin Documentation*. https://doc.owncloud.com/ocis/next/admin/index.html
-- Seafile Ltd. *Seafile Admin Manual*. https://manual.seafile.com/
-
-## 9.2 Sistemes operatius i identitats
-
-- Canonical. *Ubuntu 26.04 LTS release notes*. https://documentation.ubuntu.com/release-notes/26.04/
-- Canonical. *Ubuntu Server documentation*. https://documentation.ubuntu.com/server/
-- Microsoft. *Selecting the Forest Root Domain*. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain
-- Microsoft. *Evaluation Center (Windows Server)*. https://www.microsoft.com/en-us/evalcenter/
-
-## 9.3 Contenidors i serveis
-
-- Docker Inc. *Docker Docs*. https://docs.docker.com/
-- Docker Inc. *Docker Compose*. https://docs.docker.com/compose/
-- Docker Hub. *Imatge oficial de MariaDB*. https://hub.docker.com/_/mariadb
-- Docker Hub. *Imatge oficial de Redis*. https://hub.docker.com/_/redis
-- Caddy. *Caddy Documentation*. https://caddyserver.com/docs/
-- Caddy. *Directiva tls (certificats interns)*. https://caddyserver.com/docs/caddyfile/directives/tls
-- Let's Encrypt. *Documentation*. https://letsencrypt.org/docs/
-
-## 9.4 Emmagatzematge, còpies i monitorització
-
-- Linux man-pages. *mdadm(8)*. https://man7.org/linux/man-pages/man8/mdadm.8.html
-- Linux man-pages. *lvm(8)*. https://man7.org/linux/man-pages/man8/lvm.8.html
-- BorgBackup. *BorgBackup Documentation*. https://borgbackup.readthedocs.io/
-- INCIBE. *Copias de seguridad: una guía de aproximación para el empresario*. https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario
-- Uptime Kuma. *Repositori oficial*. https://github.com/louislam/uptime-kuma
-
-## 9.5 Xarxa, seguretat i virtualització
-
-- WireGuard. *WireGuard: fast, modern, secure VPN tunnel*. https://www.wireguard.com/
-- Ubuntu Community. *UFW*. https://help.ubuntu.com/community/UFW
-- Oracle. *VirtualBox User Manual*. https://www.virtualbox.org/manual/
-
-## 9.6 Control de versions
-
-- Git. *Git Documentation*. https://git-scm.com/doc
-- GitHub. *GitHub Docs*. https://docs.github.com/
+| Font | Tipus | URL / Referència | Informació utilitzada |
+|---|---|---|---|
+| Nextcloud – *Server Administration Manual* | Documentació oficial | https://docs.nextcloud.com/server/stable/admin_manual/ | Funcionament general i administració de Nextcloud |
+| Nextcloud – *System requirements* | Documentació oficial | https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html | Bases de dades compatibles i requisits del servidor |
+| Nextcloud – *User authentication with LDAP* | Documentació oficial | https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/user_auth_ldap.html | Integració amb Active Directory |
+| Nextcloud – *Two-factor authentication* | Documentació oficial | https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/two_factor-auth.html | Autenticació multifactor i com fer-la obligatòria |
+| Nextcloud – *Backup* | Documentació oficial | https://docs.nextcloud.com/server/stable/admin_manual/maintenance/backup.html | Què s'ha de copiar i ús del mode manteniment |
+| Nextcloud – Imatge oficial de Docker | Repositori oficial | https://github.com/nextcloud/docker | Desplegament de Nextcloud amb Docker Compose |
+| ownCloud – *Infinite Scale Admin Documentation* | Documentació oficial | https://doc.owncloud.com/ocis/next/admin/index.html | Característiques per a la comparativa |
+| Seafile – *Admin Manual* | Documentació oficial | https://manual.seafile.com/ | Característiques per a la comparativa |
+| Canonical – *Ubuntu 26.04 LTS release notes* | Documentació oficial | https://documentation.ubuntu.com/release-notes/26.04/ | Versió i suport del sistema operatiu |
+| Canonical – *Ubuntu Server documentation* | Documentació oficial | https://documentation.ubuntu.com/server/ | Administració d'Ubuntu Server |
+| Microsoft – *Selecting the Forest Root Domain* | Documentació oficial | https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain | Nom del domini d'Active Directory |
+| Microsoft – *Evaluation Center* | Fabricant | https://www.microsoft.com/en-us/evalcenter/ | Versió d'avaluació de Windows Server |
+| Docker – *Docker Docs* i *Docker Compose* | Documentació oficial | https://docs.docker.com/ | Contenidors i fitxers Compose |
+| Docker Hub – Imatges oficials de MariaDB i Redis | Repositori oficial | https://hub.docker.com/_/mariadb · https://hub.docker.com/_/redis | Configuració de la base de dades i la memòria cau |
+| Caddy – *Documentation* | Documentació oficial | https://caddyserver.com/docs/ | Proxy invers i HTTPS automàtic (`tls internal`) |
+| Let's Encrypt – *Documentation* | Documentació oficial | https://letsencrypt.org/docs/ | Certificats en un entorn real |
+| Linux man-pages – *mdadm(8)* i *lvm(8)* | Documentació oficial | https://man7.org/linux/man-pages/man8/mdadm.8.html · https://man7.org/linux/man-pages/man8/lvm.8.html | RAID per programari i volums lògics |
+| BorgBackup – *Documentation* | Documentació oficial | https://borgbackup.readthedocs.io/ | Còpies incrementals, xifrat i retenció |
+| INCIBE – *Copias de seguridad: una guía de aproximación para el empresario* | Organisme públic | https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario | Política de còpies en l'empresa |
+| Uptime Kuma – Repositori oficial | Repositori oficial | https://github.com/louislam/uptime-kuma | Monitorització de serveis |
+| WireGuard | Documentació oficial | https://www.wireguard.com/ | VPN d'administració |
+| Ubuntu Community – *UFW* | Documentació de la comunitat | https://help.ubuntu.com/community/UFW | Tallafocs dels servidors |
+| Oracle – *VirtualBox User Manual* | Documentació oficial | https://www.virtualbox.org/manual/ | Màquines virtuals i Xarxa NAT |
+| eesel AI – *Precios de Google Workspace 2026* | Article | https://www.eesel.ai/es/blog/google-workspace-pricing | Cost de Google Workspace per a la comparativa |
+| Nordflux – *Aumento de precios Microsoft 365 2026* | Article | https://nordflux.de/es/conocimiento/microsoft-365-subida-de-precios-2026 | Cost de Microsoft 365 per a la comparativa |
+| Git – *Documentation* | Documentació oficial | https://git-scm.com/doc | Control de versions |
+| GitHub – *GitHub Docs* | Documentació oficial | https://docs.github.com/ | Repositori remot |
 
 ---
 
@@ -597,12 +688,34 @@ Fonts consultades per a l'anàlisi i el disseny de la solució. Tots els recurso
 
 # 11. DOCUMENTACIÓ TÈCNICA
 
-Durant el desenvolupament del projecte es prepararà la documentació necessària per a la instal·lació, administració, ús i recuperació de Núvol Lliure.
+## 11.1 Manual d'instal·lació
+
+> ⏳ **Pendent de desenvolupament**
+
+## 11.2 Manual d'administració
+
+> ⏳ **Pendent de desenvolupament**
+
+## 11.3 Manual d'usuari
+
+> ⏳ **Pendent de desenvolupament**
+
+## 11.4 Manual de recuperació
 
 > ⏳ **Pendent de desenvolupament**
 
 ---
 
 # 12. PRESENTACIÓ I DEFENSA
+
+## 12.1 Estructura de la presentació
+
+> ⏳ **Pendent de desenvolupament**
+
+## 12.2 Demostració
+
+> ⏳ **Pendent de desenvolupament**
+
+## 12.3 Preguntes previsibles
 
 > ⏳ **Pendent de desenvolupament**
