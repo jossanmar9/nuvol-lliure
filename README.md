@@ -19,15 +19,16 @@
 
 **Núvol Lliure** és una cloud privada basada en programari lliure que permet guardar, sincronitzar i compartir fitxers sense dependre de serveis externs com Google Drive o OneDrive.
 
-El projecte planteja la seua implantació en **Arrel Oberta**, una consultoria fictícia d'aproximadament **50 treballadors**. L'empresa disposa d'un servidor Windows amb **Active Directory** que també fa de servidor de fitxers, on cada treballador té la seua carpeta individual, accessible només des de l'oficina.
+El projecte planteja la seua implantació en **Arrel Oberta**, una consultoria d'aproximadament **50 treballadors**. L'empresa disposa d'un servidor Windows amb **Active Directory** que també fa de servidor de fitxers, on cada treballador té la seua carpeta individual, accessible només des de l'oficina.
 
-Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos servidors **Linux**: un per a la cloud privada, basada en **Nextcloud** i **Docker**, i un altre per a les còpies de seguretat i la monitorització. Els treballadors poden accedir a la seua informació des de l'oficina i des de fora, amb el mateix usuari que utilitzen en Windows.
+Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos servidors **Linux**: un per a la cloud privada, basada en **Nextcloud** i **Docker**, i un altre per a les còpies de seguretat, la monitorització i l'entorn de preproducció. Els treballadors poden accedir a la seua informació des de l'oficina i des de fora, amb el mateix usuari que utilitzen en Windows.
 
 ## 🎯 Objectius
 
 - Desplegar Nextcloud amb Docker sobre Ubuntu Server.
 - Integrar Nextcloud amb Active Directory.
-- Migrar les carpetes individuals dels treballadors a Nextcloud.
+- Validar la solució en un entorn de preproducció abans del desplegament a producció.
+- Migrar les carpetes individuals dels treballadors a Nextcloud, fora d'horari i amb pla de marxa arrere.
 - Permetre compartir fitxers entre usuaris i departaments.
 - Proporcionar accés segur des de la xarxa interna i des d'Internet, amb HTTPS i autenticació multifactor.
 - Protegir les dades amb un RAID 1.
@@ -50,35 +51,40 @@ Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos se
        ┌──────────────────┬───────────┴──────┬──────────────────┐
        │                  │                  │                  │
 ┌──────┴────────┐ ┌───────┴───────────┐ ┌────┴─────────────┐ ┌──┴─────────┐
-│ DC01          │ │ NUVOL01           │ │ BACKUP01         │ │ CLIENT01   │
-│ Windows Server│ │ Ubuntu Server     │ │ Ubuntu Server    │ │ Windows    │
+│ DC01          │ │ NUVOL01 (PROD.)   │ │ BACKUP01         │ │ Equips     │
+│ Windows Server│ │ Ubuntu Server     │ │ Ubuntu Server    │ │ Windows 11 │
 │ · AD DS       │ │ · Docker Compose  │ │ · Repositori     │ │ · Navegador│
 │ · DNS         │◄┤   - Caddy (HTTPS) │ │   BorgBackup     │ │ · Client   │
 │               │ │   - Nextcloud     ├─►   (còpies)       │ │  Nextcloud │
-│               │ │   - MariaDB/Redis │ │ · Monitorització │ │            │
+│               │ │   - MariaDB/Redis │ │ · Monitorització │ │ · Mòbils   │
 │               │ │ · RAID 1 (mdadm)  │ │   (Uptime Kuma)  │ │            │
+│               │ │                   │ │ · Preproducció   │ │            │
 └───────────────┘ └───────────────────┘ └──────────────────┘ └────────────┘
 ```
 
 | Servidor | IP | Funció |
 |---|---|---|
-| DC01 | 192.168.10.10 | Active Directory i DNS |
-| NUVOL01 | 192.168.10.20 | Cloud privada (Nextcloud) |
-| BACKUP01 | 192.168.10.30 | Còpies de seguretat i monitorització |
+| DC01 | 192.168.10.10 | Active Directory, DNS i AD CS |
+| NUVOL01 | 192.168.10.20 | Cloud privada (Nextcloud) – **producció** |
+| BACKUP01 | 192.168.10.30 | Còpies de seguretat, monitorització i **preproducció** |
 
-La cloud és accessible en `https://nuvol.arreloberta.com` (domini fictici). L'entorn de laboratori es munta amb màquines virtuals de VirtualBox.
+| Entorn | Adreça | Accés |
+|---|---|---|
+| Producció | `https://nuvol.arreloberta.com` | Xarxa interna i Internet |
+| Preproducció | `https://nuvol-pre.corp.arreloberta.com` | Només xarxa interna i VPN |
+
+Tots els canvis es proven primer en preproducció i després s'apliquen en producció a partir d'una versió etiquetada en Git.
 
 ## 🛠️ Tecnologies
 
 | Àmbit | Tecnologia |
 |---|---|
-| Virtualització (laboratori) | VirtualBox |
 | Gestió d'usuaris | Active Directory (Windows Server) |
 | Servidors Linux | Ubuntu Server 26.04 LTS |
 | Contenidors | Docker + Docker Compose |
 | Plataforma de cloud | Nextcloud |
 | Base de dades i memòria cau | MariaDB + Redis |
-| Proxy invers i HTTPS | Caddy |
+| Proxy invers i HTTPS | Caddy + Let's Encrypt (producció) / AD CS (preproducció) |
 | Redundància | RAID 1 (mdadm) + LVM |
 | Còpies de seguretat | BorgBackup |
 | Monitorització | Uptime Kuma |
@@ -121,6 +127,7 @@ Apartats completats:
 - Introducció.
 - Anàlisi del projecte (situació actual, necessitats, requisits, solucions existents i DAFO).
 - Disseny de la solució.
+- Planificació (riscos, tasques i Gantt, allotjament, pressupost, retorn, aspectes legals i gestió documental).
 
 ## 🔐 Dades sensibles
 
@@ -131,22 +138,23 @@ Les variables necessàries es defineixen en un fitxer `.env` a partir de la plan
 
 ## 🚧 Estat del projecte
 
-> 🟡 **En desenvolupament** – fase de planificació de la implantació.
+> 🟡 **En desenvolupament** – planificació completada; pendent la implantació.
 
 - [x] Definició del projecte
 - [x] Anàlisi de la situació actual, necessitats i requisits
 - [x] Anàlisi de solucions i DAFO
 - [x] Disseny de la solució
-- [ ] Planificació
-- [ ] Muntatge de l'entorn de laboratori
-- [ ] Desplegament de Nextcloud
+- [x] Planificació
+- [ ] Preparació de la infraestructura
+- [ ] Desplegament en preproducció
 - [ ] Integració amb Active Directory
 - [ ] Seguretat (HTTPS, MFA, VPN)
 - [ ] RAID 1
 - [ ] Còpies de seguretat i restauració
 - [ ] Monitorització
 - [ ] Scripts d'automatització
-- [ ] Migració de dades
-- [ ] Proves
+- [ ] Proves en preproducció
+- [ ] Desplegament a producció i verificació
+- [ ] Prova pilot i migració de dades
 - [ ] Documentació tècnica
 - [ ] Finalització de la memòria i presentació
