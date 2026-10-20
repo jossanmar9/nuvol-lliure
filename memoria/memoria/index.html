@@ -1,0 +1,3578 @@
+
+<!doctype html>
+<html lang="ca" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cloud privada per a Arrel Oberta">
+      
+      
+        <meta name="author" content="Jose Vicente Sanjuan Martinez">
+      
+      
+        <link rel="canonical" href="https://jossanmar9.github.io/nuvol-lliure/memoria/memoria/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../arquitectura/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../imatges/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Memòria - Núvol Lliure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nuvol-lliure" class="md-skip">
+          Salta el contingut
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Capçalera">
+    <a href="../.." title="Núvol Lliure" class="md-header__button md-logo" aria-label="Núvol Lliure" data-md-component="logo">
+      
+  <img src="../../imatges/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Núvol Lliure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Memòria
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia al mode fosc"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Canvia al mode fosc" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Canvia al mode clar"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Canvia al mode clar" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Neteja" aria-label="Neteja" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicialitzant cerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jossanmar9/nuvol-lliure" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jossanmar9/nuvol-lliure
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestanyes" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inici
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Projecte
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arquitectura/" class="md-tabs__link">
+          
+  
+  
+  Arquitectura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../installacio/" class="md-tabs__link">
+          
+  
+  
+  Instal·lació
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../seguretat/" class="md-tabs__link">
+          
+  
+  
+  Seguretat
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../proves/" class="md-tabs__link">
+          
+  
+  
+  Proves
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegació" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Núvol Lliure" class="md-nav__button md-logo" aria-label="Núvol Lliure" data-md-component="logo">
+      
+  <img src="../../imatges/logo.png" alt="logo">
+
+    </a>
+    Núvol Lliure
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jossanmar9/nuvol-lliure" title="Ves al repositori" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jossanmar9/nuvol-lliure
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inici
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projecte
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projecte
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memòria
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memòria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-privada-per-a-arrel-oberta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cloud privada per a Arrel Oberta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitectura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instal·lació
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Instal·lació
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installacio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instal·lació
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguretat
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Seguretat
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../seguretat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seguretat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proves
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proves
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proves/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proves
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Taula de continguts">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Taula de continguts
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-privada-per-a-arrel-oberta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cloud privada per a Arrel Oberta
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="nuvol-lliure">Núvol Lliure<a class="headerlink" href="#nuvol-lliure" title="Permanent link">&para;</a></h1>
+<h2 id="cloud-privada-per-a-arrel-oberta">Cloud privada per a Arrel Oberta<a class="headerlink" href="#cloud-privada-per-a-arrel-oberta" title="Permanent link">&para;</a></h2>
+<p><strong>Projecte Intermodular – 2n curs (ASIR)</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Títol del projecte</strong></td>
+<td>Núvol Lliure – Cloud privada per a Arrel Oberta</td>
+</tr>
+<tr>
+<td><strong>Alumne</strong></td>
+<td>Jose Vicente Sanjuan Martinez</td>
+</tr>
+<tr>
+<td><strong>Curs</strong></td>
+<td>2n CFGS Administració de Sistemes Informàtics en Xarxa (ASIR)</td>
+</tr>
+<tr>
+<td><strong>Professor/a</strong></td>
+<td>[Pendent]</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>[Pendent]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🚧 <strong>Document en desenvolupament</strong></p>
+<p>Esta memòria s'anirà completant i actualitzant durant el desenvolupament del projecte.</p>
+</blockquote>
+<hr />
+<h1 id="index">ÍNDEX<a class="headerlink" href="#index" title="Permanent link">&para;</a></h1>
+<ol>
+<li>Presentació del projecte</li>
+<li>Introducció</li>
+<li>Anàlisi del projecte</li>
+<li>Disseny de la solució</li>
+<li>Planificació</li>
+<li>Implantació i proves</li>
+<li>Seguiment i control</li>
+<li>Resultats i conclusions</li>
+<li>Bibliografia/webgrafia i fonts</li>
+<li>Annexos</li>
+<li>Documentació tècnica</li>
+<li>Presentació i defensa</li>
+</ol>
+<hr />
+<h1 id="1-presentacio-del-projecte">1. PRESENTACIÓ DEL PROJECTE<a class="headerlink" href="#1-presentacio-del-projecte" title="Permanent link">&para;</a></h1>
+<p><strong>Núvol Lliure</strong> és una cloud privada basada en programari lliure que permet guardar, sincronitzar i compartir fitxers sense dependre de serveis externs com Google Drive o OneDrive.</p>
+<p>El projecte planteja la implantació de Núvol Lliure en <strong>Arrel Oberta</strong>, una consultoria d'aproximadament 50 treballadors. L'empresa disposa actualment d'un servidor Windows amb Active Directory que també s'utilitza com a servidor de fitxers, on cada treballador té la seua carpeta individual.</p>
+<p>La proposta consisteix a mantindre Active Directory per a la gestió dels usuaris i afegir dos servidors Linux: un per a la cloud privada i un altre per a les còpies de seguretat, la monitorització i l'entorn de preproducció. Així, els treballadors podran accedir a la seua informació des de l'oficina i des de fora, de manera segura i sincronitzada en tots els seus dispositius.</p>
+<p>La implantació seguix el mateix procés que qualsevol canvi important en un sistema en producció: tota la configuració es valida primer en un <strong>entorn de preproducció</strong>, i només quan les proves són correctes es fa el <strong>desplegament a producció</strong> i la migració de les dades, fora de l'horari laboral i amb un pla de marxa arrere.</p>
+<p>Sempre que siga possible s'utilitzarà programari lliure i de codi obert, i es buscarà una solució funcional i fàcil de mantindre.</p>
+<hr />
+<h1 id="2-introduccio">2. INTRODUCCIÓ<a class="headerlink" href="#2-introduccio" title="Permanent link">&para;</a></h1>
+<h2 id="21-titol-del-projecte">2.1 Títol del projecte<a class="headerlink" href="#21-titol-del-projecte" title="Permanent link">&para;</a></h2>
+<p><strong>Núvol Lliure – Cloud privada per a Arrel Oberta</strong></p>
+<h2 id="22-resum">2.2 Resum<a class="headerlink" href="#22-resum" title="Permanent link">&para;</a></h2>
+<p>Arrel Oberta és una consultoria d'aproximadament 50 treballadors. Actualment, els usuaris es gestionen amb Active Directory en un servidor Windows, que també guarda la carpeta individual de cada treballador. Estes carpetes només són accessibles des de la xarxa de l'oficina, cosa que dificulta el treball fora de l'empresa.</p>
+<p>La solució proposada és implantar <strong>Núvol Lliure</strong>, una cloud privada basada en <strong>Nextcloud</strong>, desplegada amb <strong>Docker</strong> sobre <strong>Ubuntu Server</strong>. Els treballadors continuaran iniciant sessió amb el seu usuari d'Active Directory i tindran la seua informació disponible des del navegador, des del client d'escriptori i des del mòbil.</p>
+<p>La infraestructura inclourà accés segur per HTTPS, autenticació multifactor, emmagatzematge redundant amb RAID 1, còpies de seguretat en un segon servidor, monitorització dels serveis i scripts per automatitzar les tasques de manteniment.</p>
+<p>La implantació es farà en dues etapes. Primer, la plataforma es desplegarà i es provarà en un <strong>entorn de preproducció</strong>, amb usuaris i fitxers de prova, sense afectar el treball diari. Després, la mateixa configuració validada es desplegarà en el <strong>servidor de producció</strong>, es verificarà, es farà una prova pilot amb un departament i es migraran les carpetes dels treballadors. L'entorn de preproducció es mantindrà després de la posada en marxa per provar les actualitzacions abans d'aplicar-les.</p>
+<p>El resultat esperat és una cloud privada en producció, on cada treballador d'Arrel Oberta pot treballar amb els seus fitxers des de qualsevol lloc, compartir-los amb els companys i recuperar-los en cas d'error o avaria, amb un cost de llicències nul i amb tota la informació sota el control de l'empresa.</p>
+<h2 id="23-justificacio">2.3 Justificació<a class="headerlink" href="#23-justificacio" title="Permanent link">&para;</a></h2>
+<p>El projecte naix de dues necessitats principals d'Arrel Oberta:</p>
+<ul>
+<li><strong>Accés des de fora de l'oficina.</strong> Alguns treballadors, especialment l'equip comercial, necessiten consultar i modificar els seus documents quan visiten clients o treballen des de casa. Amb el sistema actual no és possible fer-ho de manera còmoda i segura, i alguns treballadors han començat a utilitzar serveis personals com Google Drive o Dropbox, de manera que informació de l'empresa queda fora del seu control.</li>
+<li><strong>Protecció de la informació.</strong> El servidor actual no disposa de redundància d'emmagatzematge ni d'una política de còpies de seguretat definida. Una fallada del disc podria provocar la pèrdua de la informació dels treballadors.</li>
+</ul>
+<p>Una cloud privada resol estes necessitats mantenint les dades dins de l'empresa i sense costos de llicències per usuari.</p>
+<p>El projecte també servix perquè el departament de Sistemes incorpore bones pràctiques que fins ara no s'aplicaven: separar els entorns de <strong>preproducció i producció</strong>, provar els canvis abans d'aplicar-los, planificar els desplegaments amb un pla de marxa arrere i documentar la infraestructura perquè es puga tornar a desplegar.</p>
+<p>Per a això s'utilitzaran <strong>Git i GitHub</strong>, que permeten controlar les versions de la documentació, les configuracions i els scripts, i desplegar en producció exactament la mateixa configuració que s'ha provat en preproducció.</p>
+<h2 id="24-objectius">2.4 Objectius<a class="headerlink" href="#24-objectius" title="Permanent link">&para;</a></h2>
+<h3 id="objectiu-general">Objectiu general<a class="headerlink" href="#objectiu-general" title="Permanent link">&para;</a></h3>
+<p>Implantar una <strong>cloud privada segura i accessible des de qualsevol lloc</strong> per a Arrel Oberta, que permeta als treballadors guardar, sincronitzar i compartir els seus fitxers utilitzant el seu usuari d'Active Directory.</p>
+<h3 id="objectius-especifics">Objectius específics<a class="headerlink" href="#objectius-especifics" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Desplegar Nextcloud amb Docker sobre un servidor Ubuntu Server.</li>
+<li>Integrar Nextcloud amb Active Directory perquè els usuaris utilitzen el mateix usuari i contrasenya que en Windows.</li>
+<li>Disposar d'un entorn de preproducció on validar la solució abans del desplegament a producció i provar les actualitzacions posteriors.</li>
+<li>Migrar les carpetes individuals dels treballadors des del servidor Windows a Nextcloud, sense interrompre el treball i amb possibilitat de tornar arrere.</li>
+<li>Permetre compartir fitxers entre usuaris i departaments amb permisos de lectura o edició.</li>
+<li>Permetre l'accés des de la xarxa interna i des d'Internet de manera segura, amb HTTPS i autenticació multifactor.</li>
+<li>Protegir les dades davant de la fallada d'un disc amb un RAID 1.</li>
+<li>Fer còpies de seguretat automàtiques en un segon servidor i comprovar que es poden restaurar.</li>
+<li>Monitoritzar l'estat dels servidors i dels serveis i rebre avisos quan alguna cosa falle.</li>
+<li>Automatitzar les tasques de manteniment més habituals amb scripts.</li>
+<li>Documentar la instal·lació, l'administració i la recuperació perquè la infraestructura es puga tornar a desplegar.</li>
+</ul>
+<hr />
+<h1 id="3-analisi-del-projecte">3. ANÀLISI DEL PROJECTE<a class="headerlink" href="#3-analisi-del-projecte" title="Permanent link">&para;</a></h1>
+<h2 id="31-situacio-actual">3.1 Situació actual<a class="headerlink" href="#31-situacio-actual" title="Permanent link">&para;</a></h2>
+<p><strong>Arrel Oberta</strong> és una consultoria d'aproximadament <strong>50 treballadors</strong>, organitzats en cinc departaments:</p>
+<ul>
+<li>Recursos Humans.</li>
+<li>Administració.</li>
+<li>Sistemes.</li>
+<li>Equip Comercial.</li>
+<li>Direcció.</li>
+</ul>
+<p>La infraestructura actual es basa en un <strong>servidor Windows</strong> que proporciona:</p>
+<ul>
+<li><strong>Active Directory i DNS</strong>, per gestionar de manera centralitzada els usuaris, grups i equips de l'empresa.</li>
+<li><strong>Servidor de fitxers</strong>, on cada treballador té la seua <strong>carpeta individual</strong>, protegida amb permisos NTFS perquè només hi puga accedir el seu propietari.</li>
+</ul>
+<p>Quan dos treballadors necessiten intercanviar documents, ho fan per correu electrònic o amb memòries USB, cosa que genera còpies duplicades i versions diferents d'un mateix document.</p>
+<p>Les carpetes només són accessibles des de la xarxa de l'oficina. Els treballadors que es desplacen, especialment l'equip comercial, no poden accedir a la seua informació quan estan fora.</p>
+<p>A més, no hi ha cap entorn on provar els canvis: les actualitzacions i les modificacions de configuració s'apliquen directament sobre el servidor que utilitzen els treballadors.</p>
+<p>Les principals limitacions detectades són:</p>
+<ul>
+<li>No hi ha accés a la informació des de fora de l'oficina.</li>
+<li>No hi ha una manera còmoda i controlada de compartir fitxers entre treballadors.</li>
+<li>Ús de serveis cloud personals per part d'alguns treballadors, amb informació de l'empresa fora del seu control.</li>
+<li>No hi ha redundància d'emmagatzematge: la fallada d'un disc pot provocar la pèrdua de dades.</li>
+<li>No hi ha una política de còpies de seguretat definida ni proves de restauració.</li>
+<li>No hi ha cap sistema que avise quan un servei deixa de funcionar.</li>
+<li>Els canvis s'apliquen directament en producció, sense provar-los abans.</li>
+</ul>
+<h2 id="32-necessitats">3.2 Necessitats<a class="headerlink" href="#32-necessitats" title="Permanent link">&para;</a></h2>
+<h3 id="necessitats-funcionals">Necessitats funcionals<a class="headerlink" href="#necessitats-funcionals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada treballador ha de tindre un espai personal on guardar els seus fitxers.</li>
+<li>Els fitxers s'han de poder consultar des del navegador i sincronitzar en l'ordinador i el mòbil.</li>
+<li>Els treballadors han de poder compartir fitxers amb companys o amb tot un departament.</li>
+<li>Els usuaris autoritzats han de poder accedir des de dins i des de fora de l'oficina.</li>
+</ul>
+<h3 id="necessitats-tecniques">Necessitats tècniques<a class="headerlink" href="#necessitats-tecniques" title="Permanent link">&para;</a></h3>
+<ul>
+<li>La cloud s'ha d'instal·lar en un servidor Linux dedicat, separat del servidor Windows.</li>
+<li>Active Directory ha de continuar sent el sistema on es gestionen els usuaris.</li>
+<li>Cal migrar les carpetes individuals actuals a la nova plataforma.</li>
+<li>Cal un entorn de preproducció, separat de producció, on provar la instal·lació, la migració i les actualitzacions sense afectar els treballadors.</li>
+</ul>
+<h3 id="necessitats-de-seguretat">Necessitats de seguretat<a class="headerlink" href="#necessitats-de-seguretat" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cada usuari ha d'iniciar sessió amb el seu compte i només ha de poder veure la seua informació i la que li han compartit.</li>
+<li>Les connexions des de fora han d'anar xifrades.</li>
+<li>Cal una segona verificació en l'inici de sessió (autenticació multifactor).</li>
+<li>Només s'han d'exposar a Internet els serveis imprescindibles.</li>
+</ul>
+<h3 id="necessitats-de-disponibilitat">Necessitats de disponibilitat<a class="headerlink" href="#necessitats-de-disponibilitat" title="Permanent link">&para;</a></h3>
+<ul>
+<li>La fallada d'un disc no ha de provocar la pèrdua de dades ni aturar el servei.</li>
+<li>Cal fer còpies de seguretat automàtiques, separades del servidor principal, i comprovar que es poden restaurar.</li>
+<li>Cal saber quan un servei deixa de funcionar.</li>
+<li>La posada en producció i la migració no han d'interrompre el treball dels usuaris.</li>
+</ul>
+<h3 id="necessitats-economiques-i-descalabilitat">Necessitats econòmiques i d'escalabilitat<a class="headerlink" href="#necessitats-economiques-i-descalabilitat" title="Permanent link">&para;</a></h3>
+<ul>
+<li>S'utilitzarà programari lliure per evitar costos de llicències per usuari.</li>
+<li>La solució s'ha de poder ampliar si augmenta el nombre de treballadors o l'espai necessari.</li>
+</ul>
+<h2 id="33-requisits">3.3 Requisits<a class="headerlink" href="#33-requisits" title="Permanent link">&para;</a></h2>
+<p>La columna <strong>Entorn</strong> indica on es verifica cada requisit: en <strong>preproducció</strong> (abans del desplegament), en <strong>producció</strong> (durant la verificació prèvia a l'entrada en servei) o en tots dos.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Tipus</th>
+<th>Requisit</th>
+<th>Prioritat</th>
+<th>Com es verificarà</th>
+<th>Entorn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-01</td>
+<td>Funcional</td>
+<td>Cada usuari disposarà d'un espai personal per guardar i gestionar els seus fitxers.</td>
+<td>Alta</td>
+<td>Crear, modificar, descarregar i eliminar fitxers de prova.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RF-02</td>
+<td>Funcional</td>
+<td>Els usuaris podran accedir als seus fitxers des de la xarxa interna.</td>
+<td>Alta</td>
+<td>Accedir des d'un equip de la xarxa de l'oficina.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RF-03</td>
+<td>Funcional</td>
+<td>Els usuaris podran accedir als seus fitxers des d'Internet.</td>
+<td>Alta</td>
+<td>Accedir des d'un equip extern a la xarxa de l'oficina.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RF-04</td>
+<td>Funcional</td>
+<td>Els usuaris podran compartir fitxers i carpetes amb altres usuaris o grups.</td>
+<td>Alta</td>
+<td>Compartir una carpeta i comprovar que el destinatari hi accedeix.</td>
+<td>Preproducció</td>
+</tr>
+<tr>
+<td>RF-05</td>
+<td>Funcional</td>
+<td>En compartir, es podrà indicar si el destinatari pot només llegir o també modificar.</td>
+<td>Alta</td>
+<td>Comprovar que un usuari amb permís de lectura no pot modificar.</td>
+<td>Preproducció</td>
+</tr>
+<tr>
+<td>RF-06</td>
+<td>Funcional</td>
+<td>Les carpetes individuals del servidor Windows es migraran a Nextcloud.</td>
+<td>Alta</td>
+<td>Assajar la migració amb carpetes de prova en preproducció i, en producció, comparar el nombre de fitxers i l'espai ocupat amb l'origen.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RF-07</td>
+<td>Funcional</td>
+<td>Els fitxers es podran sincronitzar en l'ordinador i el mòbil.</td>
+<td>Mitjana</td>
+<td>Instal·lar el client de Nextcloud i comprovar la sincronització.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RT-01</td>
+<td>Tècnic</td>
+<td>La cloud s'executarà en un servidor Linux dedicat.</td>
+<td>Alta</td>
+<td>Comprovar el servidor de producció desplegat.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RT-02</td>
+<td>Tècnic</td>
+<td>Active Directory continuarà gestionant els usuaris i grups.</td>
+<td>Alta</td>
+<td>Crear un usuari en AD i comprovar que pot iniciar sessió en Nextcloud.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RT-03</td>
+<td>Tècnic</td>
+<td>Nextcloud s'integrarà amb Active Directory.</td>
+<td>Alta</td>
+<td>Iniciar sessió en Nextcloud amb un usuari d'AD.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RT-04</td>
+<td>Tècnic</td>
+<td>Hi haurà un entorn de preproducció separat de producció, on es provaran els canvis abans d'aplicar-los.</td>
+<td>Alta</td>
+<td>Aplicar una actualització primer en preproducció i després en producció seguint el procediment de canvis.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RS-01</td>
+<td>Seguretat</td>
+<td>L'accés a la informació requerirà iniciar sessió.</td>
+<td>Alta</td>
+<td>Intentar accedir sense iniciar sessió.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RS-02</td>
+<td>Seguretat</td>
+<td>Els usuaris hauran d'utilitzar autenticació multifactor.</td>
+<td>Alta</td>
+<td>Activar MFA i comprovar que es demana el segon factor.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RS-03</td>
+<td>Seguretat</td>
+<td>L'accés web es farà per HTTPS.</td>
+<td>Alta</td>
+<td>Comprovar la connexió HTTPS i la validesa del certificat des del navegador.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RS-04</td>
+<td>Seguretat</td>
+<td>Un usuari no podrà accedir a fitxers d'altres usuaris si no li els han compartit.</td>
+<td>Alta</td>
+<td>Intentar accedir a fitxers d'un altre usuari.</td>
+<td>Preproducció</td>
+</tr>
+<tr>
+<td>RD-01</td>
+<td>Disponibilitat</td>
+<td>L'emmagatzematge disposarà de redundància.</td>
+<td>Alta</td>
+<td>Provocar de manera controlada la fallada d'un disc, abans de migrar les dades, i comprovar que el servei continua.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RD-02</td>
+<td>Disponibilitat</td>
+<td>Es faran còpies de seguretat automàtiques en un servidor diferent.</td>
+<td>Alta</td>
+<td>Comprovar que la còpia nocturna s'ha executat correctament.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RD-03</td>
+<td>Disponibilitat</td>
+<td>Les còpies permetran recuperar la informació.</td>
+<td>Alta</td>
+<td>Restaurar un fitxer en producció i fer una restauració completa del servei en preproducció.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RM-01</td>
+<td>Monitorització</td>
+<td>Es supervisarà l'estat dels servidors i dels serveis principals.</td>
+<td>Mitjana</td>
+<td>Aturar un servei i comprovar que arriba l'avís.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RE-01</td>
+<td>Escalabilitat</td>
+<td>Es podrà ampliar la capacitat d'emmagatzematge.</td>
+<td>Mitjana</td>
+<td>Documentar el procediment d'ampliació.</td>
+<td>Producció</td>
+</tr>
+<tr>
+<td>RA-01</td>
+<td>Automatització</td>
+<td>S'automatitzarà almenys una tasca de manteniment.</td>
+<td>Mitjana</td>
+<td>Comprovar l'execució programada de l'script.</td>
+<td>Preproducció i producció</td>
+</tr>
+<tr>
+<td>RDOC-01</td>
+<td>Documentació</td>
+<td>Es documentarà la instal·lació, l'administració i la recuperació.</td>
+<td>Alta</td>
+<td>Desplegar producció seguint el manual d'instal·lació validat en preproducció.</td>
+<td>Preproducció i producció</td>
+</tr>
+</tbody>
+</table>
+<p>Els requisits podran revisar-se durant el desenvolupament si apareixen noves necessitats o limitacions.</p>
+<h2 id="34-analisi-de-solucions-existents">3.4 Anàlisi de solucions existents<a class="headerlink" href="#34-analisi-de-solucions-existents" title="Permanent link">&para;</a></h2>
+<h3 id="serveis-al-nuvol-public">Serveis al núvol públic<a class="headerlink" href="#serveis-al-nuvol-public" title="Permanent link">&para;</a></h3>
+<p>La primera alternativa seria contractar un servei com <strong>Google Workspace (Google Drive)</strong> o <strong>Microsoft 365 (OneDrive)</strong>. Són fàcils d'utilitzar i no requerixen servidors propis, però s'han descartat perquè:</p>
+<ul>
+<li>La informació de l'empresa s'emmagatzema en servidors de tercers.</li>
+<li>Tenen un cost mensual per usuari que augmenta amb la plantilla: uns 14 dòlars per usuari i mes en els plans Business Standard de Google Workspace i Microsoft 365, és a dir, uns 8.400 dòlars anuals per a 50 treballadors.</li>
+<li>Generen dependència d'un proveïdor concret.</li>
+</ul>
+<p>Per això s'opta per una <strong>cloud privada autoallotjada</strong>. S'han estudiat tres plataformes de programari lliure:</p>
+<h3 id="nextcloud">Nextcloud<a class="headerlink" href="#nextcloud" title="Permanent link">&para;</a></h3>
+<p>Plataforma d'emmagatzematge, sincronització i compartició de fitxers amb moltes funcionalitats addicionals mitjançant aplicacions. Disposa d'integració amb LDAP i Active Directory, autenticació multifactor, clients per a tots els sistemes i una comunitat molt gran.</p>
+<h3 id="owncloud-infinite-scale">ownCloud Infinite Scale<a class="headerlink" href="#owncloud-infinite-scale" title="Permanent link">&para;</a></h3>
+<p>Versió moderna d'ownCloud, orientada al rendiment i l'escalabilitat. La seua integració completa amb Active Directory requerix configurar un proveïdor d'identitat addicional, cosa que augmenta la complexitat per a una empresa d'esta grandària.</p>
+<h3 id="seafile">Seafile<a class="headerlink" href="#seafile" title="Permanent link">&para;</a></h3>
+<p>Plataforma centrada en la sincronització de fitxers, molt ràpida i eficient. Té menys funcionalitats de col·laboració i algunes opcions estan reservades a l'edició de pagament.</p>
+<h3 id="comparacio">Comparació<a class="headerlink" href="#comparacio" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Nextcloud</th>
+<th>ownCloud Infinite Scale</th>
+<th>Seafile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Programari lliure</td>
+<td>Sí</td>
+<td>Sí</td>
+<td>Sí (edició comunitària)</td>
+</tr>
+<tr>
+<td>Sincronització i compartició</td>
+<td>Sí</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Integració amb Active Directory</td>
+<td>Directa (LDAP)</td>
+<td>Amb proveïdor d'identitat</td>
+<td>Directa (LDAP)</td>
+</tr>
+<tr>
+<td>Autenticació multifactor</td>
+<td>Integrada</td>
+<td>Amb proveïdor d'identitat</td>
+<td>Limitada</td>
+</tr>
+<tr>
+<td>Desplegament amb Docker</td>
+<td>Sí</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Documentació i comunitat</td>
+<td>Molt àmplia</td>
+<td>Mitjana</td>
+<td>Àmplia</td>
+</tr>
+<tr>
+<td>Cost de llicències</td>
+<td>Gratuït (subscripció de suport opcional)</td>
+<td>Gratuït (subscripció de suport opcional)</td>
+<td>Gratuït en l'edició comunitària; edició Pro de pagament</td>
+</tr>
+<tr>
+<td>Orientació principal</td>
+<td>Cloud i col·laboració</td>
+<td>Rendiment i escalabilitat</td>
+<td>Sincronització de fitxers</td>
+</tr>
+</tbody>
+</table>
+<p>La selecció definitiva es justifica en l'apartat 4.3.</p>
+<h2 id="35-analisi-dafo">3.5 Anàlisi DAFO<a class="headerlink" href="#35-analisi-dafo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Fortaleses</th>
+<th>Debilitats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Les dades es queden dins de l'empresa.</td>
+<td>Cal administrar i mantindre la infraestructura pròpia.</td>
+</tr>
+<tr>
+<td>Sense costos de llicències per usuari.</td>
+<td>Més responsabilitat per al departament de Sistemes.</td>
+</tr>
+<tr>
+<td>Es reutilitzen els usuaris i grups d'Active Directory.</td>
+<td>Cal migrar les dades del servidor actual.</td>
+</tr>
+<tr>
+<td>Accés des de qualsevol lloc i dispositiu.</td>
+<td>Els usuaris s'han d'adaptar a la nova eina.</td>
+</tr>
+<tr>
+<td>Redundància, còpies i monitorització des del principi.</td>
+<td>Cal personal amb coneixements de Linux i Docker.</td>
+</tr>
+<tr>
+<td>Els canvis es proven en preproducció abans d'aplicar-los.</td>
+<td>Cal mantindre dos entorns i que tinguen la mateixa configuració.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Oportunitats</th>
+<th>Amenaces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facilitar el teletreball i el treball amb clients.</td>
+<td>Atacs contra els serveis accessibles des d'Internet.</td>
+</tr>
+<tr>
+<td>Eliminar l'ús de serveis cloud personals.</td>
+<td>Vulnerabilitats en el programari utilitzat.</td>
+</tr>
+<tr>
+<td>Ampliar la plataforma amb noves aplicacions en el futur.</td>
+<td>Avaries de maquinari.</td>
+</tr>
+<tr>
+<td>Créixer al mateix ritme que l'empresa.</td>
+<td>Errors de configuració.</td>
+</tr>
+<tr>
+<td>Modernitzar la manera de treballar.</td>
+<td>Dependència de la connexió a Internet per a l'accés remot.</td>
+</tr>
+</tbody>
+</table>
+<p>L'anàlisi mostra que la cloud privada resol les limitacions actuals, però trasllada a l'empresa la responsabilitat de mantindre-la i protegir-la. Per això el disseny posa especial atenció en la seguretat, les còpies de seguretat, la monitorització i la validació dels canvis en preproducció.</p>
+<hr />
+<h1 id="4-disseny-de-la-solucio">4. DISSENY DE LA SOLUCIÓ<a class="headerlink" href="#4-disseny-de-la-solucio" title="Permanent link">&para;</a></h1>
+<p>En este apartat es definix com serà Núvol Lliure i es justifiquen les tecnologies triades a partir de les necessitats i requisits de l'apartat 3.</p>
+<p>La solució s'implantarà en les instal·lacions d'Arrel Oberta, aprofitant el servidor Windows actual i afegint-hi el maquinari necessari. Es definixen dos entorns:</p>
+<ul>
+<li><strong>Producció:</strong> el servei que utilitzen els treballadors, en el servidor NUVOL01.</li>
+<li><strong>Preproducció:</strong> una còpia reduïda de la plataforma, en el servidor BACKUP01, amb usuaris i fitxers de prova, on es valida tot abans d'aplicar-ho en producció.</li>
+</ul>
+<h2 id="41-recopilacio-dinformacio-tecnica">4.1 Recopilació d'informació tècnica<a class="headerlink" href="#41-recopilacio-dinformacio-tecnica" title="Permanent link">&para;</a></h2>
+<p>Per dissenyar la solució s'han consultat principalment les documentacions oficials de cada tecnologia (vegeu l'apartat 9). Les tecnologies investigades són:</p>
+<ul>
+<li><strong>Nextcloud:</strong> plataforma de cloud privada. S'ha revisat el manual d'administració, especialment els requisits del sistema, la integració amb LDAP/Active Directory, l'autenticació en dos factors, el procediment de còpies de seguretat i el procediment d'actualització.</li>
+<li><strong>ownCloud Infinite Scale i Seafile:</strong> alternatives a Nextcloud, estudiades per poder comparar-les (apartat 4.3).</li>
+<li><strong>Ubuntu Server 26.04 LTS:</strong> sistema operatiu dels servidors Linux. És una versió amb suport a llarg termini, cosa que garantix actualitzacions de seguretat durant anys.</li>
+<li><strong>Docker i Docker Compose:</strong> permeten desplegar Nextcloud i els serveis que necessita (base de dades, memòria cau i proxy) en contenidors, definits en un únic fitxer que es pot versionar. El mateix fitxer servix per a preproducció i producció; només canvien les variables de cada entorn.</li>
+<li><strong>MariaDB i Redis:</strong> base de dades i memòria cau recomanades per la documentació de Nextcloud.</li>
+<li><strong>Caddy:</strong> proxy invers que configura HTTPS de manera automàtica.</li>
+<li><strong>Active Directory:</strong> s'ha revisat la recomanació de Microsoft sobre el nom del domini, el funcionament de LDAPS, que necessita un certificat en el controlador de domini, i els Serveis de Certificats d'Active Directory (AD CS).</li>
+<li><strong>mdadm i LVM:</strong> RAID per programari i gestió de volums de Linux.</li>
+<li><strong>BorgBackup:</strong> eina de còpies de seguretat incrementals, xifrades i amb deduplicació.</li>
+<li><strong>Uptime Kuma:</strong> eina senzilla de monitorització de serveis.</li>
+<li><strong>WireGuard:</strong> VPN moderna i senzilla per a l'accés d'administració.</li>
+<li><strong>Let's Encrypt:</strong> autoritat de certificació gratuïta que permet obtindre i renovar automàticament els certificats HTTPS.</li>
+</ul>
+<h2 id="42-arquitectura">4.2 Arquitectura<a class="headerlink" href="#42-arquitectura" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">                                  INTERNET
+                                      │
+                              ┌───────┴────────┐
+                              │ Router de      │  Ports reenviats a NUVOL01:
+                              │ l'empresa      │  · 443/tcp   (HTTPS)
+                              └───────┬────────┘  · 51820/udp (VPN WireGuard)
+                                      │
+                           LAN 192.168.10.0/24
+       ┌──────────────────┬───────────┴──────┬──────────────────┐
+       │                  │                  │                  │
+┌──────┴────────┐ ┌───────┴───────────┐ ┌────┴──────────────┐ ┌─┴──────────┐
+│ DC01          │ │ NUVOL01           │ │ BACKUP01          │ │ Equips     │
+│ Windows Server│ │ PRODUCCIÓ         │ │ Ubuntu Server     │ │ Windows 11 │
+│ · AD DS       │ │ Ubuntu Server     │ │ · Repositori      │ │ · Navegador│
+│ · DNS         │◄┤ · Docker Compose  │ │   BorgBackup      │ │ · Client   │
+│ · AD CS       │ │   - Caddy (HTTPS) ├─►   (còpies)        │ │  Nextcloud │
+│               │ │   - Nextcloud     │ │ · Uptime Kuma     │ │ · Mòbils   │
+│               │ │   - MariaDB/Redis │ │ · PREPRODUCCIÓ    │ │            │
+│               │ │ · RAID 1 (mdadm)  │ │   (Nextcloud de   │ │            │
+│               │ │                   │ │    proves, Docker)│ │            │
+└───────────────┘ └───────────────────┘ └───────────────────┘ └────────────┘
+</code></pre>
+<p><strong>Elements:</strong></p>
+<ul>
+<li><strong>DC01 (Windows Server):</strong> el servidor actual. Continua proporcionant Active Directory i DNS, i és on es gestionen els usuaris i grups. S'hi afegix el rol AD CS per emetre certificats interns.</li>
+<li><strong>NUVOL01 (Ubuntu Server) – Producció:</strong> nou servidor físic (HPE ProLiant MicroServer Gen11) que allotja Nextcloud en contenidors Docker i les dades en un RAID 1.</li>
+<li><strong>BACKUP01 (Ubuntu Server):</strong> equip d'escriptori reutilitzat que fa de segon servidor. Guarda les còpies de seguretat, allotja la monitorització i executa l'<strong>entorn de preproducció</strong>. Com que és una màquina separada, si NUVOL01 falla les còpies continuen disponibles i la incidència es detecta igualment.</li>
+<li><strong>Equips dels treballadors:</strong> ordinadors Windows units al domini i dispositius mòbils, que accedixen per navegador o amb el client de Nextcloud.</li>
+<li><strong>Router:</strong> connecta l'oficina a Internet i reenvia a NUVOL01 només els ports de HTTPS i de la VPN. L'entorn de preproducció no és accessible des d'Internet.</li>
+</ul>
+<p><strong>Fluxos principals:</strong></p>
+<ol>
+<li><strong>Accés d'un usuari:</strong> l'usuari entra en <code>https://nuvol.arreloberta.com</code>. Des de l'oficina, el DNS d'AD el porta directament a NUVOL01; des de fora, arriba a través del router. Caddy rep la connexió HTTPS i la passa a Nextcloud.</li>
+<li><strong>Autenticació:</strong> Nextcloud comprova l'usuari i la contrasenya contra Active Directory per LDAPS i, a continuació, demana el segon factor (MFA).</li>
+<li><strong>Còpies:</strong> cada nit NUVOL01 envia una còpia de les dades i de la base de dades a BACKUP01 per SSH.</li>
+<li><strong>Monitorització:</strong> Uptime Kuma, des de BACKUP01, comprova periòdicament que els serveis responen i avisa per correu si alguna cosa falla.</li>
+<li><strong>Administració:</strong> l'administrador accedix per SSH des de la xarxa interna o, des de fora, a través de la VPN WireGuard.</li>
+<li><strong>Canvis:</strong> qualsevol canvi (configuració, actualització d'imatges, scripts) es registra en Git, s'aplica i es prova primer en preproducció i, si les proves són correctes, s'aplica en producció en una finestra de manteniment.</li>
+</ol>
+<h2 id="43-estudi-de-viabilitat-tecnica">4.3 Estudi de viabilitat tècnica<a class="headerlink" href="#43-estudi-de-viabilitat-tecnica" title="Permanent link">&para;</a></h2>
+<p><strong>Viabilitat tècnica.</strong> Totes les tecnologies triades són programari lliure, madur i àmpliament documentat, i funcionen sobre maquinari convencional. Per a 50 usuaris, Nextcloud no necessita un servidor especialment potent: el servidor de producció triat (4 nuclis, 32 GB de RAM) supera àmpliament els requisits. Amb 50 usuaris i una quota de 10 GB cadascun es necessiten uns 500 GB, de manera que els 4 TB útils del RAID 1 deixen molt de marge per créixer, i el servidor té dues badies lliures per afegir més discos. L'entorn de preproducció només té uns pocs usuaris i fitxers de prova, per la qual cosa pot funcionar en BACKUP01 (equip amb un mínim de 8 GB de RAM) sense afectar les còpies ni la monitorització. La xarxa actual de l'oficina i la connexió de fibra són suficients, i l'única modificació en el router és reenviar dos ports.</p>
+<p><strong>Viabilitat econòmica.</strong> No cal pagar llicències de programari per a la cloud: Nextcloud, Ubuntu Server, Docker i la resta d'eines són gratuïtes. El cost principal és el maquinari (servidor i discos) i el temps d'administració. L'entorn de preproducció no suposa cap cost addicional, perquè s'aprofita BACKUP01. En comparació, un servei com Google Workspace Business Standard o Microsoft 365 Business Standard costa al voltant de 14 dòlars per usuari i mes, és a dir, uns <strong>8.400 dòlars a l'any</strong> per a 50 treballadors. El pressupost detallat es presenta en l'apartat 5.4.</p>
+<h3 id="431-alternatives">4.3.1 Alternatives<a class="headerlink" href="#431-alternatives" title="Permanent link">&para;</a></h3>
+<p>Les alternatives públiques (Google Drive, OneDrive) es van descartar en l'apartat 3.4. Per a la plataforma de cloud privada es consideren tres alternatives viables:</p>
+<ul>
+<li><strong>Alternativa A – Nextcloud:</strong> plataforma completa de cloud i col·laboració, amb integració directa amb Active Directory.</li>
+<li><strong>Alternativa B – ownCloud Infinite Scale:</strong> plataforma moderna orientada al rendiment, que necessita un proveïdor d'identitat addicional per integrar-se completament amb AD.</li>
+<li><strong>Alternativa C – Seafile:</strong> plataforma centrada en la sincronització de fitxers, molt eficient però amb menys funcionalitats en l'edició comunitària.</li>
+</ul>
+<h3 id="432-comparativa">4.3.2 Comparativa<a class="headerlink" href="#432-comparativa" title="Permanent link">&para;</a></h3>
+<p>Les alternatives s'han valorat amb una matriu de decisió ponderada (puntuació de 1 a 5):</p>
+<table>
+<thead>
+<tr>
+<th>Criteri</th>
+<th>Pes</th>
+<th>A. Nextcloud</th>
+<th>B. ownCloud Infinite Scale</th>
+<th>C. Seafile</th>
+<th>Observacions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integració amb Active Directory</td>
+<td>25 %</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>oCIS necessita un proveïdor d'identitat addicional</td>
+</tr>
+<tr>
+<td>Documentació i comunitat</td>
+<td>20 %</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>Nextcloud té la comunitat més gran</td>
+</tr>
+<tr>
+<td>Autenticació multifactor</td>
+<td>15 %</td>
+<td>5</td>
+<td>3</td>
+<td>3</td>
+<td>Nextcloud la inclou i permet fer-la obligatòria</td>
+</tr>
+<tr>
+<td>Facilitat d'administració</td>
+<td>15 %</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>oCIS té una arquitectura més complexa</td>
+</tr>
+<tr>
+<td>Funcionalitats</td>
+<td>15 %</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>Compartició, clients i aplicacions</td>
+</tr>
+<tr>
+<td>Rendiment</td>
+<td>10 %</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>Nextcloud millora amb Redis</td>
+</tr>
+<tr>
+<td><strong>Puntuació ponderada</strong></td>
+<td><strong>100 %</strong></td>
+<td><strong>4,65</strong></td>
+<td><strong>3,35</strong></td>
+<td><strong>3,80</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="433-eleccio-i-justificacio">4.3.3 Elecció i justificació<a class="headerlink" href="#433-eleccio-i-justificacio" title="Permanent link">&para;</a></h3>
+<p><strong>Es tria Nextcloud</strong> perquè obté la millor puntuació en els criteris més importants per al projecte:</p>
+<ul>
+<li>S'integra directament amb Active Directory amb l'aplicació <em>LDAP user and group backend</em>, de manera que els treballadors utilitzen el mateix usuari que en Windows.</li>
+<li>Inclou autenticació multifactor (TOTP) i permet fer-la obligatòria.</li>
+<li>Té clients per a Windows, Android i iOS.</li>
+<li>Té una documentació molt completa i una comunitat molt activa, cosa que en facilita l'administració.</li>
+</ul>
+<p>El seu rendiment és inferior al de les altres opcions, però no és un problema per a 50 usuaris si s'utilitza Redis com a memòria cau.</p>
+<p>La resta de components també s'han triat comparant alternatives:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Opció triada</th>
+<th>Alternatives descartades</th>
+<th>Motiu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base de dades</td>
+<td>MariaDB</td>
+<td>PostgreSQL, SQLite</td>
+<td>La més utilitzada amb Nextcloud. SQLite no és adequat per a diversos usuaris.</td>
+</tr>
+<tr>
+<td>Proxy invers</td>
+<td>Caddy</td>
+<td>Nginx, Traefik</td>
+<td>Configura HTTPS automàticament amb molt poques línies.</td>
+</tr>
+<tr>
+<td>Redundància</td>
+<td>RAID 1 amb mdadm</td>
+<td>ZFS</td>
+<td>Més senzill d'administrar i suficient per a esta empresa.</td>
+</tr>
+<tr>
+<td>Còpies</td>
+<td>BorgBackup</td>
+<td>rsync, Restic</td>
+<td>Còpies incrementals, xifrades i amb retenció automàtica.</td>
+</tr>
+<tr>
+<td>Monitorització</td>
+<td>Uptime Kuma</td>
+<td>Zabbix, Prometheus + Grafana</td>
+<td>Molt més senzill de configurar i suficient per a esta empresa.</td>
+</tr>
+<tr>
+<td>Servidor de la cloud</td>
+<td>Servidor físic dedicat</td>
+<td>Màquina virtual en el servidor Windows actual, servidor llogat en un proveïdor</td>
+<td>Separa la cloud del servidor actual i manté les dades a l'oficina.</td>
+</tr>
+<tr>
+<td>Entorn de preproducció</td>
+<td>Contenidors en BACKUP01</td>
+<td>Sense preproducció (provar directament en producció), un tercer servidor dedicat</td>
+<td>Permet provar els canvis sense afectar els treballadors i sense comprar més maquinari.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="44-disseny-detallat">4.4 Disseny detallat<a class="headerlink" href="#44-disseny-detallat" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Tecnologia</th>
+<th>Configuració / recursos</th>
+<th>Justificació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xarxa</td>
+<td>Xarxa local de l'oficina</td>
+<td>192.168.10.0/24, porta d'enllaç 192.168.10.1</td>
+<td>S'aprofita la xarxa existent.</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>DNS d'Active Directory i DNS públic</td>
+<td>Intern: <code>nuvol.arreloberta.com</code> → 192.168.10.20 i <code>nuvol-pre.corp.arreloberta.com</code> → 192.168.10.30. Públic: <code>nuvol.arreloberta.com</code> → IP pública de l'oficina</td>
+<td>La mateixa adreça de producció funciona des de dins i des de fora. La preproducció només té nom intern.</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>Router de l'oficina</td>
+<td>Equips dels treballadors per DHCP; servidors amb IP fixa</td>
+<td>Es manté la configuració actual.</td>
+</tr>
+<tr>
+<td>Router / tallafocs</td>
+<td>Router de l'oficina + UFW</td>
+<td>Només 443/tcp i 51820/udp reenviats a NUVOL01</td>
+<td>Exposar a Internet el mínim imprescindible.</td>
+</tr>
+<tr>
+<td>VPN</td>
+<td>WireGuard</td>
+<td>Xarxa 10.10.10.0/24 en NUVOL01</td>
+<td>Accés d'administració segur des de fora.</td>
+</tr>
+<tr>
+<td>DC01</td>
+<td>Windows Server 2022 (existent)</td>
+<td>IP 192.168.10.10. AD DS i DNS; s'afegix el rol AD CS</td>
+<td>AD CS emet el certificat del controlador de domini necessari per a LDAPS i el certificat de l'entorn de preproducció.</td>
+</tr>
+<tr>
+<td>NUVOL01 (producció)</td>
+<td>HPE ProLiant MicroServer Gen11 + Ubuntu Server 26.04 LTS</td>
+<td>Xeon E-2434, 32 GB RAM, 2 × 4 TB en RAID 1; IP 192.168.10.20</td>
+<td>Servidor dedicat a la cloud, amb badies lliures per ampliar.</td>
+</tr>
+<tr>
+<td>BACKUP01 (còpies, monitorització i preproducció)</td>
+<td>Equip d'escriptori reutilitzat + Ubuntu Server 26.04 LTS</td>
+<td>Mínim 8 GB RAM, disc de sistema + WD Red Plus 4 TB per a les còpies; IP 192.168.10.30</td>
+<td>Còpies i monitorització separades del servidor principal, i entorn de proves sense cost de maquinari nou.</td>
+</tr>
+<tr>
+<td>SAI</td>
+<td>APC Back-UPS 950 VA</td>
+<td>Alimenta NUVOL01 i BACKUP01</td>
+<td>Protegix davant de talls i pujades de tensió.</td>
+</tr>
+<tr>
+<td>Equips dels treballadors</td>
+<td>Windows 10/11 i mòbils</td>
+<td>Navegador, client d'escriptori i aplicació mòbil de Nextcloud</td>
+<td>Accés i sincronització dels fitxers.</td>
+</tr>
+<tr>
+<td>Contenidors</td>
+<td>Docker Compose</td>
+<td>Caddy, Nextcloud, cron, MariaDB, Redis (mateix fitxer en tots dos entorns)</td>
+<td>Desplegament reproduïble a partir d'un fitxer versionat.</td>
+</tr>
+<tr>
+<td>Emmagatzematge</td>
+<td>mdadm + LVM + ext4</td>
+<td>RAID 1 amb 2 discos: <code>md0</code> per al sistema i <code>md1</code> per a les dades (<code>/srv/nuvol</code>)</td>
+<td>Redundància davant de la fallada d'un disc i possibilitat d'ampliar.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>El domini d'AD és un subdomini del domini públic (<code>corp.</code>), tal com recomana Microsoft, per evitar conflictes entre els noms interns i els públics.</p>
+</blockquote>
+<h3 id="contenidors-de-nuvol01">Contenidors de NUVOL01<a class="headerlink" href="#contenidors-de-nuvol01" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Contenidor</th>
+<th>Funció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caddy</code></td>
+<td>Proxy invers amb HTTPS. És l'únic que publica ports (80 i 443).</td>
+</tr>
+<tr>
+<td><code>nextcloud</code></td>
+<td>Aplicació Nextcloud (imatge oficial).</td>
+</tr>
+<tr>
+<td><code>cron</code></td>
+<td>Tasques en segon pla de Nextcloud.</td>
+</tr>
+<tr>
+<td><code>mariadb</code></td>
+<td>Base de dades.</td>
+</tr>
+<tr>
+<td><code>redis</code></td>
+<td>Memòria cau i bloqueig de fitxers.</td>
+</tr>
+</tbody>
+</table>
+<p>La configuració es guarda en un fitxer <code>docker-compose.yml</code> dins del repositori, amb les versions de les imatges fixades. Les contrasenyes i les variables de cada entorn es guarden en un fitxer <code>.env</code> que no es puja al repositori. Caddy obté i renova automàticament el certificat de Let's Encrypt per a <code>nuvol.arreloberta.com</code> a través del mateix port 443, de manera que no cal obrir cap altre port.</p>
+<h3 id="entorns-de-preproduccio-i-produccio">Entorns de preproducció i producció<a class="headerlink" href="#entorns-de-preproduccio-i-produccio" title="Permanent link">&para;</a></h3>
+<p>Els dos entorns utilitzen el mateix <code>docker-compose.yml</code> i les mateixes versions de les imatges, de manera que el que funciona en preproducció funciona igual en producció. Només canvien les dades, els usuaris i les variables de l'entorn.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecte</th>
+<th>Preproducció</th>
+<th>Producció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor</td>
+<td>BACKUP01 (contenidors Docker)</td>
+<td>NUVOL01</td>
+</tr>
+<tr>
+<td>Adreça</td>
+<td><code>https://nuvol-pre.corp.arreloberta.com</code></td>
+<td><code>https://nuvol.arreloberta.com</code></td>
+</tr>
+<tr>
+<td>Accés</td>
+<td>Només xarxa interna i VPN</td>
+<td>Xarxa interna i Internet</td>
+</tr>
+<tr>
+<td>Certificat</td>
+<td>Emés per l'AD CS de l'empresa (els equips del domini ja hi confien)</td>
+<td>Let's Encrypt</td>
+</tr>
+<tr>
+<td>Usuaris</td>
+<td>Usuaris de prova de la UO <code>Proves</code> i tècnics de Sistemes (grup <code>GG_Nuvol_Preprod</code>)</td>
+<td>Treballadors (grup <code>GG_Nuvol_Usuaris</code>)</td>
+</tr>
+<tr>
+<td>Compte de servei LDAP</td>
+<td><code>svc-nextcloud-pre</code> (només lectura)</td>
+<td><code>svc-nextcloud</code> (només lectura)</td>
+</tr>
+<tr>
+<td>Dades</td>
+<td>Fitxers de prova</td>
+<td>Dades reals dels treballadors</td>
+</tr>
+<tr>
+<td>Còpies de seguretat</td>
+<td>No (es torna a desplegar des de Git)</td>
+<td>Nocturnes amb Borg (regla 3-2-1)</td>
+</tr>
+<tr>
+<td>Monitorització</td>
+<td>No</td>
+<td>Uptime Kuma amb avisos per correu</td>
+</tr>
+<tr>
+<td>Ús</td>
+<td>Validar la instal·lació, assajar la migració, provar actualitzacions i restauracions completes</td>
+<td>Servei als treballadors</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Procediment de canvis.</strong> Després de la posada en marxa, qualsevol canvi seguix sempre el mateix camí:</p>
+<ol>
+<li>Registrar el canvi en Git (per exemple, la nova versió d'una imatge en el <code>docker-compose.yml</code>).</li>
+<li>Aplicar-lo en preproducció.</li>
+<li>Fer les proves bàsiques: inici de sessió amb AD i MFA, pujar i descarregar fitxers, compartir i revisar els registres.</li>
+<li>Si tot és correcte, etiquetar la versió en Git.</li>
+<li>En producció, fer una còpia de seguretat just abans del canvi.</li>
+<li>Aplicar el canvi en producció fora de l'horari laboral, a partir de la versió etiquetada.</li>
+<li>Comprovar el servei. Si alguna cosa falla, tornar a la versió anterior de les imatges i, si cal, restaurar la base de dades de la còpia feta en el pas 5.</li>
+</ol>
+<h3 id="integracio-amb-active-directory">Integració amb Active Directory<a class="headerlink" href="#integracio-amb-active-directory" title="Permanent link">&para;</a></h3>
+<p>Nextcloud es connecta a DC01 per <strong>LDAPS (port 636)</strong>, amb un compte de servei de només lectura. Només poden accedir els membres del grup corresponent a cada entorn, i el nom d'usuari és el mateix que en Windows (<code>sAMAccountName</code>). Les altes, baixes i canvis de contrasenya es continuen fent en AD: quan es deshabilita el compte d'un treballador, este perd l'accés a la cloud.</p>
+<table>
+<thead>
+<tr>
+<th>Grup d'AD</th>
+<th>Ús</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GG_Nuvol_Usuaris</code></td>
+<td>Usuaris que poden accedir a la cloud de producció</td>
+</tr>
+<tr>
+<td><code>GG_Nuvol_Admins</code></td>
+<td>Administradors de Nextcloud</td>
+</tr>
+<tr>
+<td><code>GG_Nuvol_Preprod</code></td>
+<td>Usuaris de prova i tècnics que poden accedir a preproducció</td>
+</tr>
+<tr>
+<td><code>GG_RRHH</code>, <code>GG_Administracio</code>, <code>GG_Sistemes</code>, <code>GG_Comercial</code>, <code>GG_Direccio</code></td>
+<td>Un grup per departament, per compartir fitxers amb tot un departament</td>
+</tr>
+</tbody>
+</table>
+<p>Per a les proves es crea en AD una unitat organitzativa <code>Proves</code> amb un usuari de prova per departament (per exemple, <code>prova.rrhh</code> o <code>prova.comercial</code>), que es poden deshabilitar quan no s'utilitzen.</p>
+<h3 id="organitzacio-de-la-informacio">Organització de la informació<a class="headerlink" href="#organitzacio-de-la-informacio" title="Permanent link">&para;</a></h3>
+<p>Cada treballador disposa del seu <strong>espai personal</strong>, equivalent a la seua carpeta individual actual:</p>
+<ul>
+<li>Cada usuari només veu els seus fitxers i els que li han compartit.</li>
+<li>Quota de 10 GB per usuari, ampliable.</li>
+<li>Es pot compartir amb altres usuaris o amb un grup de departament, amb permís de lectura o d'edició.</li>
+<li>Per compartir amb persones de fora de l'empresa, només s'admeten enllaços amb contrasenya i data de caducitat.</li>
+<li>Nextcloud guarda versions anteriors dels fitxers i té una paperera, de manera que l'usuari pot recuperar un fitxer modificat o eliminat per error.</li>
+</ul>
+<h3 id="emmagatzematge">Emmagatzematge<a class="headerlink" href="#emmagatzematge" title="Permanent link">&para;</a></h3>
+<p>Els dos discos de NUVOL01 es particionen igual i es configuren en <strong>RAID 1 amb mdadm</strong>. Així, tant el sistema operatiu com les dades estan protegits:</p>
+<pre><code class="language-text">  Disc 1 (4 TB) ─┐                ┌─► /dev/md0 (RAID 1) ─► ext4 ─► /  (sistema, 100 GB)
+                 ├─ mateixes ─────┤
+  Disc 2 (4 TB) ─┘   particions   └─► /dev/md1 (RAID 1) ─► LVM ─► ext4 ─► /srv/nuvol (dades)
+</code></pre>
+<p>Els dos discos contenen la mateixa informació: si un falla, el servei continua amb l'altre fins que se substituïx. LVM permet ampliar l'espai en el futur afegint un nou parell de discos en les badies lliures.</p>
+<h3 id="desplegament-a-produccio-i-migracio-de-les-dades">Desplegament a producció i migració de les dades<a class="headerlink" href="#desplegament-a-produccio-i-migracio-de-les-dades" title="Permanent link">&para;</a></h3>
+<p>El desplegament a producció només comença quan es complixen els <strong>criteris d'entrada</strong>:</p>
+<ul>
+<li>Totes les proves de prioritat alta del pla de proves s'han superat en preproducció.</li>
+<li>La migració s'ha assajat en preproducció amb carpetes de prova i el resultat coincidix amb l'origen.</li>
+<li>El manual d'instal·lació s'ha seguit en preproducció sense errors.</li>
+<li>La Direcció ha aprovat la data de posada en marxa i s'ha avisat els treballadors amb una setmana d'antelació.</li>
+</ul>
+<p><strong>Etapes del desplegament:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Què es fa</th>
+<th>Quan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Desplegament</td>
+<td>Instal·lar en NUVOL01 la versió validada en preproducció (etiqueta de Git), amb el <code>.env</code> de producció. Configurar el DNS públic, el certificat de Let's Encrypt i el reenviament de ports del router.</td>
+<td>Setmana anterior a la prova pilot</td>
+</tr>
+<tr>
+<td>2. Verificació en producció</td>
+<td>Proves que només es poden fer en el servidor real: accés des d'Internet, fallada controlada d'un disc del RAID, primera còpia a BACKUP01, restauració d'un fitxer i avisos de monitorització. Es fan abans de tindre dades reals.</td>
+<td>Abans de la prova pilot</td>
+</tr>
+<tr>
+<td>3. Prova pilot</td>
+<td>El departament de Sistemes treballa una setmana amb Núvol Lliure i comunica qualsevol problema.</td>
+<td>Una setmana</td>
+</tr>
+<tr>
+<td>4. Migració</td>
+<td>Fora de l'horari laboral (divendres a la vesprada): còpia completa del servidor de fitxers, carpetes d'origen en només lectura, còpia de cada carpeta al seu espai amb <code>rsync</code>, <code>occ files:scan --all</code> i comprovació del nombre de fitxers i de l'espai ocupat. En acabar, primera còpia completa amb Borg.</td>
+<td>Cap de setmana</td>
+</tr>
+<tr>
+<td>5. Entrada en servei</td>
+<td>Formació per departaments, instal·lació del client d'escriptori i de l'aplicació mòbil.</td>
+<td>Dilluns següent</td>
+</tr>
+<tr>
+<td>6. Estabilització</td>
+<td>Suport reforçat del departament de Sistemes durant dues setmanes. Les carpetes antigues es mantenen en només lectura un mes i després es retiren.</td>
+<td>Un mes</td>
+</tr>
+</tbody>
+</table>
+<p>Per a la migració, Nextcloud es configura perquè el nom intern de cada usuari siga el seu <code>sAMAccountName</code>, i l'espai de cada usuari es crea abans de copiar-hi les dades (per línia de comandes, sense esperar al primer inici de sessió).</p>
+<p><strong>Pla de marxa arrere.</strong> Si durant la migració o el primer dia de servei apareix un problema greu que no es pot resoldre dins de la finestra prevista (dades que no coincidixen, inici de sessió amb AD que falla, servei inestable), es torna al sistema anterior: es restauren els permisos d'escriptura en les carpetes de DC01 i s'avisa els treballadors que continuen treballant com fins ara. Com que les dades d'origen no s'han modificat, no es perd cap informació. La migració es repetix quan el problema està resolt i provat en preproducció.</p>
+<h3 id="relacio-entre-requisits-i-disseny">Relació entre requisits i disseny<a class="headerlink" href="#relacio-entre-requisits-i-disseny" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Requisit</th>
+<th>Solució</th>
+<th>Apartat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-01</td>
+<td>Espai personal en Nextcloud</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RF-02</td>
+<td>Registre DNS intern cap a NUVOL01</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RF-03</td>
+<td>Accés HTTPS des de fora a través del router</td>
+<td>4.2, 4.5</td>
+</tr>
+<tr>
+<td>RF-04 / RF-05</td>
+<td>Compartició amb usuaris i grups, amb permís de lectura o edició</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RF-06</td>
+<td>Assaig en preproducció i migració amb <code>rsync</code> fora d'horari</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RF-07</td>
+<td>Client d'escriptori i aplicacions mòbils</td>
+<td>4.3.3</td>
+</tr>
+<tr>
+<td>RT-01</td>
+<td>NUVOL01 amb Ubuntu Server</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RT-02 / RT-03</td>
+<td>Integració LDAPS amb Active Directory</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RT-04</td>
+<td>Entorn de preproducció en BACKUP01 i procediment de canvis</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RS-01 / RS-04</td>
+<td>Inici de sessió amb compte d'AD i espais personals</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RS-02</td>
+<td>MFA TOTP obligatori</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>RS-03</td>
+<td>HTTPS amb Caddy (Let's Encrypt en producció, AD CS en preproducció)</td>
+<td>4.4, 4.5</td>
+</tr>
+<tr>
+<td>RD-01</td>
+<td>RAID 1 amb mdadm</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RD-02 / RD-03</td>
+<td>BorgBackup cap a BACKUP01 i proves de restauració</td>
+<td>4.6</td>
+</tr>
+<tr>
+<td>RM-01</td>
+<td>Uptime Kuma i avisos de mdadm</td>
+<td>4.7</td>
+</tr>
+<tr>
+<td>RE-01</td>
+<td>LVM</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>RA-01</td>
+<td>Script de còpia programat amb <code>cron</code></td>
+<td>4.6</td>
+</tr>
+<tr>
+<td>RDOC-01</td>
+<td>Documentació tècnica validada en preproducció (apartat 11)</td>
+<td>4.8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="45-seguretat">4.5 Seguretat<a class="headerlink" href="#45-seguretat" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Amenaça</th>
+<th>Mesures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atacs des d'Internet contra els serveis publicats</td>
+<td>El router només reenvia el port 443 (HTTPS) i el 51820/udp (VPN) cap a NUVOL01. L'entorn de preproducció no és accessible des d'Internet. Tallafocs UFW en els servidors amb tot tancat per defecte.</td>
+</tr>
+<tr>
+<td>Robatori o endevinació de contrasenyes</td>
+<td>MFA (TOTP) obligatori en Nextcloud, protecció contra força bruta integrada i política de contrasenyes d'AD.</td>
+</tr>
+<tr>
+<td>Interceptació de les comunicacions</td>
+<td>HTTPS per a l'accés web i LDAPS entre Nextcloud i AD.</td>
+</tr>
+<tr>
+<td>Accés no autoritzat a l'administració</td>
+<td>SSH només amb claus i sense accés de <code>root</code>, i només des de la xarxa interna o per VPN WireGuard.</td>
+</tr>
+<tr>
+<td>Vulnerabilitats en el programari</td>
+<td>Actualitzacions de seguretat automàtiques en Ubuntu (<code>unattended-upgrades</code>) i actualització controlada de les imatges de Docker, provades primer en preproducció.</td>
+</tr>
+<tr>
+<td>Errors introduïts per canvis o actualitzacions</td>
+<td>Procediment de canvis: prova en preproducció, còpia abans d'aplicar-los en producció i possibilitat de tornar a la versió anterior.</td>
+</tr>
+<tr>
+<td>Accés a informació d'altres usuaris</td>
+<td>Espais personals i compartició controlada per l'usuari. Comptes de servei LDAP de només lectura, un per entorn.</td>
+</tr>
+<tr>
+<td>Filtració de contrasenyes del sistema</td>
+<td>Fitxers <code>.env</code> amb permisos restringits i exclosos del repositori. Contrasenyes diferents en cada entorn.</td>
+</tr>
+<tr>
+<td>Compartició insegura amb l'exterior</td>
+<td>Enllaços externs només amb contrasenya i data de caducitat.</td>
+</tr>
+<tr>
+<td>Ransomware o esborrat de dades</td>
+<td>Còpies xifrades en un servidor separat i en un disc extern (apartat 4.6).</td>
+</tr>
+</tbody>
+</table>
+<p>Els registres (<em>logs</em>) de Nextcloud, Caddy i del sistema es conservaran en cada servidor per poder analitzar qualsevol incidència.</p>
+<h2 id="46-copies-de-seguretat-i-recuperacio">4.6 Còpies de seguretat i recuperació<a class="headerlink" href="#46-copies-de-seguretat-i-recuperacio" title="Permanent link">&para;</a></h2>
+<p>La política de còpies seguix la <strong>regla 3-2-1</strong>: tres còpies de les dades, en dos suports diferents i una fora de l'oficina. Només es copia l'entorn de producció; l'entorn de preproducció no té dades reals i es pot tornar a desplegar des de Git.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecte</th>
+<th>Decisió</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Què es copia</td>
+<td>Dades dels usuaris, configuració de Nextcloud, fitxers de Docker i exportació de la base de dades. En DC01, l'estat del sistema amb <em>Windows Server Backup</em>.</td>
+</tr>
+<tr>
+<td>Freqüència</td>
+<td>Cada nit a les 02:00 (<code>cron</code>), i també abans de qualsevol canvi en producció.</td>
+</tr>
+<tr>
+<td>Destinació</td>
+<td>Còpia 1: RAID 1 de NUVOL01. Còpia 2: BACKUP01. Còpia 3: disc extern guardat fora de l'oficina.</td>
+</tr>
+<tr>
+<td>Retenció</td>
+<td>7 còpies diàries, 4 setmanals i 6 mensuals.</td>
+</tr>
+<tr>
+<td>Protecció</td>
+<td>Repositori Borg xifrat. NUVOL01 envia les còpies per SSH amb clau, a un usuari de BACKUP01 que només pot executar Borg.</td>
+</tr>
+<tr>
+<td>Eina</td>
+<td>BorgBackup: còpies incrementals, comprimides i xifrades.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Procediment de còpia</strong> (script <code>scripts/backup/</code>):</p>
+<ol>
+<li>Posar Nextcloud en mode manteniment.</li>
+<li>Exportar la base de dades (<code>mariadb-dump</code>).</li>
+<li>Copiar amb Borg les dades, la configuració i l'exportació a BACKUP01.</li>
+<li>Traure Nextcloud del mode manteniment.</li>
+<li>Esborrar les còpies antigues segons la retenció i avisar si alguna cosa ha fallat.</li>
+</ol>
+<p>Els scripts es desenvolupen i es proven primer contra l'entorn de preproducció, i després s'activen en producció.</p>
+<p><strong>Procediment de restauració</strong> (script <code>scripts/restore/</code>):</p>
+<ul>
+<li><strong>Un fitxer:</strong> si encara és a la paperera o en les versions de Nextcloud, el recupera el mateix usuari. Si no, es recupera des de la còpia de Borg i es torna a escanejar amb <code>occ files:scan</code>.</li>
+<li><strong>Servei complet:</strong> instal·lar un servidor nou amb el manual d'instal·lació, restaurar des de Borg les dades i la configuració, importar la base de dades i arrancar els contenidors.</li>
+</ul>
+<p>Es farà una prova de restauració de fitxers periòdica en producció i, almenys una vegada a l'any, una <strong>restauració completa del servei en l'entorn de preproducció</strong>, que permet comprovar el procediment sense tocar producció. Com que en eixa prova es restauren dades reals, l'accés queda limitat al departament de Sistemes i les dades s'eliminen en acabar.</p>
+<h2 id="47-monitoritzacio-i-manteniment">4.7 Monitorització i manteniment<a class="headerlink" href="#47-monitoritzacio-i-manteniment" title="Permanent link">&para;</a></h2>
+<p><strong>Monitorització.</strong> Uptime Kuma s'executa en BACKUP01 perquè, si NUVOL01 deixa de funcionar, el sistema de monitorització continue actiu i puga avisar. Es monitoritza l'entorn de producció.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Comprovació</th>
+<th>Alerta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nextcloud</td>
+<td>La web respon per HTTPS</td>
+<td>Correu si no respon</td>
+</tr>
+<tr>
+<td>Certificat</td>
+<td>Dies que falten perquè caduque</td>
+<td>Correu abans que caduque</td>
+</tr>
+<tr>
+<td>NUVOL01</td>
+<td>Ping i port SSH</td>
+<td>Correu si no respon</td>
+</tr>
+<tr>
+<td>DC01</td>
+<td>Ping i port LDAPS (636)</td>
+<td>Correu si no respon</td>
+</tr>
+<tr>
+<td>RAID 1</td>
+<td><code>mdadm --monitor</code></td>
+<td>Correu si falla un disc</td>
+</tr>
+<tr>
+<td>Còpies</td>
+<td>Resultat de l'script de còpia</td>
+<td>Correu si la còpia falla</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Manteniment preventiu:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tasca</th>
+<th>Freqüència</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revisar els avisos i l'estat de les còpies</td>
+<td>Setmanal</td>
+</tr>
+<tr>
+<td>Actualitzar les imatges de Docker (Nextcloud, MariaDB, Redis, Caddy): primer en preproducció i, si no hi ha problemes, en producció</td>
+<td>Mensual</td>
+</tr>
+<tr>
+<td>Prova de restauració d'un fitxer</td>
+<td>Mensual</td>
+</tr>
+<tr>
+<td>Revisar l'espai lliure i les quotes</td>
+<td>Mensual</td>
+</tr>
+<tr>
+<td>Rotar el disc extern de còpies</td>
+<td>Mensual</td>
+</tr>
+<tr>
+<td>Restauració completa de prova en preproducció</td>
+<td>Anual</td>
+</tr>
+</tbody>
+</table>
+<p>Les actualitzacions de seguretat del sistema operatiu s'apliquen automàticament.</p>
+<p><strong>Manteniment correctiu:</strong> davant d'una incidència (disc avariat, servei caigut, pèrdua de dades) se seguirà el manual de recuperació de l'apartat 11.4 i es registrarà en el registre d'incidències (apartat 7.2).</p>
+<h2 id="48-fases-del-projecte">4.8 Fases del projecte<a class="headerlink" href="#48-fases-del-projecte" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Objectiu</th>
+<th>Tasques principals</th>
+<th>Recursos</th>
+<th>Resultat</th>
+<th>Hores estimades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F1. Anàlisi i disseny</td>
+<td>Definir què es farà i com</td>
+<td>Anàlisi, requisits, alternatives, disseny</td>
+<td>Documentació oficial</td>
+<td>Apartats 1–4 de la memòria</td>
+<td>15 h</td>
+</tr>
+<tr>
+<td>F2. Planificació</td>
+<td>Organitzar el projecte i aprovar-lo</td>
+<td>Riscos, tasques, Gantt, pressupost, aspectes legals, aprovació i compra</td>
+<td>Direcció, proveïdors</td>
+<td>Pressupost aprovat i maquinari comprat</td>
+<td>8 h</td>
+</tr>
+<tr>
+<td>F3. Preparació de la infraestructura</td>
+<td>Deixar els servidors preparats</td>
+<td>Instal·lar el maquinari, AD CS, grups i usuaris de prova en AD, Ubuntu amb RAID 1 en NUVOL01, Ubuntu i Docker en BACKUP01</td>
+<td>NUVOL01, BACKUP01, DC01</td>
+<td>Servidors instal·lats</td>
+<td>13 h</td>
+</tr>
+<tr>
+<td>F4. Desplegament en preproducció</td>
+<td>Tindre la cloud funcionant en preproducció</td>
+<td>Docker Compose, Caddy amb certificat d'AD CS, DNS intern, configuració de Nextcloud</td>
+<td>BACKUP01</td>
+<td>Nextcloud de preproducció per HTTPS</td>
+<td>13 h</td>
+</tr>
+<tr>
+<td>F5. Integració i seguretat</td>
+<td>Usuaris d'AD i accés segur</td>
+<td>LDAPS, MFA, enduriment dels servidors, WireGuard</td>
+<td>DC01, BACKUP01, NUVOL01</td>
+<td>Inici de sessió amb AD i MFA en preproducció</td>
+<td>12 h</td>
+</tr>
+<tr>
+<td>F6. Còpies i monitorització</td>
+<td>Protegir i vigilar el servei</td>
+<td>Repositori Borg, scripts de còpia i restauració, cron, Uptime Kuma, avisos</td>
+<td>BACKUP01</td>
+<td>Còpies i avisos provats</td>
+<td>13 h</td>
+</tr>
+<tr>
+<td>F7. Proves i desplegament a producció</td>
+<td>Validar en preproducció i posar el servei en marxa</td>
+<td>Pla de proves en preproducció, desplegament en NUVOL01, verificació en producció, prova pilot, migració, formació</td>
+<td>Tota la infraestructura, usuaris</td>
+<td>Servei en producció</td>
+<td>21 h</td>
+</tr>
+<tr>
+<td>F8. Documentació i tancament</td>
+<td>Tancar el projecte</td>
+<td>Manuals, documentació final i presentació a la Direcció</td>
+<td>—</td>
+<td>Projecte lliurat</td>
+<td>15 h</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>≈ 110 h</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Les hores són una estimació i inclouen un marge per a la resolució de problemes, que se seguirà en l'apartat 7.</p>
+<hr />
+<h1 id="5-planificacio">5. PLANIFICACIÓ<a class="headerlink" href="#5-planificacio" title="Permanent link">&para;</a></h1>
+<h2 id="51-analisi-de-riscos">5.1 Anàlisi de riscos<a class="headerlink" href="#51-analisi-de-riscos" title="Permanent link">&para;</a></h2>
+<p>Per a cada risc s'ha valorat la probabilitat i l'impacte (Baix = 1, Mitjà = 2, Alt = 3). El nivell és el producte de tots dos: <strong>1–2 baix, 3–4 mitjà, 6–9 alt</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risc</th>
+<th>Prob.</th>
+<th>Impacte</th>
+<th>Nivell</th>
+<th>Prevenció</th>
+<th>Contingència</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>Falta de temps del tècnic per compaginar el projecte amb el suport diari</td>
+<td>Mitjana (2)</td>
+<td>Alt (3)</td>
+<td><strong>6 – Alt</strong></td>
+<td>Reservar hores fixes cada setmana i fer seguiment de les fites</td>
+<td>Prioritzar el servei mínim (apartat 6.4.2) i ajornar les millores</td>
+</tr>
+<tr>
+<td>R02</td>
+<td>Problemes en la integració LDAPS amb Active Directory (certificats)</td>
+<td>Alta (3)</td>
+<td>Mitjà (2)</td>
+<td><strong>6 – Alt</strong></td>
+<td>Instal·lar AD CS al principi i resoldre la integració en preproducció, abans de tocar producció</td>
+<td>Revisar el certificat del controlador de domini i registrar la incidència</td>
+</tr>
+<tr>
+<td>R03</td>
+<td>Retard en l'aprovació del pressupost o en el lliurament del maquinari</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Presentar el pressupost a la Direcció al principi i demanar terminis de lliurament</td>
+<td>Avançar les tasques que no depenen del maquinari nou (AD CS, grups d'AD, documentació)</td>
+</tr>
+<tr>
+<td>R04</td>
+<td>Pèrdua o corrupció de dades durant la migració</td>
+<td>Baixa (1)</td>
+<td>Alt (3)</td>
+<td>3 – Mitjà</td>
+<td>Assaig de la migració en preproducció, còpia completa abans de migrar, carpetes d'origen en només lectura i verificació del contingut</td>
+<td>Aplicar el pla de marxa arrere i repetir la migració</td>
+</tr>
+<tr>
+<td>R05</td>
+<td>Fallada d'un disc abans de tindre les còpies en marxa</td>
+<td>Baixa (1)</td>
+<td>Alt (3)</td>
+<td>3 – Mitjà</td>
+<td>RAID 1 des del primer dia i no migrar dades fins que les còpies funcionen en producció</td>
+<td>Substituir el disc i reconstruir el RAID</td>
+</tr>
+<tr>
+<td>R06</td>
+<td>Interrupció del treball durant la posada en producció</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Migrar fora de l'horari laboral, avisar els treballadors amb antelació i fer una prova pilot</td>
+<td>Pla de marxa arrere: tornar a les carpetes de DC01</td>
+</tr>
+<tr>
+<td>R07</td>
+<td>Resistència al canvi o dificultats dels usuaris amb la nova eina</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Prova pilot amb un departament, formació i guia d'ús</td>
+<td>Suport directe del departament de Sistemes durant les primeres setmanes</td>
+</tr>
+<tr>
+<td>R08</td>
+<td>Una actualització de Nextcloud o d'una imatge Docker trenca el servei</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Fixar les versions de les imatges, provar cada actualització en preproducció i fer còpia abans d'aplicar-la</td>
+<td>Tornar a la versió anterior de la imatge o restaurar la còpia</td>
+</tr>
+<tr>
+<td>R09</td>
+<td>Error de configuració que deixa exposat un servei</td>
+<td>Baixa (1)</td>
+<td>Alt (3)</td>
+<td>3 – Mitjà</td>
+<td>Exposar només els ports 443 i 51820 i revisar-los amb <code>nmap</code> des de fora durant la verificació en producció</td>
+<td>Tancar el port afectat i revisar els registres</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>Caiguda de la connexió a Internet de l'oficina</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Contracte de fibra amb garantia de servei</td>
+<td>L'accés intern continua funcionant i els fitxers sincronitzats es poden utilitzar sense connexió</td>
+</tr>
+<tr>
+<td>R11</td>
+<td>Pujar contrasenyes o claus a GitHub per error</td>
+<td>Baixa (1)</td>
+<td>Alt (3)</td>
+<td>3 – Mitjà</td>
+<td><code>.gitignore</code> preparat, fitxers <code>.env</code> fora del repositori i revisió amb <code>git diff</code> abans de cada commit</td>
+<td>Canviar immediatament les credencials afectades i eliminar-les de l'historial</td>
+</tr>
+<tr>
+<td>R12</td>
+<td>Diferències entre preproducció i producció que fan que una cosa provada falle en producció</td>
+<td>Mitjana (2)</td>
+<td>Mitjà (2)</td>
+<td>4 – Mitjà</td>
+<td>Mateix <code>docker-compose.yml</code> i mateixes versions en tots dos entorns, desplegats des de Git; només canvia el <code>.env</code></td>
+<td>Tornar a la versió anterior, reproduir el problema en preproducció i corregir-lo abans de tornar-ho a aplicar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="52-tasques-i-distribucio-temporal">5.2 Tasques i distribució temporal<a class="headerlink" href="#52-tasques-i-distribucio-temporal" title="Permanent link">&para;</a></h2>
+<p>El projecte el porta a terme el <strong>tècnic del departament de Sistemes</strong>, amb una dedicació d'unes <strong>5–6 hores setmanals</strong>, compaginada amb el suport diari. La Direcció aprova el pressupost i la data de posada en marxa, i els treballadors participen en la prova pilot i en la formació. L'empresa tanca durant les festes de Nadal.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Tasca</th>
+<th>Responsable</th>
+<th>Dependències</th>
+<th>Duració</th>
+<th>Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>Anàlisi i disseny de la solució</td>
+<td>Tècnic de sistemes</td>
+<td>—</td>
+<td>15 h</td>
+<td>Apartats 1–4 de la memòria</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>Riscos, tasques i Gantt</td>
+<td>Tècnic de sistemes</td>
+<td>T01</td>
+<td>4 h</td>
+<td>Apartats 5.1 i 5.2</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>Pressupost, aspectes legals i gestió documental</td>
+<td>Tècnic de sistemes</td>
+<td>T01</td>
+<td>4 h</td>
+<td>Apartats 5.3–5.7</td>
+</tr>
+<tr>
+<td>T04</td>
+<td>Aprovació del pressupost i compra del maquinari</td>
+<td>Direcció</td>
+<td>T03</td>
+<td>2 setmanes (espera)</td>
+<td>Maquinari lliurat</td>
+</tr>
+<tr>
+<td>T05</td>
+<td>Instal·lar el maquinari: NUVOL01, BACKUP01 i SAI</td>
+<td>Tècnic de sistemes</td>
+<td>T04</td>
+<td>3 h</td>
+<td>Equips instal·lats a l'oficina</td>
+</tr>
+<tr>
+<td>T06</td>
+<td>Instal·lar AD CS en DC01 i el certificat per a LDAPS</td>
+<td>Tècnic de sistemes</td>
+<td>T03</td>
+<td>2 h</td>
+<td>LDAPS operatiu</td>
+</tr>
+<tr>
+<td>T07</td>
+<td>Crear els grups d'AD, els comptes de servei i la UO d'usuaris de prova</td>
+<td>Tècnic de sistemes</td>
+<td>T06</td>
+<td>2 h</td>
+<td>Grups, comptes <code>svc-nextcloud</code> i <code>svc-nextcloud-pre</code>, usuaris de prova</td>
+</tr>
+<tr>
+<td>T08</td>
+<td>Instal·lar Ubuntu Server en NUVOL01 amb RAID 1 i LVM</td>
+<td>Tècnic de sistemes</td>
+<td>T05</td>
+<td>4 h</td>
+<td>Servidor de producció preparat</td>
+</tr>
+<tr>
+<td>T09</td>
+<td>Instal·lar Ubuntu Server i Docker en BACKUP01</td>
+<td>Tècnic de sistemes</td>
+<td>T05</td>
+<td>2 h</td>
+<td>Servidor de còpies i preproducció preparat</td>
+</tr>
+<tr>
+<td>T10</td>
+<td>Preparar el <code>docker-compose.yml</code> i desplegar-lo en preproducció</td>
+<td>Tècnic de sistemes</td>
+<td>T09</td>
+<td>5 h</td>
+<td>Contenidors de preproducció en marxa</td>
+</tr>
+<tr>
+<td>T11</td>
+<td>Caddy amb certificat d'AD CS i registre DNS intern de preproducció</td>
+<td>Tècnic de sistemes</td>
+<td>T06, T10</td>
+<td>3 h</td>
+<td>Preproducció accessible per HTTPS</td>
+</tr>
+<tr>
+<td>T12</td>
+<td>Configuració de Nextcloud (Redis, cron, quotes, compartició)</td>
+<td>Tècnic de sistemes</td>
+<td>T11</td>
+<td>5 h</td>
+<td>Nextcloud configurat en preproducció</td>
+</tr>
+<tr>
+<td>T13</td>
+<td>Integrar Nextcloud amb Active Directory per LDAPS</td>
+<td>Tècnic de sistemes</td>
+<td>T07, T12</td>
+<td>4 h</td>
+<td>Inici de sessió amb usuaris d'AD</td>
+</tr>
+<tr>
+<td>T14</td>
+<td>Activar l'MFA obligatori</td>
+<td>Tècnic de sistemes</td>
+<td>T13</td>
+<td>2 h</td>
+<td>Inici de sessió amb dos factors</td>
+</tr>
+<tr>
+<td>T15</td>
+<td>Enduriment dels servidors (UFW, SSH, actualitzacions automàtiques)</td>
+<td>Tècnic de sistemes</td>
+<td>T08, T09</td>
+<td>3 h</td>
+<td>Servidors protegits</td>
+</tr>
+<tr>
+<td>T16</td>
+<td>Configurar WireGuard en NUVOL01</td>
+<td>Tècnic de sistemes</td>
+<td>T15</td>
+<td>3 h</td>
+<td>VPN d'administració</td>
+</tr>
+<tr>
+<td>T17</td>
+<td>Crear el repositori Borg en BACKUP01</td>
+<td>Tècnic de sistemes</td>
+<td>T09</td>
+<td>2 h</td>
+<td>Repositori de còpies preparat</td>
+</tr>
+<tr>
+<td>T18</td>
+<td>Scripts de còpia i restauració, provats contra preproducció, i programació amb <code>cron</code></td>
+<td>Tècnic de sistemes</td>
+<td>T12, T17</td>
+<td>6 h</td>
+<td>Scripts validats</td>
+</tr>
+<tr>
+<td>T19</td>
+<td>Uptime Kuma, avisos per correu i monitor de <code>mdadm</code></td>
+<td>Tècnic de sistemes</td>
+<td>T17</td>
+<td>5 h</td>
+<td>Monitorització preparada</td>
+</tr>
+<tr>
+<td>T20</td>
+<td>Pla de proves en preproducció (incloent assaig de migració i restauració completa)</td>
+<td>Tècnic de sistemes</td>
+<td>T14, T18</td>
+<td>6 h</td>
+<td>Apartat 6.4 i validació per al desplegament</td>
+</tr>
+<tr>
+<td>T21</td>
+<td>Desplegament a producció en NUVOL01 (versió validada, Let's Encrypt, DNS públic, router)</td>
+<td>Tècnic de sistemes</td>
+<td>T08, T16, T20</td>
+<td>4 h</td>
+<td>Producció desplegada</td>
+</tr>
+<tr>
+<td>T22</td>
+<td>Verificació en producció (accés extern, fallada de disc, còpies, avisos)</td>
+<td>Tècnic de sistemes</td>
+<td>T19, T21</td>
+<td>3 h</td>
+<td>Producció verificada</td>
+</tr>
+<tr>
+<td>T23</td>
+<td>Prova pilot amb el departament de Sistemes</td>
+<td>Tècnic de sistemes, dep. de Sistemes</td>
+<td>T22</td>
+<td>2 h</td>
+<td>Validació abans de la migració</td>
+</tr>
+<tr>
+<td>T24</td>
+<td>Migració de les carpetes individuals (fora d'horari)</td>
+<td>Tècnic de sistemes</td>
+<td>T23</td>
+<td>3 h</td>
+<td>Dades migrades i verificades</td>
+</tr>
+<tr>
+<td>T25</td>
+<td>Formació dels treballadors i instal·lació del client</td>
+<td>Tècnic de sistemes, treballadors</td>
+<td>T24</td>
+<td>3 h</td>
+<td>Servei en producció</td>
+</tr>
+<tr>
+<td>T26</td>
+<td>Manuals d'instal·lació, administració, usuari i recuperació</td>
+<td>Tècnic de sistemes</td>
+<td>T20</td>
+<td>8 h</td>
+<td>Apartat 11</td>
+</tr>
+<tr>
+<td>T27</td>
+<td>Documentació final del projecte</td>
+<td>Tècnic de sistemes</td>
+<td>T25</td>
+<td>4 h</td>
+<td>Memòria completa</td>
+</tr>
+<tr>
+<td>T28</td>
+<td>Presentació del projecte a la Direcció</td>
+<td>Tècnic de sistemes</td>
+<td>T26, T27</td>
+<td>3 h</td>
+<td>Projecte tancat</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total (tècnic de sistemes)</strong></td>
+<td></td>
+<td></td>
+<td><strong>≈ 110 h</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="diagrama-de-gantt">Diagrama de Gantt<a class="headerlink" href="#diagrama-de-gantt" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">gantt
+    title Planificació de Núvol Lliure
+    dateFormat YYYY-MM-DD
+    axisFormat %d/%m
+    excludes weekends
+
+    section F1. Anàlisi i disseny
+    Anàlisi i disseny (T01)                  :done, t01, 2026-10-01, 2026-10-13
+
+    section F2. Planificació
+    Riscos, tasques i Gantt (T02)            :t02, 2026-10-14, 5d
+    Pressupost, legal, documental (T03)      :t03, after t02, 5d
+    Fita H1 – Pressupost presentat           :milestone, h1, 2026-10-28, 0d
+    Aprovació i compra (T04)                 :t04, 2026-10-28, 10d
+
+    section F3. Infraestructura
+    AD CS i certificat LDAPS (T06)           :t06, 2026-10-28, 2d
+    Grups, comptes i usuaris de prova (T07)  :t07, after t06, 3d
+    Instal·lar maquinari (T05)               :t05, after t04, 3d
+    Ubuntu, RAID 1 i LVM en NUVOL01 (T08)    :t08, after t05, 4d
+    Ubuntu i Docker en BACKUP01 (T09)        :t09, after t08, 2d
+    Fita H2 – Servidors preparats            :milestone, h2, 2026-11-23, 0d
+
+    section F4. Preproducció
+    Docker Compose en preproducció (T10)     :t10, 2026-11-24, 5d
+    Caddy, certificat AD CS i DNS (T11)      :t11, after t10, 3d
+    Configuració de Nextcloud (T12)          :t12, after t11, 5d
+    Fita H3 – Preproducció per HTTPS         :milestone, h3, 2026-12-14, 0d
+
+    section F5. Integració i seguretat
+    LDAPS amb AD (T13)                       :t13, 2026-12-14, 4d
+    MFA (T14)                                :t14, after t13, 2d
+    Tancament de Nadal                       :crit, nadal, 2026-12-24, 2027-01-07
+    Enduriment (T15)                         :t15, 2027-01-07, 3d
+    WireGuard (T16)                          :t16, after t15, 4d
+    Fita H4 – Accés amb AD i MFA             :milestone, h4, 2027-01-19, 0d
+
+    section F6. Còpies i monitorització
+    Repositori Borg (T17)                    :t17, 2027-01-20, 2d
+    Scripts de còpia i restauració (T18)     :t18, after t17, 6d
+    Uptime Kuma i avisos (T19)               :t19, after t18, 5d
+    Fita H5 – Còpies i avisos provats        :milestone, h5, 2027-02-09, 0d
+
+    section F7. Proves i producció
+    Pla de proves en preproducció (T20)      :t20, 2027-02-10, 6d
+    Fita H6 – Validació en preproducció      :milestone, h6, 2027-02-18, 0d
+    Desplegament a producció (T21)           :t21, 2027-02-18, 4d
+    Verificació en producció (T22)           :t22, after t21, 3d
+    Prova pilot (T23)                        :t23, after t22, 4d
+    Migració (T24)                           :crit, t24, 2027-03-05, 1d
+    Fita H7 – Servei en producció            :milestone, h7, 2027-03-08, 0d
+    Formació dels treballadors (T25)         :t25, 2027-03-08, 3d
+
+    section F8. Documentació i tancament
+    Manuals (T26)                            :t26, 2027-03-11, 7d
+    Documentació final (T27)                 :t27, after t26, 4d
+    Presentació a la Direcció (T28)          :t28, after t27, 2d
+    Fita H8 – Projecte tancat                :milestone, h8, 2027-03-29, 0d
+</code></pre>
+<p><strong>Fites principals:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fita</th>
+<th>Data prevista</th>
+<th>Què es comprova</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1 – Pressupost presentat</td>
+<td>28/10/2026</td>
+<td>Planificació i pressupost lliurats a la Direcció</td>
+</tr>
+<tr>
+<td>H2 – Servidors preparats</td>
+<td>23/11/2026</td>
+<td>Maquinari instal·lat, Ubuntu en tots dos servidors i LDAPS operatiu en DC01</td>
+</tr>
+<tr>
+<td>H3 – Preproducció per HTTPS</td>
+<td>14/12/2026</td>
+<td>Nextcloud de preproducció accessible per HTTPS des de la xarxa interna</td>
+</tr>
+<tr>
+<td>H4 – Accés amb AD i MFA</td>
+<td>19/01/2027</td>
+<td>Inici de sessió amb usuaris d'AD i MFA en preproducció; servidors endurits i VPN</td>
+</tr>
+<tr>
+<td>H5 – Còpies i avisos provats</td>
+<td>09/02/2027</td>
+<td>Scripts de còpia i restauració i monitorització preparats</td>
+</tr>
+<tr>
+<td>H6 – Validació en preproducció</td>
+<td>18/02/2027</td>
+<td>Pla de proves superat en preproducció: es complixen els criteris d'entrada per desplegar</td>
+</tr>
+<tr>
+<td>H7 – Servei en producció</td>
+<td>08/03/2027</td>
+<td>Producció verificada, prova pilot superada i dades migrades</td>
+</tr>
+<tr>
+<td>H8 – Projecte tancat</td>
+<td>29/03/2027</td>
+<td>Manuals, documentació i presentació lliurats</td>
+</tr>
+</tbody>
+</table>
+<h2 id="53-allotjament">5.3 Allotjament<a class="headerlink" href="#53-allotjament" title="Permanent link">&para;</a></h2>
+<p>S'han valorat tres opcions per allotjar la cloud:</p>
+<table>
+<thead>
+<tr>
+<th>Opció</th>
+<th>Avantatges</th>
+<th>Inconvenients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local (en l'oficina)</strong></td>
+<td>Dades sota el control de l'empresa, accés ràpid des de la xarxa interna, integració directa amb Active Directory i sense quotes mensuals</td>
+<td>Inversió inicial en maquinari i dependència de la connexió a Internet de l'oficina per a l'accés remot</td>
+</tr>
+<tr>
+<td>Cloud (servidor llogat en un proveïdor)</td>
+<td>Sense maquinari propi i bona connexió a Internet</td>
+<td>Quota mensual, dades fora de l'empresa i connexió amb AD a través d'una VPN entre l'oficina i el proveïdor</td>
+</tr>
+<tr>
+<td>Híbrida</td>
+<td>Combina els avantatges de totes dues</td>
+<td>Més complexa d'administrar per a una empresa d'esta grandària</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Es tria l'allotjament local</strong>, perquè Active Directory ja està en l'oficina, la major part dels accessos es fan des de la xarxa interna i un dels objectius del projecte és que la informació no isca de l'empresa. Els servidors s'instal·len en el rack o armari de comunicacions de l'oficina, connectats al SAI. Per a l'accés remot s'aprofita la connexió de fibra de l'oficina.</p>
+<p>Els dos entorns estan en l'oficina: la producció en NUVOL01 i la preproducció en BACKUP01. La preproducció només és accessible des de la xarxa interna o per VPN.</p>
+<p>La còpia fora de l'oficina es fa amb discos externs rotatius. En el futur es podria enviar també a un emmagatzematge en el núvol, ja que el repositori de Borg està xifrat (millora proposada).</p>
+<h2 id="54-recursos-i-pressupost">5.4 Recursos i pressupost<a class="headerlink" href="#54-recursos-i-pressupost" title="Permanent link">&para;</a></h2>
+<h3 id="recursos-humans">Recursos humans<a class="headerlink" href="#recursos-humans" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Dedicació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tècnic del departament de Sistemes</td>
+<td>≈ 110 h (anàlisi, implantació en preproducció i producció, proves i documentació)</td>
+</tr>
+<tr>
+<td>Direcció</td>
+<td>Aprovació del pressupost, de la data de posada en marxa i seguiment</td>
+</tr>
+<tr>
+<td>Treballadors</td>
+<td>Prova pilot (departament de Sistemes) i 1 h de formació cadascun</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pressupost">Pressupost<a class="headerlink" href="#pressupost" title="Permanent link">&para;</a></h3>
+<p>Els preus inclouen l'IVA i s'han consultat l'octubre de 2026. L'entorn de preproducció no té cost addicional, perquè funciona en BACKUP01.</p>
+<table>
+<thead>
+<tr>
+<th>Recurs</th>
+<th>Quantitat</th>
+<th>Cost unitari</th>
+<th>Cost total</th>
+<th>Font</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor NUVOL01: HPE ProLiant MicroServer Gen11 (Xeon E-2434, 32 GB RAM, 2 × 4 TB)</td>
+<td>1</td>
+<td>3.642,54 €</td>
+<td>3.642,54 €</td>
+<td>Comparador de preus (InMac)</td>
+</tr>
+<tr>
+<td>Servidor BACKUP01: reutilització d'un equip d'escriptori retirat</td>
+<td>1</td>
+<td>0,00 €</td>
+<td>0,00 €</td>
+<td>Equip propi</td>
+</tr>
+<tr>
+<td>Disc WD Red Plus 4 TB per a BACKUP01</td>
+<td>1</td>
+<td>232,99 €</td>
+<td>232,99 €</td>
+<td>PcComponentes</td>
+</tr>
+<tr>
+<td>Disc extern WD Elements 4 TB (rotació fora de l'oficina)</td>
+<td>2</td>
+<td>201,58 €</td>
+<td>403,16 €</td>
+<td>MediaMarkt</td>
+</tr>
+<tr>
+<td>SAI APC Back-UPS BX950MI</td>
+<td>1</td>
+<td>143,99 €</td>
+<td>143,99 €</td>
+<td>PcComponentes</td>
+</tr>
+<tr>
+<td>Programari (Nextcloud, Ubuntu Server, Docker, Caddy, BorgBackup, Uptime Kuma, WireGuard)</td>
+<td>—</td>
+<td>0,00 €</td>
+<td>0,00 €</td>
+<td>Programari lliure</td>
+</tr>
+<tr>
+<td>Windows Server, Active Directory i AD CS</td>
+<td>—</td>
+<td>0,00 €</td>
+<td>0,00 €</td>
+<td>Llicència que l'empresa ja té</td>
+</tr>
+<tr>
+<td>Hores del tècnic de sistemes</td>
+<td>110 h</td>
+<td>22,00 €/h</td>
+<td>2.420,00 €</td>
+<td>Càlcul propi (vegeu nota)</td>
+</tr>
+<tr>
+<td><strong>Total inversió inicial</strong></td>
+<td></td>
+<td></td>
+<td><strong>6.842,68 €</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Cost anual</th>
+<th>Quantitat</th>
+<th>Cost unitari</th>
+<th>Cost total</th>
+<th>Font</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domini <code>arreloberta.com</code></td>
+<td>1 any</td>
+<td>≈ 13,50 € (14,99 USD)</td>
+<td>13,50 €</td>
+<td>Register.Domains</td>
+</tr>
+<tr>
+<td>Manteniment, incloent les proves d'actualitzacions en preproducció (≈ 4 h al mes)</td>
+<td>48 h</td>
+<td>22,00 €/h</td>
+<td>1.056,00 €</td>
+<td>Càlcul propi</td>
+</tr>
+<tr>
+<td>Electricitat (≈ 90 W en funcionament continu, ≈ 790 kWh)</td>
+<td>790 kWh</td>
+<td>≈ 0,15 €/kWh</td>
+<td>118,50 €</td>
+<td>Estimació</td>
+</tr>
+<tr>
+<td><strong>Total anual</strong></td>
+<td></td>
+<td></td>
+<td><strong>1.188,00 €</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota sobre el cost per hora:</strong> el salari mitjà d'un administrador de sistemes en Espanya és de 29.728 € anuals (Indeed, octubre de 2026). Afegint aproximadament un 32 % de cotitzacions a càrrec de l'empresa i repartint-lo entre unes 1.780 hores anuals, el cost per a l'empresa és d'uns 22 €/h.</p>
+</blockquote>
+<h2 id="55-monetitzacioretorn">5.5 Monetització/retorn<a class="headerlink" href="#55-monetitzacioretorn" title="Permanent link">&para;</a></h2>
+<p>Núvol Lliure no genera ingressos directes: el seu retorn és <strong>l'estalvi</strong> respecte a contractar un servei al núvol públic.</p>
+<p>Com a referència s'utilitza Google Workspace Business Standard o Microsoft 365 Business Standard, amb un cost d'uns 14 USD per usuari i mes. Per a 50 usuaris són 8.400 USD a l'any, uns <strong>7.560 € anuals</strong> (considerant 1 USD ≈ 0,90 €).</p>
+<table>
+<thead>
+<tr>
+<th>Concepte</th>
+<th>Any 1</th>
+<th>Any 2</th>
+<th>Any 3</th>
+<th>Total 3 anys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Núvol Lliure (inversió + cost anual)</td>
+<td>8.030,68 €</td>
+<td>1.188,00 €</td>
+<td>1.188,00 €</td>
+<td><strong>10.406,68 €</strong></td>
+</tr>
+<tr>
+<td>Servei al núvol públic</td>
+<td>7.560,00 €</td>
+<td>7.560,00 €</td>
+<td>7.560,00 €</td>
+<td><strong>22.680,00 €</strong></td>
+</tr>
+<tr>
+<td><strong>Estalvi</strong></td>
+<td>−470,68 €</td>
+<td>6.372,00 €</td>
+<td>6.372,00 €</td>
+<td><strong>12.273,32 €</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Període de recuperació de la inversió:</strong> 6.842,68 € / (7.560 € − 1.188 €) ≈ <strong>13 mesos</strong>.</li>
+<li><strong>ROI a 3 anys:</strong> (22.680,00 € − 10.406,68 €) / 10.406,68 € ≈ <strong>118 %</strong>.</li>
+</ul>
+<p>Cal tindre en compte que els plans de Google i Microsoft inclouen altres serveis (correu, ofimàtica en línia), de manera que la comparació només és equivalent per a la part d'emmagatzematge i compartició de fitxers. Tot i així, l'estalvi és important i, a més, les dades continuen sota el control de l'empresa. El maquinari té una vida útil estimada de 5 anys, per la qual cosa l'estalvi continua després del tercer any.</p>
+<h2 id="56-requisits-legals-normatius-i-etics">5.6 Requisits legals, normatius i ètics<a class="headerlink" href="#56-requisits-legals-normatius-i-etics" title="Permanent link">&para;</a></h2>
+<p><strong>Protecció de dades.</strong> Arrel Oberta tracta dades personals dels seus treballadors (sobretot en Recursos Humans) i dels seus clients, per la qual cosa li són aplicables:</p>
+<ul>
+<li><strong>Reglament General de Protecció de Dades (RGPD, Reglament UE 2016/679).</strong></li>
+<li><strong>Llei Orgànica 3/2018 de Protecció de Dades Personals i garantia dels drets digitals (LOPDGDD).</strong></li>
+</ul>
+<p>El disseny de Núvol Lliure ajuda a complir-los:</p>
+<table>
+<thead>
+<tr>
+<th>Exigència</th>
+<th>Com es complix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seguretat del tractament (art. 32 RGPD): xifrat, confidencialitat, disponibilitat i capacitat de restaurar les dades</td>
+<td>HTTPS, LDAPS, MFA, permisos per usuari, RAID 1, còpies xifrades i proves de restauració</td>
+</tr>
+<tr>
+<td>Verificar periòdicament l'eficàcia de les mesures (art. 32.1.d RGPD)</td>
+<td>Proves de restauració periòdiques i proves de cada canvi en preproducció</td>
+</tr>
+<tr>
+<td>Control sobre on es guarden les dades</td>
+<td>Les dades es queden en l'oficina, dins de la Unió Europea, sense transferències internacionals</td>
+</tr>
+<tr>
+<td>Notificació de violacions de seguretat en 72 hores (art. 33 RGPD)</td>
+<td>La monitorització i els registres permeten detectar i analitzar les incidències</td>
+</tr>
+<tr>
+<td>Registre d'activitats de tractament (art. 30 RGPD)</td>
+<td>L'empresa ha d'actualitzar-lo per incloure Núvol Lliure</td>
+</tr>
+<tr>
+<td>Informar els treballadors</td>
+<td>Comunicar l'ús de la nova plataforma, la data de posada en marxa i les normes d'ús</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Llicències.</strong> Tot el programari de la cloud és lliure: Nextcloud (AGPLv3), Ubuntu Server, Docker Engine (Apache 2.0), Caddy (Apache 2.0), MariaDB (GPLv2), BorgBackup (BSD), Uptime Kuma (MIT) i WireGuard (GPLv2). Com que s'utilitza internament i sense modificacions, no hi ha obligacions addicionals. Windows Server s'utilitza amb la llicència que l'empresa ja té.</p>
+<p><strong>Aspectes ètics.</strong> Els administradors tenen accés tècnic als fitxers del servidor. Per això:</p>
+<ul>
+<li>Només accediran a les dades dels usuaris quan siga necessari per resoldre una incidència i amb el coneixement de l'usuari.</li>
+<li>Les accions dels administradors queden registrades en els <em>logs</em> de Nextcloud.</li>
+<li>Les proves funcionals es fan en preproducció amb usuaris i fitxers de prova; les dades reals només es migren quan la plataforma està validada.</li>
+<li>L'única prova que utilitza dades reals fora de producció és la restauració completa anual, que es fa en BACKUP01 (el servidor que ja custodia les còpies), amb accés limitat al departament de Sistemes, i les dades restaurades s'eliminen en acabar.</li>
+</ul>
+<h2 id="57-gestio-documental">5.7 Gestió documental<a class="headerlink" href="#57-gestio-documental" title="Permanent link">&para;</a></h2>
+<p>Tota la documentació, configuració i scripts del projecte es gestionen amb <strong>Git</strong> i es guarden en un repositori privat de <strong>GitHub</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Contingut</th>
+<th>On es guarda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memòria del projecte (Markdown)</td>
+<td><code>docs/memoria/</code></td>
+</tr>
+<tr>
+<td>Diagrames (fitxer editable i imatge)</td>
+<td><code>docs/arquitectura/</code></td>
+</tr>
+<tr>
+<td>Guies d'instal·lació</td>
+<td><code>docs/installacio/</code></td>
+</tr>
+<tr>
+<td>Plans de proves i evidències (captures) de preproducció i producció</td>
+<td><code>docs/proves/</code></td>
+</tr>
+<tr>
+<td>Documentació de seguretat</td>
+<td><code>docs/seguretat/</code></td>
+</tr>
+<tr>
+<td>Fitxers <code>docker-compose.yml</code> (comuns als dos entorns)</td>
+<td><code>docker/</code></td>
+</tr>
+<tr>
+<td>Fitxers de configuració (Caddy, WireGuard...), separats per entorn quan cal</td>
+<td><code>config/</code></td>
+</tr>
+<tr>
+<td>Scripts de còpia, restauració i manteniment</td>
+<td><code>scripts/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Normes de treball:</strong></p>
+<ul>
+<li>Es fa un <em>commit</em> per cada canvi amb sentit, amb un missatge que explica què s'ha fet.</li>
+<li>Al final de cada fase es crea una etiqueta (<em>tag</em>) de versió, per exemple <code>v0.2-planificacio</code> o <code>v0.4-preproduccio</code>, per poder consultar l'estat del projecte en cada fita.</li>
+<li>En producció només es desplega una versió etiquetada que s'ha provat abans en preproducció (per exemple, <code>v1.0-produccio</code>). Així sempre se sap quina configuració hi ha en cada entorn i es pot tornar a la versió anterior.</li>
+<li>Les contrasenyes i claus <strong>no</strong> es pugen mai al repositori: cada entorn té el seu fitxer <code>.env</code>, creat a partir de la plantilla <code>.env.example</code>, i el <code>.gitignore</code> els exclou.</li>
+<li>Abans de cada <em>commit</em> es revisen els canvis amb <code>git diff</code>.</li>
+<li>El repositori de GitHub fa també de còpia de seguretat de la documentació.</li>
+</ul>
+<hr />
+<h1 id="6-implantacio-i-proves">6. IMPLANTACIÓ I PROVES<a class="headerlink" href="#6-implantacio-i-proves" title="Permanent link">&para;</a></h1>
+<h2 id="61-preparacio-de-lentorn">6.1 Preparació de l'entorn<a class="headerlink" href="#61-preparacio-de-lentorn" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="62-installacio-i-configuracio">6.2 Instal·lació i configuració<a class="headerlink" href="#62-installacio-i-configuracio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="63-automatitzacio">6.3 Automatització<a class="headerlink" href="#63-automatitzacio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="64-pla-de-proves">6.4 Pla de proves<a class="headerlink" href="#64-pla-de-proves" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h3 id="641-resultats-de-les-proves">6.4.1 Resultats de les proves<a class="headerlink" href="#641-resultats-de-les-proves" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h3 id="642-producte-minim-viable-pmv">6.4.2 Producte mínim viable (PMV)<a class="headerlink" href="#642-producte-minim-viable-pmv" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<hr />
+<h1 id="7-seguiment-i-control">7. SEGUIMENT I CONTROL<a class="headerlink" href="#7-seguiment-i-control" title="Permanent link">&para;</a></h1>
+<h2 id="71-evolucio-del-projecte">7.1 Evolució del projecte<a class="headerlink" href="#71-evolucio-del-projecte" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="72-registre-dincidencies">7.2 Registre d'incidències<a class="headerlink" href="#72-registre-dincidencies" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="73-canvis-realitzats">7.3 Canvis realitzats<a class="headerlink" href="#73-canvis-realitzats" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<hr />
+<h1 id="8-resultats-i-conclusions">8. RESULTATS I CONCLUSIONS<a class="headerlink" href="#8-resultats-i-conclusions" title="Permanent link">&para;</a></h1>
+<h2 id="81-resultats-obtinguts">8.1 Resultats obtinguts<a class="headerlink" href="#81-resultats-obtinguts" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="82-grau-de-consecucio-dels-objectius">8.2 Grau de consecució dels objectius<a class="headerlink" href="#82-grau-de-consecucio-dels-objectius" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="83-incidencies-i-dificultats">8.3 Incidències i dificultats<a class="headerlink" href="#83-incidencies-i-dificultats" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="84-nivell-de-satisfaccio">8.4 Nivell de satisfacció<a class="headerlink" href="#84-nivell-de-satisfaccio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="85-propostes-de-millora">8.5 Propostes de millora<a class="headerlink" href="#85-propostes-de-millora" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<hr />
+<h1 id="9-bibliografiawebgrafia-i-fonts">9. BIBLIOGRAFIA/WEBGRAFIA I FONTS<a class="headerlink" href="#9-bibliografiawebgrafia-i-fonts" title="Permanent link">&para;</a></h1>
+<p>Tots els recursos en línia s'han consultat l'octubre de 2026. La llista s'ampliarà durant la implantació.</p>
+<table>
+<thead>
+<tr>
+<th>Font</th>
+<th>Tipus</th>
+<th>URL / Referència</th>
+<th>Informació utilitzada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nextcloud – <em>Server Administration Manual</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/</td>
+<td>Funcionament general i administració de Nextcloud</td>
+</tr>
+<tr>
+<td>Nextcloud – <em>System requirements</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html</td>
+<td>Bases de dades compatibles i requisits del servidor</td>
+</tr>
+<tr>
+<td>Nextcloud – <em>User authentication with LDAP</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/user_auth_ldap.html</td>
+<td>Integració amb Active Directory</td>
+</tr>
+<tr>
+<td>Nextcloud – <em>Two-factor authentication</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/two_factor-auth.html</td>
+<td>Autenticació multifactor i com fer-la obligatòria</td>
+</tr>
+<tr>
+<td>Nextcloud – <em>Backup</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/maintenance/backup.html</td>
+<td>Què s'ha de copiar i ús del mode manteniment</td>
+</tr>
+<tr>
+<td>Nextcloud – <em>Upgrade manual</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.nextcloud.com/server/stable/admin_manual/maintenance/upgrade.html</td>
+<td>Procediment d'actualització i proves prèvies (4.4, 4.7)</td>
+</tr>
+<tr>
+<td>Nextcloud – Imatge oficial de Docker</td>
+<td>Repositori oficial</td>
+<td>https://github.com/nextcloud/docker</td>
+<td>Desplegament de Nextcloud amb Docker Compose</td>
+</tr>
+<tr>
+<td>ownCloud – <em>Infinite Scale Admin Documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://doc.owncloud.com/ocis/next/admin/index.html</td>
+<td>Característiques per a la comparativa</td>
+</tr>
+<tr>
+<td>Seafile – <em>Admin Manual</em></td>
+<td>Documentació oficial</td>
+<td>https://manual.seafile.com/</td>
+<td>Característiques per a la comparativa</td>
+</tr>
+<tr>
+<td>Canonical – <em>Ubuntu 26.04 LTS release notes</em></td>
+<td>Documentació oficial</td>
+<td>https://documentation.ubuntu.com/release-notes/26.04/</td>
+<td>Versió i suport del sistema operatiu</td>
+</tr>
+<tr>
+<td>Canonical – <em>Ubuntu Server documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://documentation.ubuntu.com/server/</td>
+<td>Administració d'Ubuntu Server</td>
+</tr>
+<tr>
+<td>Microsoft – <em>Selecting the Forest Root Domain</em></td>
+<td>Documentació oficial</td>
+<td>https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain</td>
+<td>Nom del domini d'Active Directory</td>
+</tr>
+<tr>
+<td>Microsoft – <em>Active Directory Certificate Services overview</em></td>
+<td>Documentació oficial</td>
+<td>https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview</td>
+<td>Certificats interns per a LDAPS i per a l'entorn de preproducció</td>
+</tr>
+<tr>
+<td>Docker – <em>Docker Docs</em> i <em>Docker Compose</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.docker.com/</td>
+<td>Contenidors i fitxers Compose</td>
+</tr>
+<tr>
+<td>Docker Hub – Imatges oficials de MariaDB i Redis</td>
+<td>Repositori oficial</td>
+<td>https://hub.docker.com/<em>/mariadb · https://hub.docker.com/</em>/redis</td>
+<td>Configuració de la base de dades i la memòria cau</td>
+</tr>
+<tr>
+<td>Caddy – <em>Documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://caddyserver.com/docs/</td>
+<td>Proxy invers, obtenció automàtica de certificats i ús de certificats propis</td>
+</tr>
+<tr>
+<td>Let's Encrypt – <em>Documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://letsencrypt.org/docs/</td>
+<td>Certificats HTTPS gratuïts i renovació automàtica</td>
+</tr>
+<tr>
+<td>Linux man-pages – <em>mdadm(8)</em> i <em>lvm(8)</em></td>
+<td>Documentació oficial</td>
+<td>https://man7.org/linux/man-pages/man8/mdadm.8.html · https://man7.org/linux/man-pages/man8/lvm.8.html</td>
+<td>RAID per programari i volums lògics</td>
+</tr>
+<tr>
+<td>BorgBackup – <em>Documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://borgbackup.readthedocs.io/</td>
+<td>Còpies incrementals, xifrat i retenció</td>
+</tr>
+<tr>
+<td>INCIBE – <em>Copias de seguridad: una guía de aproximación para el empresario</em></td>
+<td>Organisme públic</td>
+<td>https://www.incibe.es/empresas/blog/copias-seguridad-guia-aproximacion-el-empresario</td>
+<td>Política de còpies en l'empresa</td>
+</tr>
+<tr>
+<td>Uptime Kuma – Repositori oficial</td>
+<td>Repositori oficial</td>
+<td>https://github.com/louislam/uptime-kuma</td>
+<td>Monitorització de serveis</td>
+</tr>
+<tr>
+<td>WireGuard</td>
+<td>Documentació oficial</td>
+<td>https://www.wireguard.com/</td>
+<td>VPN d'administració</td>
+</tr>
+<tr>
+<td>Ubuntu Community – <em>UFW</em></td>
+<td>Documentació de la comunitat</td>
+<td>https://help.ubuntu.com/community/UFW</td>
+<td>Tallafocs dels servidors</td>
+</tr>
+<tr>
+<td>eesel AI – <em>Precios de Google Workspace 2026</em></td>
+<td>Article</td>
+<td>https://www.eesel.ai/es/blog/google-workspace-pricing</td>
+<td>Cost de Google Workspace per a la comparativa</td>
+</tr>
+<tr>
+<td>Nordflux – <em>Aumento de precios Microsoft 365 2026</em></td>
+<td>Article</td>
+<td>https://nordflux.de/es/conocimiento/microsoft-365-subida-de-precios-2026</td>
+<td>Cost de Microsoft 365 per a la comparativa</td>
+</tr>
+<tr>
+<td>HPE ProLiant MicroServer Gen11 (comparador de preus)</td>
+<td>Preu de mercat</td>
+<td>https://www.comparateur-gamer.fr/prix/hpe-serveur-hpe-proliant-microserver-gen11-intel-xeon-e-190017748306</td>
+<td>Preu del servidor NUVOL01 (5.4)</td>
+</tr>
+<tr>
+<td>PcComponentes – WD Red Plus 4 TB</td>
+<td>Preu de mercat</td>
+<td>https://www.pccomponentes.com/opiniones//disco-duro-western-digital-red-plus-4tb-hdd-5400rpm-sata-iii-para-nas-180mb-s</td>
+<td>Preu del disc de BACKUP01 (5.4)</td>
+</tr>
+<tr>
+<td>MediaMarkt – WD Elements 4 TB</td>
+<td>Preu de mercat</td>
+<td>https://www.mediamarkt.es/eu/product/_disco-duro-de-4-tb-wd-elements-externo-2-5-pulgadas-usb-3-0-negro-1423528.html</td>
+<td>Preu dels discos externs (5.4)</td>
+</tr>
+<tr>
+<td>PcComponentes – APC Back-UPS BX950MI</td>
+<td>Preu de mercat</td>
+<td>https://www.pccomponentes.com/apc-back-ups-bx950mi-sai-950va-520w</td>
+<td>Preu del SAI (5.4)</td>
+</tr>
+<tr>
+<td>Register.Domains – Dominis .com</td>
+<td>Preu de mercat</td>
+<td>https://register.domains/es/dm/dominios-com</td>
+<td>Cost anual del domini (5.4)</td>
+</tr>
+<tr>
+<td>Indeed – Sou d'administrador de sistemes</td>
+<td>Estadística salarial</td>
+<td>https://es.indeed.com/salaries/administrador-de-sistemas-Salaries</td>
+<td>Cost per hora del tècnic (5.4)</td>
+</tr>
+<tr>
+<td>Reglament (UE) 2016/679 (RGPD)</td>
+<td>Normativa</td>
+<td>https://eur-lex.europa.eu/eli/reg/2016/679/oj</td>
+<td>Obligacions de protecció de dades (5.6)</td>
+</tr>
+<tr>
+<td>Llei Orgànica 3/2018 (LOPDGDD)</td>
+<td>Normativa</td>
+<td>https://www.boe.es/eli/es/lo/2018/12/05/3/con</td>
+<td>Protecció de dades en Espanya (5.6)</td>
+</tr>
+<tr>
+<td>Agència Espanyola de Protecció de Dades (AEPD)</td>
+<td>Organisme públic</td>
+<td>https://www.aepd.es/</td>
+<td>Guies de compliment del RGPD (5.6)</td>
+</tr>
+<tr>
+<td>Git – <em>Documentation</em></td>
+<td>Documentació oficial</td>
+<td>https://git-scm.com/doc</td>
+<td>Control de versions</td>
+</tr>
+<tr>
+<td>GitHub – <em>GitHub Docs</em></td>
+<td>Documentació oficial</td>
+<td>https://docs.github.com/</td>
+<td>Repositori remot</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="10-annexos">10. ANNEXOS<a class="headerlink" href="#10-annexos" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<hr />
+<h1 id="11-documentacio-tecnica">11. DOCUMENTACIÓ TÈCNICA<a class="headerlink" href="#11-documentacio-tecnica" title="Permanent link">&para;</a></h1>
+<h2 id="111-manual-dinstallacio">11.1 Manual d'instal·lació<a class="headerlink" href="#111-manual-dinstallacio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="112-manual-dadministracio">11.2 Manual d'administració<a class="headerlink" href="#112-manual-dadministracio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="113-manual-dusuari">11.3 Manual d'usuari<a class="headerlink" href="#113-manual-dusuari" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="114-manual-de-recuperacio">11.4 Manual de recuperació<a class="headerlink" href="#114-manual-de-recuperacio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<hr />
+<h1 id="12-presentacio-i-defensa">12. PRESENTACIÓ I DEFENSA<a class="headerlink" href="#12-presentacio-i-defensa" title="Permanent link">&para;</a></h1>
+<h2 id="121-estructura-de-la-presentacio">12.1 Estructura de la presentació<a class="headerlink" href="#121-estructura-de-la-presentacio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="122-demostracio">12.2 Demostració<a class="headerlink" href="#122-demostracio" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+<h2 id="123-preguntes-previsibles">12.3 Preguntes previsibles<a class="headerlink" href="#123-preguntes-previsibles" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⏳ <strong>Pendent de desenvolupament</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Torna a l'inici
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Peu de pàgina" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Inici">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Inici
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../arquitectura/" class="md-footer__link md-footer__link--next" aria-label="Següent: Arquitectura">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Següent
+              </span>
+              <div class="md-ellipsis">
+                Arquitectura
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiat al porta-retalls", "clipboard.copy": "C\u00f2pia al porta-retalls", "search.result.more.one": "1 m\u00e9s en aquesta p\u00e0gina", "search.result.more.other": "# m\u00e9s en aquesta p\u00e0gina", "search.result.none": "Cap document coincideix", "search.result.one": "1 document coincident", "search.result.other": "# documents coincidents", "search.result.placeholder": "Escriu per a comen\u00e7ar a cercar", "search.result.term.missing": "Desaparegut", "select.version": "Selecciona la versi\u00f3"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
