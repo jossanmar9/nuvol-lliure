@@ -1,0 +1,62 @@
+site_name: Núvol Lliure
+site_description: Cloud privada per a Arrel Oberta
+site_author: Jose Vicente Sanjuan Martinez
+site_url: https://jossanmar9.github.io/nuvol-lliure/
+
+repo_name: jossanmar9/nuvol-lliure
+repo_url: https://github.com/jossanmar9/nuvol-lliure
+
+theme:
+  name: material
+  language: ca
+
+  logo: imatges/logo.png
+  favicon: imatges/logo.png
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Canvia al mode fosc
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Canvia al mode clar
+
+nav:
+  - Inici: index.md
+
+  - Projecte:
+      - Memòria: memoria/memoria.md
+
+  - Arquitectura:
+      - Arquitectura: arquitectura/index.md
+
+  - Instal·lació:
+      - Instal·lació: installacio/index.md
+
+  - Seguretat:
+      - Seguretat: seguretat/index.md
+
+  - Proves:
+      - Proves: proves/index.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
