@@ -160,7 +160,7 @@ Les principals limitacions detectades són:
 
 ### Necessitats de disponibilitat
 
-- La fallada d'un disc no ha de provocar la pèrdua de dades ni aturar el servei.
+- La fallada d'un dels discos que formen el RAID 1 no ha de provocar la pèrdua de dades ni interrompre el servei.
 - Cal fer còpies de seguretat automàtiques, separades del servidor principal, i comprovar que es poden restaurar.
 - Cal saber quan un servei deixa de funcionar.
 - La posada en producció i la migració no han d'interrompre el treball dels usuaris.
