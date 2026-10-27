@@ -21,21 +21,23 @@
 
 El projecte planteja la seua implantació en **Arrel Oberta**, una consultoria d'aproximadament **50 treballadors**. L'empresa disposa d'un servidor Windows amb **Active Directory** que també fa de servidor de fitxers, on cada treballador té la seua carpeta individual, accessible només des de l'oficina.
 
-Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos servidors **Linux**: un per a la cloud privada, basada en **Nextcloud** i **Docker**, i un altre per a les còpies de seguretat, la monitorització i l'entorn de preproducció. Els treballadors poden accedir a la seua informació des de l'oficina i des de fora, amb el mateix usuari que utilitzen en Windows.
+Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos servidors **Linux**: un per a la cloud privada, basada en **Nextcloud** i **Docker**, i un altre per a les còpies de seguretat, la monitorització i l'entorn de preproducció.
+
+Els treballadors podran accedir a la seua informació des de l'oficina i des de fora, utilitzant el mateix compte que ja utilitzen en Windows.
 
 ## 🎯 Objectius
 
 - Desplegar Nextcloud amb Docker sobre Ubuntu Server.
 - Integrar Nextcloud amb Active Directory.
 - Validar la solució en un entorn de preproducció abans del desplegament a producció.
-- Migrar les carpetes individuals dels treballadors a Nextcloud, fora d'horari i amb pla de marxa arrere.
+- Migrar les carpetes individuals dels treballadors a Nextcloud, fora d'horari i amb un pla de marxa arrere.
 - Permetre compartir fitxers entre usuaris i departaments.
 - Proporcionar accés segur des de la xarxa interna i des d'Internet, amb HTTPS i autenticació multifactor.
-- Protegir les dades amb un RAID 1.
+- Protegir les dades davant de la fallada d'un disc mitjançant RAID 1.
 - Fer còpies de seguretat automàtiques en un segon servidor i comprovar-ne la restauració.
-- Monitoritzar els servidors i els serveis.
-- Automatitzar les tasques de manteniment amb scripts.
-- Documentar la instal·lació, l'administració i la recuperació.
+- Monitoritzar els servidors i els serveis principals.
+- Automatitzar tasques de manteniment mitjançant scripts.
+- Documentar la instal·lació, administració i recuperació de la infraestructura.
 
 ## 🏗️ Arquitectura
 
@@ -43,117 +45,189 @@ Núvol Lliure manté Active Directory per gestionar els usuaris i afegeix dos se
                                   INTERNET
                                       │
                               ┌───────┴────────┐
-                              │ Router de      │  Ports reenviats a NUVOL01:
-                              │ l'empresa      │  · 443/tcp   (HTTPS)
-                              └───────┬────────┘  · 51820/udp (VPN WireGuard)
+                              │ Router de      │
+                              │ l'empresa      │
+                              └───────┬────────┘
                                       │
                            LAN 192.168.10.0/24
        ┌──────────────────┬───────────┴──────┬──────────────────┐
        │                  │                  │                  │
 ┌──────┴────────┐ ┌───────┴───────────┐ ┌────┴─────────────┐ ┌──┴─────────┐
-│ DC01          │ │ NUVOL01 (PROD.)   │ │ BACKUP01         │ │ Equips     │
-│ Windows Server│ │ Ubuntu Server     │ │ Ubuntu Server    │ │ Windows 11 │
-│ · AD DS       │ │ · Docker Compose  │ │ · Repositori     │ │ · Navegador│
-│ · DNS         │◄┤   - Caddy (HTTPS) │ │   BorgBackup     │ │ · Client   │
-│               │ │   - Nextcloud     ├─►   (còpies)       │ │  Nextcloud │
-│               │ │   - MariaDB/Redis │ │ · Monitorització │ │ · Mòbils   │
-│               │ │ · RAID 1 (mdadm)  │ │   (Uptime Kuma)  │ │            │
-│               │ │                   │ │ · Preproducció   │ │            │
+│ DC01          │ │ NUVOL01           │ │ BACKUP01         │ │ Equips     │
+│ Windows Server│ │ PRODUCCIÓ         │ │ Ubuntu Server    │ │ Windows 11 │
+│               │ │ Ubuntu Server     │ │                  │ │            │
+│ · AD DS       │ │ · Docker Compose  │ │ · BorgBackup     │ │ · Navegador│
+│ · DNS         │◄┤ · Nextcloud       ├─► · Uptime Kuma    │ │ · Client   │
+│ · AD CS       │ │ · MariaDB         │ │ · Preproducció   │ │  Nextcloud │
+│               │ │ · Redis           │ │                  │ │ · Mòbils   │
+│               │ │ · Caddy           │ │                  │ │            │
+│               │ │ · RAID 1          │ │                  │ │            │
 └───────────────┘ └───────────────────┘ └──────────────────┘ └────────────┘
 ```
 
+### Servidors
+
 | Servidor | IP | Funció |
 |---|---|---|
-| DC01 | 192.168.10.10 | Active Directory, DNS i AD CS |
-| NUVOL01 | 192.168.10.20 | Cloud privada (Nextcloud) – **producció** |
-| BACKUP01 | 192.168.10.30 | Còpies de seguretat, monitorització i **preproducció** |
+| **DC01** | `192.168.10.10` | Active Directory, DNS i AD CS |
+| **NUVOL01** | `192.168.10.20` | Cloud privada – producció |
+| **BACKUP01** | `192.168.10.30` | Còpies de seguretat, monitorització i preproducció |
 
-| Entorn | Adreça | Accés |
-|---|---|---|
-| Producció | `https://nuvol.arreloberta.com` | Xarxa interna i Internet |
-| Preproducció | `https://nuvol-pre.corp.arreloberta.com` | Només xarxa interna i VPN |
-
-Tots els canvis es proven primer en preproducció i després s'apliquen en producció a partir d'una versió etiquetada en Git.
+L'entorn de **preproducció** permet provar configuracions, actualitzacions i scripts abans d'aplicar-los sobre el servidor de producció.
 
 ## 🛠️ Tecnologies
 
 | Àmbit | Tecnologia |
 |---|---|
-| Gestió d'usuaris | Active Directory (Windows Server) |
-| Servidors Linux | Ubuntu Server 26.04 LTS |
+| Gestió d'usuaris | Active Directory |
+| Servidors Linux | Ubuntu Server |
 | Contenidors | Docker + Docker Compose |
-| Plataforma de cloud | Nextcloud |
-| Base de dades i memòria cau | MariaDB + Redis |
-| Proxy invers i HTTPS | Caddy + Let's Encrypt (producció) / AD CS (preproducció) |
-| Redundància | RAID 1 (mdadm) + LVM |
+| Cloud privada | Nextcloud |
+| Base de dades | MariaDB |
+| Memòria cau | Redis |
+| Proxy invers i HTTPS | Caddy |
+| Certificats públics | Let's Encrypt |
+| Certificats interns | Active Directory Certificate Services |
+| Redundància | RAID 1 amb `mdadm` + LVM |
 | Còpies de seguretat | BorgBackup |
 | Monitorització | Uptime Kuma |
-| Accés d'administració | WireGuard |
-| Automatització | Scripts Bash + cron |
+| VPN d'administració | WireGuard |
+| Firewall | UFW |
+| Automatització | Bash + cron |
 | Control de versions | Git + GitHub |
 
-La justificació de cada tecnologia es troba en l'apartat 4 de la memòria.
+La selecció i justificació de les diferents tecnologies es desenvolupa en l'apartat 4 de la memòria.
+
+## 🔄 Flux de desplegament
+
+Els canvis sobre la infraestructura seguiran un procés de validació abans d'arribar a producció:
+
+```text
+Configuració / canvi
+        │
+        ▼
+       Git
+        │
+        ▼
+  Preproducció
+        │
+        ▼
+      Proves
+        │
+        ▼
+  Validació correcta?
+      │       │
+     No       Sí
+      │       │
+      ▼       ▼
+  Correcció  Producció
+```
+
+D'esta manera, les actualitzacions, configuracions i scripts es provaran primer en un entorn separat abans d'aplicar-los al servei utilitzat pels treballadors.
 
 ## 📁 Estructura del repositori
 
 ```text
-cloud-privada-asir/
-├── config/                   # Fitxers de configuració (Caddy, WireGuard...)
-├── docker/                   # Fitxers docker-compose dels serveis
+nuvol-lliure/
+├── config/                   # Fitxers de configuració
+├── docker/                   # Configuració de Docker Compose
 ├── docs/
-│   ├── arquitectura/         # Diagrames de la infraestructura
-│   ├── imatges/              # Imatges de la documentació
-│   ├── installacio/          # Guies d'instal·lació
-│   ├── memoria/              # Memòria del projecte
-│   │   └── memoria.md
+│   ├── arquitectura/         # Diagrames i disseny de la infraestructura
+│   ├── imatges/              # Imatges utilitzades en la documentació
+│   ├── installacio/          # Documentació d'instal·lació
+│   ├── memoria/
+│   │   └── memoria.md        # Memòria del projecte
 │   ├── proves/               # Plans i resultats de proves
 │   └── seguretat/            # Documentació de seguretat
 ├── scripts/
 │   ├── backup/               # Scripts de còpies de seguretat
 │   ├── manteniment/          # Scripts de manteniment
 │   └── restore/              # Scripts de restauració
-├── .env.example
+├── .env.example              # Plantilla de variables d'entorn
 ├── .gitignore
 └── README.md
 ```
 
+L'estructura podrà evolucionar durant la implantació del projecte segons les necessitats que apareguen.
+
 ## 📖 Documentació
 
-La memòria del projecte es troba en [`docs/memoria/memoria.md`](docs/memoria/memoria.md).
+La memòria completa del projecte es troba en:
 
-Apartats completats:
+[`docs/memoria/memoria.md`](docs/memoria/memoria.md)
 
-- Presentació del projecte.
-- Introducció.
-- Anàlisi del projecte (situació actual, necessitats, requisits, solucions existents i DAFO).
-- Disseny de la solució.
-- Planificació (riscos, tasques i Gantt, allotjament, pressupost, retorn, aspectes legals i gestió documental).
+La memòria segueix l'estructura establida per al Projecte Intermodular:
 
-## 🔐 Dades sensibles
+1. Presentació del projecte.
+2. Introducció.
+3. Anàlisi del projecte.
+4. Disseny de la solució.
+5. Planificació.
+6. Implantació i proves.
+7. Seguiment i control.
+8. Resultats i conclusions.
+9. Bibliografia/webgrafia i fonts.
+10. Annexos.
+11. Documentació tècnica.
+12. Presentació i defensa.
+
+## 🔐 Seguretat i dades sensibles
 
 > [!IMPORTANT]
-> Les contrasenyes, claus privades, certificats i altres dades sensibles **no es guarden al repositori**.
+> Les contrasenyes, claus privades, certificats, tokens i altres dades sensibles **no es guarden al repositori**.
 
-Les variables necessàries es defineixen en un fitxer `.env` a partir de la plantilla [`.env.example`](.env.example), que no conté credencials reals.
+Les variables necessàries per als serveis es definiran en un fitxer `.env` local a partir de la plantilla [`.env.example`](.env.example).
+
+El fitxer `.env` real quedarà exclòs del control de versions mitjançant `.gitignore`.
+
+## 🔄 Control de versions
+
+El projecte utilitza **Git** com a sistema de control de versions i **GitHub** com a repositori remot.
+
+S'utilitza per a:
+
+- Mantindre un historial dels canvis.
+- Versionar configuracions i scripts.
+- Mantindre la documentació del projecte.
+- Provar en preproducció la mateixa configuració que posteriorment s'utilitzarà en producció.
+- Poder identificar i recuperar versions anteriors.
 
 ## 🚧 Estat del projecte
 
-> 🟡 **En desenvolupament** – planificació completada; pendent la implantació.
+> 🟡 **En desenvolupament – planificació completada; pendent la implantació.**
 
 - [x] Definició del projecte
-- [x] Anàlisi de la situació actual, necessitats i requisits
+- [x] Anàlisi de la situació actual
+- [x] Identificació de necessitats i requisits
 - [x] Anàlisi de solucions i DAFO
 - [x] Disseny de la solució
+- [x] Selecció i justificació de tecnologies
 - [x] Planificació
 - [ ] Preparació de la infraestructura
 - [ ] Desplegament en preproducció
 - [ ] Integració amb Active Directory
-- [ ] Seguretat (HTTPS, MFA, VPN)
-- [ ] RAID 1
-- [ ] Còpies de seguretat i restauració
+- [ ] Configuració d'HTTPS i MFA
+- [ ] Configuració de la VPN
+- [ ] Configuració i prova del RAID 1
+- [ ] Còpies de seguretat i proves de restauració
 - [ ] Monitorització
 - [ ] Scripts d'automatització
-- [ ] Proves en preproducció
+- [ ] Pla de proves en preproducció
+- [ ] Desplegament a producció
+- [ ] Prova pilot
+- [ ] Migració de dades
+- [ ] Documentació tècnica
+- [ ] Finalització de la memòria
+- [ ] Presentació i defensa
+
+## 📄 Llicència de la documentació
+
+La documentació de **Núvol Lliure** es distribueix sota la llicència
+**Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**.
+
+© 2026 Jose Vicente Sanjuan Martinez
+
+La llicència s'aplica a la documentació del directori `docs/`. Les tecnologies i aplicacions de tercers utilitzades pel projecte mantenen les seues respectives llicències.
 - [ ] Desplegament a producció i verificació
 - [ ] Prova pilot i migració de dades
 - [ ] Documentació tècnica
