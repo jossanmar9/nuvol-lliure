@@ -1,0 +1,28 @@
+# Llicència de la documentació
+
+La documentació del projecte **Núvol Lliure** es distribueix sota la llicència:
+
+**Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**
+
+Copyright © 2026 Jose Vicente Sanjuan Martinez
+
+Esta llicència permet:
+
+- Compartir i redistribuir la documentació en qualsevol mitjà o format.
+- Adaptar, transformar i crear material a partir de la documentació.
+- Utilitzar-la amb qualsevol finalitat, inclosa la comercial.
+
+Sempre que es complisquen les condicions següents:
+
+- **Reconeixement:** s'ha de reconéixer adequadament l'autoria original, proporcionar una referència a la llicència i indicar si s'han realitzat canvis.
+- **CompartirIgual:** si es modifica o transforma la documentació, el material resultant s'ha de distribuir sota la mateixa llicència o una de compatible.
+
+Text complet de la llicència:
+
+https://creativecommons.org/licenses/by-sa/4.0/
+
+## Àmbit d'aplicació
+
+Esta llicència s'aplica exclusivament a la documentació continguda en el directori `docs/` del repositori **Núvol Lliure**, incloent-hi la memòria, la documentació tècnica, els diagrames i les imatges creades específicament per al projecte, excepte quan s'indique una llicència diferent.
+
+El programari, scripts, configuracions i components de tercers utilitzats en el projecte no queden coberts per esta llicència i mantenen, quan corresponga, les seues pròpies llicències.
