@@ -366,6 +366,8 @@ Si alguna cosa va malament, es torna a donar permís d'escriptura a les carpetes
 | RA-01 | Script de còpia amb `cron` |
 | RDOC-01 | Manuals de l'apartat 11 |
 
+Les adreces IP, els noms dels equips i els recursos de maquinari indicats són una proposta inicial i es poden ajustar durant la implantació. Els canvis que es facen es recolliran en l'apartat 7.3 (Canvis realitzats).
+
 ## 4.5 Seguretat
 
 | Risc | Mesures |
@@ -671,6 +673,16 @@ Es fa un commit cada vegada que es canvia alguna cosa i les contrasenyes no es p
 | RGPD | Normativa | https://eur-lex.europa.eu/eli/reg/2016/679/oj | Protecció de dades |
 | LOPDGDD | Normativa | https://www.boe.es/eli/es/lo/2018/12/05/3/con | Protecció de dades |
 
+## Ús d'eines d'intel·ligència artificial
+
+Durant l'elaboració del projecte s'ha utilitzat un assistent d'intel·ligència artificial (Claude, d'Anthropic) com a eina de suport per a:
+
+- Organitzar la memòria segons la plantilla del projecte.
+- Proposar i comparar alternatives tècniques.
+- Buscar documentació oficial i preus de referència.
+- Revisar i millorar la redacció.
+
+Totes les propostes s'han revisat i les decisions finals les ha pres l'alumne, que és qui realitza la instal·lació, la configuració i les proves de la infraestructura.
 ---
 
 # 10. ANNEXOS
